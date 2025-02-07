@@ -1,0 +1,15 @@
+D:\Code\Bank System\Bank\bin\Debug\net8.0\Main.exe
+D:\Code\Bank System\Bank\bin\Debug\net8.0\Main.deps.json
+D:\Code\Bank System\Bank\bin\Debug\net8.0\Main.runtimeconfig.json
+D:\Code\Bank System\Bank\bin\Debug\net8.0\Main.dll
+D:\Code\Bank System\Bank\bin\Debug\net8.0\Main.pdb
+D:\Code\Bank System\Bank\obj\Debug\net8.0\Main.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\Bank System\Bank\obj\Debug\net8.0\Main.AssemblyInfoInputs.cache
+D:\Code\Bank System\Bank\obj\Debug\net8.0\Main.AssemblyInfo.cs
+D:\Code\Bank System\Bank\obj\Debug\net8.0\Main.csproj.CoreCompileInputs.cache
+D:\Code\Bank System\Bank\obj\Debug\net8.0\Main.sourcelink.json
+D:\Code\Bank System\Bank\obj\Debug\net8.0\Main.dll
+D:\Code\Bank System\Bank\obj\Debug\net8.0\refint\Main.dll
+D:\Code\Bank System\Bank\obj\Debug\net8.0\Main.pdb
+D:\Code\Bank System\Bank\obj\Debug\net8.0\Main.genruntimeconfig.cache
+D:\Code\Bank System\Bank\obj\Debug\net8.0\ref\Main.dll
