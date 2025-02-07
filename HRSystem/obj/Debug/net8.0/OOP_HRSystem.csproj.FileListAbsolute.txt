@@ -1,0 +1,15 @@
+D:\Code\C#\OOP_HRSystem\obj\Debug\net8.0\OOP_HRSystem.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\C#\OOP_HRSystem\obj\Debug\net8.0\OOP_HRSystem.AssemblyInfoInputs.cache
+D:\Code\C#\OOP_HRSystem\obj\Debug\net8.0\OOP_HRSystem.AssemblyInfo.cs
+D:\Code\C#\OOP_HRSystem\obj\Debug\net8.0\OOP_HRSystem.csproj.CoreCompileInputs.cache
+D:\Code\C#\OOP_HRSystem\obj\Debug\net8.0\OOP_HRSystem.sourcelink.json
+D:\Code\C#\OOP_HRSystem\bin\Debug\net8.0\OOP_HRSystem.exe
+D:\Code\C#\OOP_HRSystem\bin\Debug\net8.0\OOP_HRSystem.deps.json
+D:\Code\C#\OOP_HRSystem\bin\Debug\net8.0\OOP_HRSystem.runtimeconfig.json
+D:\Code\C#\OOP_HRSystem\bin\Debug\net8.0\OOP_HRSystem.dll
+D:\Code\C#\OOP_HRSystem\bin\Debug\net8.0\OOP_HRSystem.pdb
+D:\Code\C#\OOP_HRSystem\obj\Debug\net8.0\OOP_HRSystem.dll
+D:\Code\C#\OOP_HRSystem\obj\Debug\net8.0\refint\OOP_HRSystem.dll
+D:\Code\C#\OOP_HRSystem\obj\Debug\net8.0\OOP_HRSystem.pdb
+D:\Code\C#\OOP_HRSystem\obj\Debug\net8.0\OOP_HRSystem.genruntimeconfig.cache
+D:\Code\C#\OOP_HRSystem\obj\Debug\net8.0\ref\OOP_HRSystem.dll
