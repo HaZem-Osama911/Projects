@@ -1,0 +1,118 @@
+:root {
+    --main-color: #4070F4;
+    --secondary-color: #02a4b2;
+    --background: #f9f9f9;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+  }
+  
+  .guided-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  
+  .guided-container h1 {
+    color: var(--main-color);
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 18px;
+  }
+  
+  .question {
+    margin-bottom: 25px;
+    text-align: right;
+  }
+  
+  .question h3 {
+    color: var(--main-color);
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .question label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submit-btn {
+    background:#4070F4;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background: #537be9;
+  }
+  
+  .result {
+    margin-top: 30px;
+    font-size: 20px;
+    color: var(--main-color);
+    font-weight: bold;
+  }
+  #result {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #f0faff;
+    border: 1px solid #4070F4;
+    border-radius: 10px;
+    display: none;
+    direction: rtl;
+    text-align: center;
+  }
+  
+  .recommend-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .recommend-list li {
+    flex: 1 1 auto;
+    max-width: 250px;
+  }
+  
+  .result-link {
+    display: block;
+    width: 80%;
+    text-decoration: none;
+    background-color: #4070F4;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+    text-align: center;
+  }
+  
+  .result-link:hover {
+    background-color: #537be9;
+  }
+  

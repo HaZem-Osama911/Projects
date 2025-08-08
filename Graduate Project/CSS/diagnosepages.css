@@ -1,0 +1,111 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+
+.speechpart {
+    width: 100%;
+    padding-top: var(--main-padding-top);
+    padding-bottom: var(--main-padding-bottom);
+    background: var(--background);
+    direction: rtl;
+}
+
+.speechpart .diagnoses-content .container {
+    max-width: 900px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.speechpart .diagnoses-content .container h2 {
+    color: rgb(1, 6, 10);
+    font-size: 38px;
+    text-align: center;
+}
+
+.speechpart .grid {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+@media (max-width:767px) {
+    .speechpart .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 30px;
+    }
+}
+
+.speechpart .card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.speechpart .card:hover {
+    transform: scale(1.05);
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+    padding-bottom: 25px;
+    background: linear-gradient(8deg, rgb(8, 52, 83, 1) 0%, rgb(0, 165, 230), rgb(41, 17, 45, 1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.speechpart .card h3 {
+    margin: 10px 0;
+
+}
+
+.speechpart .card a {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #0082e6;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.speechpart .card a:hover {
+    background: #0862a7;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+    position: relative;
+}
+
+.main-title span {
+    display: block;
+    height: 4px;
+    width: 60px;
+    background-color: #0082e6;
+    margin: 10px auto 0;
+    border-radius: 3px;
+}
+
+section {
+    padding: 60px 15px;
+    border-bottom: 1px solid #ddd;
+}
