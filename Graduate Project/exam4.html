@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>اختبار M-CHAT</title>
+    <link rel="shortcut icon" type="x-icon" href="image/logo.png">
+    <link rel="stylesheet" href="css/exam4.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https:fonts.googleapis.com">
+    <link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>
+    <link href="https:fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lalezar&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+
+
+</head>
+<div class="container">
+    <h1>اختبار M-CHAT</h1>
+    <p class="description">يرجى الإجابة على الأسئلة بصدق لتقييم مستوى التواصل والتفاعل الاجتماعي لدى الطفل.</p>
+    <div id="quiz-container">
+        <p id="question"></p>
+        <div id="options">
+            <button class="option-btn" id="yes-btn" onclick="selectAnswer(true)">نعم</button>
+            <button class="option-btn" id="no-btn" onclick="selectAnswer(false)">لا</button>
+        </div>
+        <button id="next-btn" disabled>التالي</button>
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+    </div>
+    <div id="result-container" class="hidden">
+        <h2>النتيجة</h2>
+        <p id="result-text"></p>
+        <canvas id="result-chart"></canvas>
+        <button onclick="restartQuiz()">إعادة الاختبار</button>
+        <button onclick="exitQuiz()">إنهاء الاختبار</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const allQuestions = [
+        "هل يستمتع طفلك عند التأرجح أو الهز أو القفز لأعلى ولأسفل؟",
+        "هل يهتم طفلك بالأطفال الآخرين؟",
+        "هل يحب طفلك تسلق الأشياء مثل السلالم؟",
+        "هل يحب طفلك ألعاب التظاهر (مثال: التظاهر بإطعام دمية)؟",
+        "هل يستخدم طفلك إصبعه للإشارة إلى شيء يريده؟",
+        "هل يستخدم طفلك إصبعه للإشارة إلى شيء مثير لاهتمامه؟",
+        "هل يستطيع طفلك اللعب بالألعاب الصغيرة بشكل صحيح؟",
+        "هل يجلب طفلك الأشياء إليك ليريك إياها؟",
+        "هل يستجيب طفلك عند مناداته باسمه؟",
+        "عندما تشير إلى شيء ما، هل ينظر طفلك إليه؟",
+        "هل يستطيع طفلك المشي؟",
+        "هل ينظر طفلك في عينيك لفترة قصيرة؟",
+        "هل يحاول طفلك تقليدك (مثال: تقليد كلامك أو حركاتك)؟",
+        "إذا ابتسمت لطفلك، هل يبتسم لك؟",
+        "هل يستطيع طفلك فهم ما يقوله الناس من حوله؟",
+        "إذا حدث شيء جديد، هل ينظر طفلك إلى وجهك ليرى رد فعلك؟",
+        "هل يحب طفلك اللعب معك مثل الغميضة أو الاستغماية؟",
+        "هل يبدو أن طفلك يسمع بشكل طبيعي؟",
+        "هل يفهم طفلك الإشارة إلى شيء بإصبعك؟",
+        "هل يتجول طفلك بدون هدف واضح أو يبدو عليه الشرود؟",
+        "هل يستمتع طفلك باللعب مع الحيوانات؟",
+        "هل يتفاعل طفلك مع الأشياء المضيئة أو المتحركة؟",
+        "هل يبدو أن طفلك يتجنب الاتصال البصري مع الآخرين؟",
+        "هل يظهر طفلك اهتمامًا بتعبيرات الوجه؟",
+        "هل يفضل طفلك اللعب بمفرده على اللعب مع الآخرين؟",
+        "هل يواجه طفلك صعوبة في فهم الأوامر البسيطة؟",
+        "هل يبدي طفلك اهتمامًا بالألعاب التي تحتوي على أصوات أو إضاءة؟",
+        "هل يبدو أن طفلك يفضل التفاعل مع الأشخاص من نفس العمر؟",
+        "هل ينجذب طفلك للأشياء أكثر من الأشخاص؟"
+    ];
+
+    let selectedQuestions = [];
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function selectRandomQuestions() {
+        shuffleArray(allQuestions);
+        selectedQuestions = allQuestions.slice(0, 10);
+    }
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let selectedAnswer = null;
+
+    function loadQuestion() {
+        document.getElementById("question").textContent = selectedQuestions[currentQuestionIndex];
+        document.getElementById("next-btn").disabled = true;
+        resetSelection();
+        updateProgressBar();
+    }
+
+    function selectAnswer(isYes) {
+        if (selectedAnswer !== null) return;
+
+        selectedAnswer = isYes;
+        if (!isYes) score++;
+
+        document.getElementById("yes-btn").classList.toggle("selected", isYes);
+        document.getElementById("no-btn").classList.toggle("selected", !isYes);
+
+        document.getElementById("next-btn").disabled = false;
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        selectedAnswer = null;
+
+        if (currentQuestionIndex < selectedQuestions.length) {
+            loadQuestion();
+        } else {
+            showResult();
+        }
+    }
+
+    function resetSelection() {
+        document.getElementById("yes-btn").classList.remove("selected");
+        document.getElementById("no-btn").classList.remove("selected");
+    }
+
+    function showResult() {
+        document.getElementById("quiz-container").classList.add("hidden");
+        document.getElementById("result-container").classList.remove("hidden");
+
+        let resultText = "";
+        if (score <= 2) {
+            resultText = "لا توجد علامات واضحة للتوحد، ولكن استشر طبيبًا إذا كنت قلقًا.";
+        } else if (score <= 7) {
+            resultText = "قد تكون هناك بعض العلامات البسيطة، يُنصح بمراجعة أخصائي تخاطب.";
+        } else {
+            resultText = "هناك مؤشرات قوية على وجود اضطراب في التواصل. يُفضل استشارة أخصائي في أسرع وقت.";
+        }
+
+        document.getElementById("result-text").textContent = `لقد حصل على ${score} من ${selectedQuestions.length} نقاط. ${resultText}`;
+
+        displayResultChart();
+    }
+
+    function displayResultChart() {
+        const ctx = document.getElementById('result-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['الإجابات الصحيحة', 'الإجابات الخاطئة'],
+                datasets: [{
+                    label: 'نتيجة الاختبار',
+                    data: [selectedQuestions.length - score, score],
+                    backgroundColor: ['#4caf50', '#f44336'],
+                    borderColor: ['#388e3c', '#d32f2f'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    function restartQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        selectedAnswer = null;
+        selectRandomQuestions(); // Reselect random questions
+        document.getElementById("quiz-container").classList.remove("hidden");
+        document.getElementById("result-container").classList.add("hidden");
+        loadQuestion();
+    }
+
+    function updateProgressBar() {
+        const progress = ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
+        document.getElementById("progress-bar").style.width = progress + "%";
+    }
+
+    function exitQuiz() {
+        window.location.href = "exam.html";
+    }
+
+    // Initialize quiz with random questions
+    selectRandomQuestions();
+    loadQuestion();
+
+    document.getElementById("next-btn").addEventListener("click", nextQuestion);
+</script>
+</body>
+
+</html>

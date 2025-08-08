@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>فيديوهات البحة</title>
+    <link rel="shortcut icon" type="x-icon" href="image/logo.png">
+    <link rel="stylesheet" href="css/vidoes.css">
+    <link rel="stylesheet" href="css/videos.css">
+    <link rel="stylesheet" href="css/vidoes.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https://fo nts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https:fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lalezar&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="home.php" class="logo"><img src="image/logo.png" alt="logo"></a>
+            <input type="checkbox" id="check">
+            <label for="check" class="check-list">
+                <i class="fa-solid fa-list"></i>
+            </label>
+            <ul class="main-nav">
+                <li class="link"><a href="home.php" target="_blank">الصفحه الرئيسيه</a></li>
+                <li class="link"><a href="artical.php" target="_blank">المقالات</a></li>
+                <li class="link"><a href="diagnose.php" target="_blank">التشخيصات والعلاجات</a></li>
+                <li class="link"><a href="exam.php" target="_blank">الاختبارات</a></li>
+                <li class="nav-item"><a href="#Contact" class="nav-link">مساعده</a></li>
+                <li class="link"> <a href=""></a> </li>
+                <li class="link acc"><a href="sighnup.html" target="_blank" class="active">انشاء حساب</a></li>
+                <li class="link"><a href="login.html" target="_blank">تسجيل الدخول</a></li>
+            </ul>
+            <div class="profile">
+                <input type="checkbox" id="toggle-menu">
+                <label for="toggle-menu">
+                    <i class="fa-solid fa-user"></i>
+                </label>
+                <div class="menu" id="submenu">
+                    <div class="sub-menu">
+                        <div class="sub-menu-info">
+                            <i class="fa-solid fa-user"></i>
+                            <h3>Name</h3>
+                        </div>
+                        <hr>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-user-pen"></i>
+                            <p>Edit profile</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-gear"></i>
+                            <p>Settings & Privacy</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-circle-question"></i>
+                            <p>Help & Support</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <p>Logout</p>
+                            <span>></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="main-title">البحه<span></span></div>
+        <div class="container">
+            <div class="containeer">
+            <div class="main-video">
+                <div class="video">
+                    <video src="video/البحه.mp4" controls muted autoplay></video>
+                    <h3 class="title">01.التمرين الاول- البحه</h3>
+                </div>
+            </div>
+            <div class="video-list">
+                <div class="video-list">
+                    <div class="vid">
+                        <video src="video/البحه.mp4" controls muted autoplay></video>
+                        <h3 class="title">01.التمرين الاول- البحه</h3>
+                    </div>
+                    <div class="vid">
+                        <video src="video/التنفس البطني.mp4" controls muted></video>
+                        <h3 class="title">02.التمرين الثاني- تمرين التنفس البطني (تنفس الحجاب الحاجز)</h3>
+                    </div>
+                    <div class="vid">
+                        <video src="image/css.mp4" controls muted></video>
+                        <h3 class="title">03.التمرين الثالث- تمرين الهمهمة</h3>
+                    </div>
+                    <div class="vid">
+                        <video src="image/css.mp4" controls muted></video>
+                        <h3 class="title">04. التمرين الرابع- تمرين الأنين الخفيف</h3>
+                    </div>
+                    <div class="vid">
+                        <video src="image/css.mp4" controls muted></video>
+                        <h3 class="title">05. التمرين الخامس - تمرين نطق الحروف بصوت خفيف </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let listVideo = document.querySelectorAll('.video-list .vid');
+        let mainVideo = document.querySelector('.main-video video');
+        let title = document.querySelector('.main-video .title')
+        listVideo.forEach(video => {
+            video.onclick = () => {
+                listVideo.forEach(vid => vid.classList.remove('active'));
+                video.classList.add('active');
+                if (video.classList.contains('active')) {
+                    let src = video.children[0].getAttribute('src');
+                    mainVideo.src = src;
+                    let text = video.children[1].innerHTML;
+                    title.innerHTML = text;
+                };
+            };
+        });
+    </script>
+
+</body>
+
+</html>

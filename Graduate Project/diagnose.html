@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>التشخيصات والعلاجات</title>
+    <link rel="shortcut icon" type="x-icon" href="image/logo.png">
+    <link rel="stylesheet" href="css/diagnose.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https:fonts.googleapis.com">
+    <link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>
+    <link href="https:fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lalezar&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="home.php" class="logo"><img src="image/logo.png" alt="logo"></a>
+            <input type="checkbox" id="check">
+            <label for="check" class="check-list">
+                <i class="fa-solid fa-list"></i>
+            </label>
+            <ul class="main-nav">
+                <li class="link"><a href="home.php" target="_blank">الصفحه الرئيسيه</a></li>
+                <li class="link"><a href="artical.php" target="_blank">المقالات</a></li>
+                <li class="link"><a href="diagnose.php" target="_blank">التشخيصات والعلاجات</a></li>
+                <li class="link"><a href="exam.php" target="_blank">الاختبارات</a></li>
+                <li class="nav-item"><a href="#Contact" class="nav-link">مساعده</a></li>
+                <li class="link"> <a href=""></a> </li>
+                <li class="link acc"><a href="sighnup.html" target="_blank" class="active">انشاء حساب</a></li>
+                <li class="link"><a href="login.html" target="_blank">تسجيل الدخول</a></li>
+            </ul>
+            <div class="profile">
+                <input type="checkbox" id="toggle-menu">
+                <label for="toggle-menu">
+                    <i class="fa-solid fa-user"></i>
+                </label>
+                <div class="menu" id="submenu">
+                    <div class="sub-menu">
+                        <div class="sub-menu-info">
+                            <i class="fa-solid fa-user"></i>
+                            <h3>Name</h3>
+                        </div>
+                        <hr>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-user-pen"></i>
+                            <p>Edit profile</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-gear"></i>
+                            <p>Settings & Privacy</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-circle-question"></i>
+                            <p>Help & Support</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <p>Logout</p>
+                            <span>></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="diagnose">
+        <div class="container">
+            <div class="box">
+                <div class="speech">
+                    <div class="img-holder"><img src="image/speesh.jpeg " alt="" /></div>
+                    <h2>اضطرابات النطق والكلام</h2>
+                    <p>اللجلجه,اللثغه ,الخنف ,السرعه الزائده في الكلام</p>
+                    <h4>للدخول الي صفحه الفيديوهات العلاجيه اضغط المزيد</h4>
+                    <a href="language.html#language-disorders">المزيد</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="language">
+                    <div class="img-holder"><img src="image/language.jpg" alt="" /></div>
+                    <h2>اضطرابات اللغه</h2>
+                    <p>تأخرالكلام و اللغه , الحبسه</p>
+                    <h4>للدخول الي صفحه الفيديوهات العلاجيه اضغط المزيد</h4>
+                    <a href="language.html#language-disorders">المزيد</a>
+                </div>
+            </div>
+            <div class="box ">
+                <div class="autism">
+                    <div class="img-holder"><img src="image/voice.jpeg" alt="" /></div>
+                    <h2>اضطرابات الصوت</h2>
+                    <p>البحه , الوهن الصوتي , حبسه كلاميه , الخرص الهستيري </p>
+                    <h4>للدخول الي صفحه الفيديوهات العلاجيه اضغط المزيد</h4>
+                    <a href="language.html#voice-disorders">المزيد</a>
+                </div>
+            </div>
+            <div class="box ">
+                <div class="language">
+                    <div class="img-holder"><img src="image/autism.jpg" alt="" /></div>
+                    <h2>اضطراب طيف التوحد</h2>
+                    <p>التوحد</p>
+                    <h4>للدخول الي صفحه الفيديوهات العلاجيه اضغط المزيد</h4>
+                    <a href="language.html#autism-disorders">المزيد</a>
+                </div>
+            </div>
+            <div class="scroll-down-arrow" onclick="scrollToExercises()">
+                <span>&#8595;</span>
+                <p>الذهاب الي التمارين العلاجية</p>
+            </div>
+        </div>
+    </div>
+    <section class="therapy-filter">
+        <h2>اختر نوع التشخيص لعرض التمارين العلاجية</h2>
+        <p>يمكنك الاستعانه بصفحه الاختبارات للمساعده في تشخيص الحاله</p>
+        <p style="color: #2c5dab;">ملحوظه : هذه التمارين مستمره يوميا تبدأ بالتدريج من خمس عدات لكل تدريب في اليوم الي
+            20 عده بالتدريج
+            مع تطور الحاله </p>
+        <div class="filter-buttons">
+            <button onclick="showExercises('speech')">النطق والكلام</button>
+            <button onclick="showExercises('language')">اللغة</button>
+            <button onclick="showExercises('voice')">الصوت</button>
+            <button onclick="showExercises('autism')">التوحد</button>
+            <button onclick="showExercises('exercisess')">انشطه للإدراك</button>
+        </div>
+        <!--النطق والكلام -->
+        <div id="speech" class="exercise-content">
+            <div class="progress-bar">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <h3>بعض التمارين الفعاله لعلاج اضطرابات النطق والكلام</h3>
+
+
+            <div class="exercise">
+                <h2>أولا : تدريبات لأعضاء النطق والكلام</h2>
+                <p>ملحوظه : هذه التمارين مستمره يوميا تبدأ بالتدريج من خمس عدات لكل تدريب في اليوم الي 20 عده بالتدريج
+                    مع تطور الحاله </p>
+                <h3>
+                    تمارين للفم والفكين
+                </h3>
+                <div class="exercise-grid">
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">فتح الفك لأعلى وأسفل</div>
+                        <p>من خمس لعشر مرات مع الزيادة</p>
+                        <img src="image/فتح الفك.gif" alt="فتح الفك">
+                        <div class="arrow">↺</div>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">تدليكات حول مفصل الفك الأعلي ثم النزول بأصابع اليد السبابه والوسطي
+                            لأسفل </div>
+                        <img src="image/تدليك مفصل الفك.webp" alt=" تدليك مفصل الفك">
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">ضم الشفتين وفتحهما</div>
+                        <img src="image/ضم الشفتان.gif" alt="ضم الشفتين">
+                    </div>
+                    <div class="exercise-card">
+                        <div class="exercise-title">تدليكات حول الشفاه بشكل دائري</div>
+                        <p>تقسيم الشفاه العليا والسفلي لأربع نقاط مع تدليك كل نقطة بشكل دائري</p>
+                        <img src="image/تدليك الشفاه.png" alt="تدليك الشفاه">
+
+                    </div>
+                </div>
+
+
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">الضغط علي الشفاه باصبع السبابه كل شفاه في اتجاه مخالف</div>
+                        <p>الإيدين: استخدم السبابة والإبهام من كل يد.
+                            <br>
+                            الشفة العليا: اضغط عليها برفق وادفعها في اتجاه معين (مثلاً للأعلى أو للخارج).
+                            <br>
+                            الشفة السفلى: اضغط عليها بنفس الطريقة، لكن في اتجاه معاكس (مثلاً للأسفل أو للخارج بعيد عن
+                            الشفة العليا).
+                        </p>
+                        <p>لحركة: تكون بطيئة وثابتة، استمر حوالي 10-15 ثانية.</p>
+                        <div class="arrow">↺</div>
+                    </div>
+                </div>
+
+                <br>
+                <hr>
+
+                <h3>
+                    تمارين اللسان
+                </h3>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">التمرين علي خروج اللسان خارج الفم وادخاله بسرعه</div>
+                        <img src="image/اخراج اللسان.jpg" alt="اخراج اللسان">
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">خروج اللسان في الاتجاهين اليمين والشمال خارج الفم</div>
+                        <img src="image/اللسان يمين وشمال.png" alt="اللسان يمين وشمال">
+                    </div>
+                </div>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">الضغط باللسان علي أحد جانبي الخد ثم باصبع المتابع للحاله بالضغط علي
+                            اللسان من الخارج علي ان
+                            يقوم الطفل الضغط الخارجي</div>
+                        <ol>
+                            <li>وضع البداية:</li>
+                            <p>-اجعل الطفل في وضع مريح أمامك.</p>
+                            <p>-اطلب منه فتح فمه قليلاً للسماح بحرية حركة اللسان.</p>
+                            <li>الضغط الداخلي:</li>
+                            <p>-الطفل يضغط باللسان على جانب معين داخل الخد (يمين أو شمال) بقوة خفيفة، مع محاولة إبقاء
+                                اللسان في هذا الوضع لمدة 3-5 ثوانٍ.</p>
+                            <li>الضغط الخارجي:</li>
+                            <p>-المتابع (ولي الأمر أو الأخصائي) يضع إصبعه على نفس جانب الخد من الخارج، مقابل اللسان</p>
+                            <p>-يُطبق ضغطًا خفيفًا بإصبعه، مع محاولة مقاومة الطفل لهذا الضغط باستخدام لسانه.</p>
+                            <p>كرر التمرين 5-10 مرات لكل جانب، مع أخذ استراحة قصيرة بين كل مجموعة.</p>
+                            <div class="arrow">↺</div>
+                        </ol>
+                    </div>
+                </div>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">لف اللسان داخل الفم بشكل دائري حول الشفاة من الداخل</div>
+                        <img src="image/لف اللسان حول الشفاه من الداخل.jpg" alt="لف اللسان داخل الفم ">
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">حركه اللسان لأعلي أسفل خارج الفم</div>
+                        <img src="image/اللسان لاعلي واسفل.png" alt="اللسان اعلي واسفل">
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">حركه اللسان داخل الفم في وضع نطق حرف الراء </div>
+                        <img src="image/حرف الراء داخل الفم.webp" alt=">حركه اللسان داخل الفم ">
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">الطقطقة داخل الفم</div>
+                        <img src="image/الطقطقه.webp" alt="لطقطقة داخل الفم">
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">حمل اللسان لقلم او خافض خارج الفم مع ثبات اللسان</div>
+                        <img src="image/حمل اللسان لشيئ خارج الفم.jpg" alt="حمل اللسان لشيئ خارج الفم">
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h2>ثانيا : تمارين تنفس</h2>
+                <p>ملحوظه: تمرين النفس يكون بأخذ النفس من الأنف وإخراجه مع كل تمرين من التمرينات التالية</p>
+                <div class="exercise-grid">
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">النفخ في لعبه الفقاعات</div>
+                        <img src="image/النفخ في الفقاعات.jpg" alt="النفخ في الفقاعات">
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">أخذ نفس والنفخ في شاليموه داخل كوب به ماء</div>
+                        <img src="image/النفخ في شاليموه.png" alt="النفخ في شاليموه ">
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">النفخ في قصاصات الورق</div>
+                        <img src="image/نفخ قصاصات ورق.png" alt="نفخ ورق">
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">النفخ في بالونة</div>
+                        <img src="image/النفخ في بالون.jpg" alt="نفخ بالونه">
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">النفخ في اي كوره صغيره وخفيفه مثل كره تنس الطاوله</div>
+                        <img src="image/نفخ كره.jpg" alt="نفخ كره">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h2>ثالثا : تمارين تنفس بطني </h2>
+                <p>ملحوظة: هذه التدريبات خاصة بالتلعثم والبحه الصوتيه </p>
+                <h4>التنفس البطني يتم التدريب عليه والطفل مستلقي علي ظهره مع وضع يده علي بطنه حتي يشعر بملء بطنه
+                    بالنفس
+                </h4>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">أخذ نفس عميق من الأنف مع تثبيت الكتفين وملأ البطن به , ثم إخراجة من
+                            الفم ببطء</div>
+                    </div>
+                </div>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">أخذ نفس سريع بنفس الطريقة السابقة , ثم اخراجه بسرعه</div>
+                    </div>
+                </div>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">أخذ نفس بنفس الطريقه الاولي ثم حبس النفس في داخل البطن مده 3 ثواني ,
+                            ثم إخراجة وتزيد
+                            بالتدريج</div>
+                    </div>
+                </div>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">أخذ نفس عميق بنفس الطريقة الأولي , مع اخراجه بالاصوات الاحتكاكيه مثل
+                            السين,الزاي</div>
+                    </div>
+                </div>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">أخذ نفس مع اخراج كلمة مثل الأرقام يقول مثلا واحد , ثم يأخد نفس ويقول
+                            اثنين</div>
+                    </div>
+                </div>
+                <div class="exercise-grid">
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">أخذ نفس ويخرج النفس وهو ينطق كلمتين مثل واحد واثنين</div>
+                    </div>
+                </div>
+                <div class="exercise-grid">
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">أخذ نفس عميق بنفس الطريققة الأولي ثم ينطق جملة من ثلاث كلمات</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--اللغه-->
+        <div id="language" class="exercise-content">
+            <div class="exercise">
+                <h3>يتم الاستعانه بتدريبات النطق والكلام</h3>
+                <p>ملحوظه : لكل طفل له تدريبات خاصة به يضعها الأخصائي وفقا لحالة الطفل </p>
+            </div>
+            <div class="exercise">
+                <h2>أولا:التدريبات الخاصه باللغه الأستقبالية</h2>
+                <br>
+                <h3>تمارين ماقبل اللغة</h3>
+                <div class="exercise-grid">
+                    <h3>التقليد</h3>
+
+                    <div class="exercise-card">
+                        <p style="color: #2c5dab;">تقليد حركات كبري</p>
+                        <p>اعمل زيي : ارفع ايدك , تقليد حركة رف اليد للأعلي او الأسفل ,التسفيق,التخبيط ,القفز , ثني
+                            الجزع
+                            ,رفع القدم لأعلي و للأسفل</p>
+                    </div>
+
+                    <div class="exercise-card">
+                        <p style="color: #2c5dab;">تقليد حركات صغري</p>
+                        <p>تقليد فتح العيد وقفلها , فتح الفم وغلقه , حركه اللسان , الاشاره بالاصابع </p>
+                    </div>
+                </div>
+                <div class="exercise-grid">
+
+                    <h3>تنفيذ الأوامر</h3>
+
+                    <div class="exercise-card">
+
+                        <p style="color: #2c5dab;">تنفيذ أمر واحد</p>
+                        <p> مثل : ارفع ايدك , سقف , خبط , طلع لسانك , افتح فمك , افتح الباب</p>
+                    </div>
+
+                    <div class="exercise-card">
+                        <p style="color: #2c5dab;">تنفيذ أموامر مركبه</p>
+                        <p> مثل : حط ايدك علي شعرك , غمض عينك وافتح فمك , افتح فمك وسقف</p>
+                    </div>
+                </div>
+                <br>
+
+            </div>
+
+
+            <div class="exercise">
+                <h2>ثانيا : التدريبات الخاصه باللغه التعبيريه </h2>
+                <p>ملحوظة: يتم التعرف علي 6 اشياء شائعه من كل مجموعه يتم التعرف علي الاشياء والتدريب علي نطقها
+                </p>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <ol>
+                            <h3 style="font-size: 23px;color: #f56806;">التعرف علي المجموعات الضمنيه</h3>
+                            <p>1.التعرف علي الحيوانات</p>
+                            <p>2.التعرف علي الطيور</p>
+                            <p>3.التعرف علي الفواكه</p>
+                            <p>4.التعرف علي الخضراوات</p>
+                            <p>5.التعرف علي الملابس</p>
+                            <p>6.التعرف علي ادوات الطعام</p>
+                            <p>7.التعرف علي اثاث المنزل</p>
+                            <p>8.التعرف علي الألوان</p>
+                    </div>
+
+                </div>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <h3 style="font-size: 23px;color: #f56806;">التدريب علي الأفعال</h3>
+                        <p>1.كلمه بمعني جمله</p>
+                        <p style="color: #2c5dab;">مثل:اشرب اكل اجري انام العب</p>
+                        <p>2.جمله من كلمتين</p>
+                        <p style="color: #2c5dab;">مثل:عاوز اكل ,عاوز اشرب , بابا جه</p>
+                        <p>3.التدريب علي جمله من 3 كلمات</p>
+                        <p style="color: #2c5dab;">مثل:التدريب علي سرد قصه مثل ترتيب الالاحداث تسلسل الاحدث او
+                            التدريب علي
+                            وصف صوره</p>
+                        <p>4.التدريب علي نحو الكلام</p>
+                        <p style="color: #2c5dab;">مثل:اضافه الضماير مثل انا وهو</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!--الصوت-->
+
+        <div id="voice" class="exercise-content">
+            <div class="exercise">
+                <h2>تمارين اضطرابات الصوت</h2>
+                <p>ملحوظة: يتم التركيز على تمارين التنفس والتحكم في الصوت</p>
+                <h3>تمارين الإحماء الصوتي</h3>
+                <div class="exercise-grid">
+
+                    <div class="exercise-card">
+                        <div class="exercise-title"> تمارين التنفس الحجابي </div>
+                        <p>-اجلس مع الطفل بشكل مريح.</p>
+                        <p>-ضع يدك على بطن الطفل.</p>
+                        <p>-اطلب منه أن يأخذ نفسًا عميقًا من الأنف بحيث يتحرك بطنه للأمام (يدك تتحرك مع البطن).</p>
+                        <p>-زفر الهواء من الفم ببطء، مع محاولة تقليل حركة الصدر.</p>
+                        <div class="arrow">↺</div>
+
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">تمارين تمدد الأحبال الصوتية </div>
+                        <p>-اطلب من الطفل إصدار صوت "آه" ببطء من أدنى درجة صوت ممكنة إلى أعلى درجة.</p>
+                        <p>-يمكن تكرار الصوت بشكل متدرج من المنخفض إلى العالي</p>
+                        <p>-تمرين التدرج الصوتي يساعد في تمدد الأحبال الصوتية.</p>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">تمارين نطق الحروف الساكنة</div>
+                        <p>-اطلب من الطفل نطق الحرف الساكن بوضوح، ثم تكرار الحرف مع كلمة بسيطة تبدأ به (مثلاً: ب - بيت).
+                        </p>
+                        <p>-يمكن استخدام مرآة لمراقبة حركة الشفاه واللسان.</p>
+                        <h3>التمرين يُكرر عدة مرات لكل حرف.
+
+                        </h3>
+                        <div class="arrow">↺</div>
+
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <hr>
+                <br>
+                <div class="exercise-grid">
+
+                    <div class="exercise-card">
+                        <div class="exercise-title"> تمرين التنفس العميق</div>
+                        <p>خلي الطفل ياخد نفس عميق من الأنف ويزفر من الفم ببطء</p>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title"> تمرين الهمهمة</div>
+                        <p>اطلب من الطفل يعمل صوت همهمة منخفضة (مثل صوت النحل).</p>
+                        <div class="arrow">↺</div>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">تمرين إصدار الأصوات المتنوعة </div>
+                        <p>طلب من الطفل ينطق أصوات مختلفة مثل "م"، "ن"، "ر"، "س"، "ش" بوضوح.</p>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title">تمرين تقليد الأصوات </div>
+                        <p>اسمعوا أصوات حيوانات (مثل مواء القطة، نباح الكلب)، وحاولوا تقليدها معًا.</p>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title"> تمرين قراءة الجمل البسيطة بصوت مرتفع </div>
+                        <p>اقرأوا جمل قصيرة مع الطفل بصوت واضح ومسموع.</p>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title"> تمرين الغناء </div>
+                        <p>شجع الطفل على الغناء بأغاني بسيطة ومحفزة.</p>
+                    </div>
+
+                    <div class="exercise-card">
+                        <div class="exercise-title"> تمرين "البالون الصوتي"</div>
+                        <p>الطفل ينفخ في بالون مع محاولة إصدار صوت مستمر.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--التوحد-->
+
+        <div id="autism" class="exercise-content">
+            <div class="exercise">
+                <h2>تمارين اضطراب طيف التوحد</h2>
+                <p>يتم الاستعانه بتدريبات النطق والكلام</p>
+                <h3>التوحد غير الناطق</h3>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">يتم التعامل معه باستخدام برنامج بيكس (PECS)، وهو برنامج التعرف على
+                            التواصل من خلال الصور.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="exercise">
+
+                <h3>التوحد الناطق</h3>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title"> التدريب على التواصل البصري</div>
+                        <p>-شجع الطفل على النظر في عيني الأخصائي أو ولي الأمر لمدة 5 ثواني.</p>
+                        <p>-استخدم لعب أو أشياء مفضلة لجذب انتباه الطفل للنظر.</p>
+                    </div>
+                    <div class="exercise-card">
+                        <div class="exercise-title"> التدريب على كلمة "انظر لي" أو "انظر إلي"</div>
+                        <p>-قل للطفل "انظر لي" أو "انظر إلي" بشكل لطيف ومرن.</p>
+                        <p>-امدحه واثنِ عليه عند تحقيقه ذلك.</p>
+                    </div>
+                    <div class="exercise-card">
+                        <div class="exercise-title">التدريب على التواصل البصري مع الأشخاص
+                        </div>
+                        <p>اطلب من الطفل مراقبة وجوه الأشخاص أثناء التحدث.</p>
+                        <p>ساعده على فهم تعبيرات الوجه والإيماءات.</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="exercise">
+                <h3>تمارين تكميلية لتطوير مهارات التوحد</h3>
+                <div class="exercise-grid">
+                    <div class="exercise-card">
+                        <div class="exercise-title">التمرين على الإيماءات
+                        </div>
+                        <p>-شجع الطفل على استخدام الإيماءات مثل الإشارة، التلويح، أو الهز بالرأس.</p>
+                        <p>-استخدم الإيماءات بنفسك أثناء التحدث لتعليم الطفل.</p>
+                    </div>
+                    <div class="exercise-grid">
+                        <div class="exercise-card">
+                            <div class="exercise-title"> تمارين التواصل اللفظي
+                            </div>
+                            <p>-استخدم جمل بسيطة وواضحة.</p>
+                            <p>-شجع الطفل على تكرار الكلمات البسيطة.</p>
+                        </div>
+                    </div>
+                    <div class="exercise-grid">
+                        <div class="exercise-card">
+                            <div class="exercise-title">تمارين اللعب التعاوني
+                            </div>
+                            <p>-شجع الطفل على اللعب مع الآخرين أو مع ولي الأمر بلعب بسيطة.</p>
+                            <p>-ألعاب مثل تبادل الكرة، أو البناء مع مكعبات تساعد على التفاعل.</p>
+                        </div>
+                    </div>
+                    <div class="exercise-grid">
+                        <div class="exercise-card">
+                            <div class="exercise-title">تمارين تنظيم الحواس
+                            </div>
+                            <p>استخدام أنشطة تساعد الطفل على تنظيم حواسه مثل اللعب بالرمل، العجين، أو الألعاب التي تحتوي
+                                على أصوات.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <br>
+                <div class="exercise">
+                    <p>
+                        تمارين التوحد بشكل عام تحتاج إلى إشراف وتقييم مستمر من قبل أخصائيين متخصصين في علاج
+                        اضطرابات طيف التوحد، لأن التوحد له أنواع ومستويات مختلفة لكل حالة خصوصياتها.
+                        المحتوى السابق هو جزء مساعد فقط يهدف لدعم الأهالي في التعامل اليومي مع أطفالهم، ولا يغني
+                        عن التشخيص والعلاج المهني المتخصص.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+
+
+        </div>
+
+        <!-- <div id="autism" class="exercise-content">
+                يتم الاستعانه بتدريبات النطق والكلام
+
+                توحد ناطق , توحد غير ناطق
+                التوحد غير الناطق يتم التعامل مع ببرنامج بيكس وهو التعرف من خلال الصور
+
+                التوحد الناطق
+                التدريب علي التواصل البصري
+                التدريب علي كلمه بصلي او انظرلي
+                التدريب علي التواصل البصري مع الاشخاص
+                النظر في عين الاخصائي او ولي الامر مده 5 ثواني
+                يتم التدريب بوضع شيء حول العين استيكر او فوم لاصق او نضاره مصنوعه يدويا بالفوم
+                التدريب علي زياده مده التواصل
+                التدريب علي انه يشاور
+
+                التواصل البصري مع الاشياء
+
+
+
+                التدريب علي الانتباه عند سمع اسمه او التعرف علي اسمه
+                التواصل بالنظر عند سماع اسمه في اتجاهات مختلفه
+                انظر التدريبا الخاصه باللغه
+
+
+
+            </div>-->
+
+        <div id="exercisess" class="exercise-content">
+            <!-- تمرين 1 -->
+            <div class="exercise" data-answer="أ">
+                <h3>تمرين 1: استمع للصوت وحدد الحرف</h3>
+                <p>استمع إلى الصوت واضغط على الحرف الصحيح.</p>
+                <audio class="audio-player" controls>
+                    <source src="sound/نطق حرف الألف.m4a" type="audio/mpeg" />
+                </audio>
+                <div class="options">
+                    <button>أ</button>
+                    <button>ب</button>
+                    <button>ت</button>
+                    <button>ث</button>
+                </div>
+            </div>
+
+            <!-- تمرين 2 -->
+            <div class="exercise" data-answer="ت">
+                <h3>تمرين 2: اختر الحرف المناسب للصورة</h3>
+                <img src="image/apple.png" alt="تفاحة" />
+                <p>ما هو الحرف الأول في اسم هذه الصورة؟</p>
+                <div class="options">
+
+                    <button>ف</button>
+                    <button>ل</button>
+                    <button>م</button>
+                    <button>ت</button>
+                </div>
+            </div>
+
+            <!-- تمرين 3 -->
+            <div class="exercise" data-answer="قلم">
+                <h3>تمرين 3: كوّن كلمة من الحروف التالية</h3>
+                <p>الحروف: م - ل - ق</p>
+                <input type="text" placeholder="اكتب الكلمة هنا" />
+                <button class="check-btn">تحقق</button>
+                <p class="feedback"></p>
+            </div>
+
+            <!-- تمرين 4 -->
+            <div class="exercise" data-answer="س">
+                <h3>تمرين 4: استمع للكلمة وحدد الصوت الذي تسمعه في البداية</h3>
+                <audio class="audio-player" controls>
+                    <source src="sound/نطق سياره.m4a" type="audio/mpeg" />
+                </audio>
+                <div class="options">
+
+                    <button>ع</button>
+                    <button>ك</button>
+                    <button>س</button>
+                    <button>م</button>
+                </div>
+            </div>
+
+            <!-- تمرين 5 -->
+            <div class="exercise" data-answer="دائرة">
+                <h3>تمرين 5: اختر الشكل الصحيح</h3>
+                <img src="image/circle.jpeg" alt="دائرة" />
+                <div class="options">
+                    <button>مربع</button>
+                    <button>دائرة</button>
+                    <button>مثلث</button>
+                    <button>مستطيل</button>
+                </div>
+            </div>
+
+            <!-- تمرين 6 -->
+            <div class="exercise" data-answer="قميص">
+                <h3>تمرين 6: اختر الكلمة التي تختلف عن البقية</h3>
+                <div class="options">
+                    <button>قلم</button>
+                    <button>كتاب</button>
+                    <button>قميص</button>
+                    <button>دفتر</button>
+                </div>
+            </div>
+
+            <!-- تمرين 7 -->
+            <div class="exercise" data-answer="1,2,3">
+                <h3>تمرين 7: رتب الصور حسب التسلسل الصحيح</h3>
+                <p>ملاحظة: هذا التمرين يحتاج تفاعل بالسحب ولا يمكن التحقق تلقائياً هنا.</p>
+                <div class="images">
+
+                    <img src="image/step2.jpg" alt="خطوة 3" />
+                    <img src="image/step1.jpg" alt="خطوة 1" />
+                    <img src="image/step3.jpg" alt="خطوة 2" />
+                </div>
+            </div>
+
+            <!-- تمرين 8 -->
+            <div class="exercise" data-answer="سيارة">
+                <h3>تمرين 8: أكمل الجملة بالكلمة المناسبة</h3>
+                <p>ذهبت إلى المدرسة بـ _____</p>
+                <div class="options">
+                    <button>سيارة</button>
+                    <button>بيت</button>
+                    <button>قلم</button>
+                    <button>كتاب</button>
+                </div>
+            </div>
+
+            <!-- تمرين 9 -->
+            <div class="exercise" data-answer="ب">
+                <h3>تمرين 9: اختر الحرف الذي يشبه الحرف المعروض</h3>
+                <p>الحرف: ب</p>
+                <div class="options">
+                    <button>ب</button>
+                    <button>ت</button>
+                    <button>د</button>
+                    <button>س</button>
+                </div>
+            </div>
+
+            <!-- تمرين 10 -->
+            <div class="exercise" data-answer="car">
+                <h3>تمرين 10: اقرأ الكلمة واختر الصورة المناسبة</h3>
+                <p>الكلمة: سيارة</p>
+                <div class="options">
+                    <img src="image/car.jpg" alt="سيارة" data-answer="car" style="cursor:pointer; width: 80px;" />
+                    <img src="image/house.jpg" alt="بيت" data-answer="house" style="cursor:pointer; width: 80px;" />
+                    <img src="image/book.png" alt="كتاب" data-answer="book" style="cursor:pointer; width: 80px;" />
+                    <img src="image/tree.jpg.crdownload" alt="شجرة" data-answer="tree"
+                        style="cursor:pointer; width: 80px;" />
+                </div>
+            </div>
+
+            <!-- تمرين 11 -->
+            <div class="exercise" data-answer="الطفل يلعب">
+                <h3>تمرين 11: اختر الجملة التي تصف الصورة بشكل صحيح</h3>
+                <img src="image/playing.jpg" alt="طفل يلعب" />
+                <div class="options">
+                    <button>الطفل يأكل</button>
+                    <button>الطفل يلعب</button>
+                    <button>الطفل ينام</button>
+                    <button>الطفل يجري</button>
+                </div>
+            </div>
+
+            <!-- تمرين 12 -->
+            <div class="exercise" data-answer="محمد يذهب كل يوم المدرسة">
+                <h3>تمرين 12: كوّن جملة صحيحة من الكلمات التالية</h3>
+                <p>كلمات: المدرسة، يذهب، كل يوم، محمد</p>
+                <input type="text" placeholder="اكتب الجملة هنا" />
+                <button class="check-btn">تحقق</button>
+                <p class="feedback"></p>
+            </div>
+
+            <!-- تمرين 13 -->
+            <div class="exercise" data-answer="أربعة">
+                <h3>تمرين 13: كم عدد الاحرف في كلمة "كتاب"؟</h3>
+                <div class="options">
+                    <button>خمسة</button>
+                    <button>أربعة</button>
+                    <button>ثلاثة</button>
+                    <button>اثنين</button>
+                </div>
+            </div>
+
+            <!-- تمرين 14 -->
+            <div class="exercise" data-answer="ش">
+                <h3>تمرين 14: ما هو الحرف الذي يبدأ به اسم هذه الصورة؟</h3>
+                <img src="image/sunn.jpg" alt="شمس" />
+                <div class="options">
+                    <button>ص</button>
+                    <button>ش</button>
+                    <button>س</button>
+                    <button>د</button>
+                </div>
+            </div>
+
+            <!-- تمرين 15 -->
+            <div class="exercise" data-answer="ق">
+                <h3>تمرين 15: استمع للحرف واختر الحرف الصحيح</h3>
+                <audio class="audio-player" controls>
+                    <source src="sound/نطق حرف القاف.m4a" type="audio/mpeg" />
+                </audio>
+                <div class="options">
+                    <button>ق</button>
+                    <button>ف</button>
+                    <button>ك</button>
+                    <button>ع</button>
+                </div>
+            </div>
+
+            <!-- تمرين 16 -->
+            <div class="exercise" data-answer="أبيض">
+                <h3>تمرين 16: اختر لون التفاحة</h3>
+                <img src="image/whiteapple.avif" alt="تفاحة بيضاء" />
+                <div class="options">
+                    <button>أحمر</button>
+                    <button>أصفر</button>
+                    <button>أبيض</button>
+                    <button>أزرق</button>
+                </div>
+            </div>
+
+            <!-- تمرين 17 -->
+            <div class="exercise" data-answer="10">
+                <h3>تمرين 17: كم عدد التفاحات في الصورة؟</h3>
+                <img src="image/tenapples.avif" alt="عشرة تفاحات" />
+                <div class="options">
+                    <button>5</button>
+                    <button>8</button>
+                    <button>10</button>
+                    <button>12</button>
+                </div>
+            </div>
+
+            <!-- تمرين 18 -->
+            <div class="exercise" data-answer="نعم">
+                <h3>تمرين 18: هل هذه صورة لشجرة؟</h3>
+                <img src="image/tree.jpg.crdownload" alt="شجرة" />
+                <div class="options">
+                    <button>نعم</button>
+                    <button>لا</button>
+                </div>
+            </div>
+
+            <!-- تمرين 19 -->
+            <div class="exercise" data-answer="صح">
+                <h3>تمرين 19: ضع إشارة صح أو خطأ</h3>
+                <p>الحيوانات تعيش في الغابة.</p>
+                <div class="options">
+                    <button>صح</button>
+                    <button>خطأ</button>
+                </div>
+            </div>
+
+            <!-- تمرين 20 -->
+            <div class="exercise">
+                <h3>تمرين 20: بعض الانشطه باستعانه من موقع word wall </h3>
+                <iframe style="max-width:100%"
+                    src="https://wordwall.net/ar/embed/2d745be1caaa4ed4b5113fdb3ce4c9e8?themeId=1&templateId=3&fontStackId=0"
+                    width="500" height="380" frameborder="0" allowfullscreen></iframe>
+                <br>
+                <hr>
+                <br>
+
+                <iframe style="max-width:100%"
+                    src="https://wordwall.net/ar/embed/2d745be1caaa4ed4b5113fdb3ce4c9e8?themeId=1&templateId=46&fontStackId=0"
+                    width="500" height="380" frameborder="0" allowfullscreen></iframe>
+                <br>
+                <hr>
+                <br>
+                <iframe style="max-width:100%"
+                    src="https://wordwall.net/ar/embed/a8386bd956484c329efd7174f61b6442?themeId=1&templateId=5&fontStackId=0"
+                    width="500" height="380" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="footer">
+        <div class="container">
+            <div class="box">
+                <h3 class="glow">Thriving Together</h3>
+                <ul class="social">
+                    <li>
+                        <a href="#" class="facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </li>
+                </ul>
+                <p class="text">
+                    "نحن هنا من أجل ان ننهض سويا"
+                </p>
+            </div>
+            <div class="box">
+                <ul class="links">
+                    <li><a href="home.php">الرئيسيه</a></li>
+                    <li><a href="signup.php">انشاء حساب</a></li>
+                    <li><a href="login.html">تسجيل الدخول</a></li>
+                    <li><a href="article.php">المقالات</a></li>
+                    <li><a href="diagnoses.php">تشخيصات وعلاجات</a></li>
+                    <li><a href="exercises.php">الاختبارات</a></li>
+                    <li><a href="profile.php">المعلومات الشخصية</a></li>
+                </ul>
+            </div>
+            <div class="box footer-image">
+                <img src="image/1.png" alt="">
+            </div>
+        </div>
+        <p class="copyright">&copy;All Rights Reserved</p>
+    </div>
+
+    <script>
+        function scrollToExercises() {
+            document.querySelector(".therapy-filter").scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        function showExercises(type) {
+            const sections = document.querySelectorAll('.exercise-content');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            const selected = document.getElementById(type);
+            console.log("هل العنصر موجود؟", selected);
+
+            if (selected) {
+                selected.style.display = 'block';
+                selected.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // إخفاء جميع التمارين عند بداية الصفحة
+        window.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".exercise-content").forEach(el => el.style.display = "none");
+        });
+        const exercises = document.querySelectorAll('.exercise');
+        const progressBar = document.getElementById('progressBar');
+        let answeredCount = 0;
+
+        exercises.forEach(exercise => {
+            const options = exercise.querySelectorAll('.options button');
+            const correctAnswer = exercise.getAttribute('data-answer');
+            const input = exercise.querySelector('input');
+            const checkBtn = exercise.querySelector('.check-btn');
+            const feedback = exercise.querySelector('.feedback');
+
+            if (options.length > 0) {
+                // لو خيارات موجودة (اختيار متعدد أو صور)
+                options.forEach(button => {
+                    button.addEventListener('click', () => {
+                        if (exercise.classList.contains('answered')) return; // منع التكرار
+                        let userAnswer = button.textContent || button.getAttribute('data-answer');
+                        userAnswer = userAnswer.trim();
+                        if (userAnswer === correctAnswer) {
+                            button.classList.add('correct');
+                            if (feedback) feedback.textContent = "إجابة صحيحة!";
+                        } else {
+                            button.classList.add('wrong');
+                            if (feedback) feedback.textContent = `خطأ! الإجابة الصحيحة: ${correctAnswer}`;
+                            // تمييز الجواب الصحيح
+                            options.forEach(btn => {
+                                if ((btn.textContent || btn.getAttribute('data-answer')).trim() === correctAnswer) {
+                                    btn.classList.add('correct');
+                                }
+                            });
+                        }
+                        exercise.classList.add('answered');
+                        answeredCount++;
+                        updateProgress();
+                    });
+                });
+            }
+
+            if (checkBtn && input) {
+                // تمرين كتابة وإجابة يدويا
+                checkBtn.addEventListener('click', () => {
+                    if (exercise.classList.contains('answered')) return;
+                    let userInput = input.value.trim();
+                    if (userInput === '') {
+                        feedback.textContent = 'الرجاء كتابة إجابة.';
+                        feedback.style.color = 'red';
+                        return;
+                    }
+                    // مقارنة الاجابة، حساسة لحالة الحروف يمكن تجعلها غير حساسة (lowercase)
+                    if (userInput === correctAnswer) {
+                        feedback.textContent = 'إجابة صحيحة!';
+                        feedback.style.color = 'green';
+                    } else {
+                        feedback.textContent = `خطأ! الإجابة الصحيحة: ${correctAnswer}`;
+                        feedback.style.color = 'red';
+                    }
+                    exercise.classList.add('answered');
+                    answeredCount++;
+                    updateProgress();
+                });
+            }
+        });
+
+        function updateProgress() {
+            const total = exercises.length;
+            const percent = (answeredCount / total) * 100;
+            progressBar.style.width = percent + '%';
+        }
+
+    </script>
+
+</body>
+
+</html>

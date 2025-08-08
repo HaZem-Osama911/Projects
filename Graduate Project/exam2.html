@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>اختبار العمر العقلي</title>
+    <link rel="shortcut icon" type="x-icon" href="image/logo.png">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/exam2.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https:fonts.googleapis.com">
+    <link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>
+    <link href="https:fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head><body>
+    <div class="quiz-container">
+      <h1>اختبار العمر العقلي</h1>
+      <div id="start-screen">
+        <label for="childName">اسم الطفل:</label>
+        <input type="text" id="childName" required placeholder="مثال: محمد">
+        <label for="age">العمر الزمني:</label>
+        <input type="number" id="age" min="3" max="18" required>
+        <button onclick="startQuiz()">ابدأ الاختبار</button>
+      </div>
+  
+      <div id="quiz" style="display: none;">
+        <div id="timer"></div>
+        <h2 id="question"></h2>
+        <img id="question-image" src="" alt="" class="image"/>
+        <div id="options" class="options"></div>
+        <button onclick="nextQuestion()">التالي</button>
+      </div>
+  
+      <div id="result" style="display: none;"></div>
+      <canvas id="chart" style="max-width: 100%; margin-top: 20px;"></canvas>
+      <button id="back-btn" onclick="goBack()" style="display: none; margin-top: 20px;"> العودة للاختبارات</button>
+
+    </div>
+  
+    <script>
+const questions = [
+  // فئة عمرية: 3-5 سنوات
+  { ageRange: "3-5", category: "ذاكرة", question: "ما اسم الحيوان الذي يقول 'مواء'؟", options: ["كلب", "قطة", "بقرة"], answer: "قطة", ageLevel: 3, img: "image/cat.jpg" },
+  { ageRange: "3-5", category: "إدراك", question: "أي من هذه الفواكه لونها أصفر؟", options: ["تفاح", "موز", "عنب"], answer: "موز", ageLevel: 4, img: "image/banana.jpg" },
+  { ageRange: "3-5", category: "فهم", question: "متى نلبس الملابس الشتوية؟", options: ["في الصيف", "في الشتاء", "في الخريف"], answer: "في الشتاء", ageLevel: 5, img: "image/winter.jpg" },
+  { ageRange: "3-5", category: "منطق", question: "أي الأشكال التالية له 3 أضلاع؟", options: ["دائرة", "مربع", "مثلث"], answer: "مثلث", ageLevel: 5, img: "image/triangle.png" },
+
+  // فئة عمرية: 6-8 سنوات
+  { ageRange: "6-8", category: "ذاكرة", question: "ما اسم أول شهر في السنة؟", options: ["مارس", "يناير", "ديسمبر"], answer: "يناير", ageLevel: 7, img: "image/calendar.png" },
+  { ageRange: "6-8", category: "منطق", question: "ما هو الرقم التالي: 2, 4, 6, ?", options: ["7", "8", "10"], answer: "8", ageLevel: 6, img: "image/numbers.png" },
+  { ageRange: "6-8", category: "إدراك", question: "كم عدد أرجل العنكبوت؟", options: ["4", "6", "8"], answer: "8", ageLevel: 8, img: "image/spider.png" },
+  { ageRange: "6-8", category: "فهم", question: "متى نستخدم المظلة؟", options: ["في المطر", "في النوم", "في الأكل"], answer: "في المطر", ageLevel: 7, img: "image/rain.jpg" },
+
+  // فئة عمرية: 9-12 سنة
+  { ageRange: "9-12", category: "ذاكرة", question: "ما اسم عاصمة مصر؟", options: ["الإسكندرية", "القاهرة", "أسوان"], answer: "القاهرة", ageLevel: 10, img: "image/cairo.jpg" },
+  { ageRange: "9-12", category: "منطق", question: "ما هو العدد الزوجي؟", options: ["5", "8", "7"], answer: "8", ageLevel: 9, img: "image/even.png" },
+  { ageRange: "9-12", category: "إدراك", question: "كم عدد أيام الأسبوع؟", options: ["6", "7", "8"], answer: "7", ageLevel: 10, img: "image/week.png" },
+  { ageRange: "9-12", category: "فهم", question: "لماذا نحتاج إلى النوم؟", options: ["للعب", "للراحة", "للأكل"], answer: "للراحة", ageLevel: 11, img: "image/sleep.png" },
+
+  // فئة عمرية: 13-18 سنة
+  { ageRange: "13-18", category: "ذاكرة", question: "ما اسم الجهاز الذي يُستخدم للبحث في الإنترنت؟", options: ["تلفاز", "حاسوب", "مكواة"], answer: "حاسوب", ageLevel: 14, img: "image/computer.png" },
+  { ageRange: "13-18", category: "منطق", question: "إذا كانت القطة حيوان، وكل الحيوانات تحتاج إلى طعام، فهل القطة تحتاج إلى طعام؟", options: ["نعم", "لا", "ربما"], answer: "نعم", ageLevel: 13, img: "image/logic.jpg" },
+  { ageRange: "13-18", category: "إدراك", question: "أي الكواكب أقرب إلى الشمس؟", options: ["المريخ", "الزهرة", "عطارد"], answer: "عطارد", ageLevel: 15, img: "image/mercury.png" },
+  { ageRange: "13-18", category: "فهم", question: "ماذا يحدث عندما تخلط الأزرق والأصفر؟", options: ["أحمر", "أخضر", "بنفسجي"], answer: "أخضر", ageLevel: 13, img: "image/green.png" }
+];
+
+    
+let selectedQuestions = [];
+    let current = 0;
+    let score = 0;
+    let totalAgeLevel = 0;
+    let timer;
+    let userAge;
+    let childName;
+    const maxQuestions = 10;
+
+    function startQuiz() {
+      childName = document.getElementById("childName").value.trim();
+      userAge = parseFloat(document.getElementById("age").value);
+
+      if (!childName || userAge < 3 || userAge > 18) {
+        alert("يرجى إدخال البيانات بشكل صحيح,العمر بين 3-18");
+        return;
+      }
+
+      selectedQuestions = questions.sort(() => 0.5 - Math.random()).slice(0, maxQuestions);
+      document.getElementById("start-screen").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      nextQuestion();
+    }
+
+    function nextQuestion() {
+      if (current >= selectedQuestions.length) {
+        showResult();
+        return;
+      }
+
+      let q = selectedQuestions[current];
+      document.getElementById("question").innerText = q.question;
+      document.getElementById("question-image").src = q.img;
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+
+      q.options.forEach(option => {
+        const label = document.createElement("label");
+        label.innerText = option;
+        label.classList.add("option");
+        label.onclick = () => selectAnswer(option, q);
+        optionsDiv.appendChild(label);
+      });
+
+      startTimer();
+    }
+
+    function startTimer() {
+      let timeLeft = 15;
+      document.getElementById("timer").innerText = `الوقت المتبقي: ${timeLeft} ثانية`;
+      clearInterval(timer);
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").innerText = `الوقت المتبقي: ${timeLeft} ثانية`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          current++;
+          nextQuestion();
+        }
+      }, 1000);
+    }
+
+    function selectAnswer(answer, question) {
+      clearInterval(timer);
+      if (answer === question.answer) {
+        score++;
+        totalAgeLevel += question.ageLevel;
+      }
+      current++;
+      nextQuestion();
+    }
+
+    function showResult() {
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      document.getElementById("back-btn").style.display = "inline-block";
+
+      let mentalAge = totalAgeLevel / score || 0;
+      let percent = ((mentalAge / userAge) * 100).toFixed(1);
+
+      saveToLocal(childName, mentalAge);
+
+      let analysis = "";
+      let suggestion = "";
+      if (percent < 90) {
+        analysis = "يُنصح بالتركيز على أنشطة تنمية الذاكرة والانتباه.";
+        suggestion = "جرب تمارين تحسين التركيز، أو استشارة أخصائي تخاطب لتقييم إضافي.";
+      } else if (percent > 110) {
+        analysis = "عقلك متقدم! جرب تمارين تناسب مستوى أعلى.";
+        suggestion = "قد تناسب الطفل تمارين الذكاء العليا أو الأنشطة الإبداعية.";
+      } else {
+        analysis = "أداء متوازن حسب العمر الزمني.";
+        suggestion = "استمر في تمارين متنوعة لدعم التطور الطبيعي.";
+      }
+
+      document.getElementById("result").innerHTML = `
+        <h2>نتيجتك</h2>
+        <p><strong>الاسم:</strong> ${childName}</p>
+        <p><strong>العمر الزمني:</strong> ${userAge} سنة</p>
+        <p><strong>العمر العقلي:</strong> ${mentalAge.toFixed(1)} سنة</p>
+        <p><strong>النسبة:</strong> ${percent}%</p>
+        <p><strong>التحليل:</strong> ${analysis}</p>
+        <hr>
+        <p><strong>اقتراح:</strong> ${suggestion}</p>
+      `;
+
+      drawChart(childName);
+    }
+
+    function saveToLocal(name, age) {
+      let data = JSON.parse(localStorage.getItem("mental-age-data")) || {};
+      if (!data[name]) data[name] = [];
+      data[name].push({ date: new Date().toLocaleDateString(), age });
+      localStorage.setItem("mental-age-data", JSON.stringify(data));
+    }
+
+    function drawChart(name) {
+      const ctx = document.getElementById('chart');
+      const rawData = JSON.parse(localStorage.getItem("mental-age-data")) || {};
+      const data = rawData[name] || [];
+
+      const labels = data.map(d => d.date);
+      const values = data.map(d => d.age);
+
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'العمر العقلي',
+            data: values,
+            borderColor: '#0082e6',
+            backgroundColor: '#e0f0ff',
+            tension: 0.3,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: ctx => `العمر العقلي: ${ctx.raw} سنة`
+              }
+            }
+          },
+          scales: {
+            y: { beginAtZero: true, title: { display: true, text: 'العمر العقلي (بالسنوات)' }},
+            x: { title: { display: true, text: 'التاريخ' }}
+          }
+        }
+      });
+    }
+
+    function goBack() {
+      window.location.href = "exam.html"; 
+    }
+    </script>
+  </body>
+  </html>

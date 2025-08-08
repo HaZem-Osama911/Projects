@@ -1,0 +1,359 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html >&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta http-equiv="X-UA-Compatible" content="IE=edge" />&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>الصفحه الرئيسيه</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="shortcut icon" type="x-icon" href="image/logo.png">&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="css/login.css">&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="css/home.css">&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="css/all.min.css">&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="css/normalize.css">&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="preconnect" href="https:fonts.googleapis.com">&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link href="https:fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="preconnect" href="https://fonts.googleapis.com">&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="header">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a href="#" class="logo"><img src="image/logo.png" alt="logo"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="checkbox" id="check">&ndash;&gt;-->
+<!--&lt;!&ndash;            <label for="check" class="check-list">&ndash;&gt;-->
+<!--&lt;!&ndash;                <i class="fa-solid fa-list"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;            </label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <ul class="main-nav">&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="link"><a href="home.php" target="_blank">الصفحه الرئيسيه</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="link"><a href="artical.php" target="_blank">المقالات</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="link"><a href="diagnose.php" target="_blank">التشخيصات والعلاجات</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="link"><a href="exam.php" target="_blank">الاختبارات</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item"><a href="#Contact" class="nav-link">مساعده</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="link"> <a href=""></a>     </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="link acc"><a href="sighnup.html" target="_blank" class="active">انشاء حساب</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="link"><a href="login.html" target="_blank">تسجيل الدخول</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="profile">&ndash;&gt;-->
+<!--&lt;!&ndash;                <img src="image/user.png" alt="" onclick="togglemenu()">&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="menu" id="submenu">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="sub-menu">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="sub-menu-info">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <img src="image/user.png" alt="">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h3>Name</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <hr>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a href="#" class="sub-menu-link">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="fa-solid fa-user-pen"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p>Edit profile</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span>></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a href="#" class="sub-menu-link">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="fa-solid fa-gear"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p>settings & privacy</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span>></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a href="#" class="sub-menu-link">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="fa-solid fa-circle-question"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p>Help & Support</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span>></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a href="#" class="sub-menu-link">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="fa-solid fa-right-from-bracket"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p>logout</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <span>></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    &ndash;&gt;-->
+<!--&lt;!&ndash;    <section class="sec1">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="form-box Login">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h1>Sign Up</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;                <form onsubmit="return validation(script.js) "action="sign.php" method="post" name="regForm">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="input-box">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" name="username" required placeholder="اسم المستخدم">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="fa-solid fa-user"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-box">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="email" name="email" required placeholder="البريد الالكتروني">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="fa-solid fa-envelope"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-box">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="password" name="password" required placeholder="كلمه المرور">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="fa-solid fa-lock"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-box">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <input type="text" name="Mobile" required placeholder="رقم الهاتف ">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <i class="fa-solid fa-phone"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="input-box">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button class="btn" type="submit">تسجيل</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                     &ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="regi-link">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p>تمتلك حساب بالفعل ؟<a href="login.html" class="signuplink">تسجيل الدخول</a></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </section>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
+<!--    <title>إنشاء حساب</title>-->
+<!--    <link rel="shortcut icon" type="x-icon" href="image/logo.png">-->
+<!--    <link rel="stylesheet" href="css/login.css">-->
+<!--    <link rel="stylesheet" href="css/home.css">-->
+<!--    <link rel="stylesheet" href="css/all.min.css">-->
+<!--    <link rel="stylesheet" href="css/normalize.css">-->
+<!--    <link rel="preconnect" href="https:fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https:fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="header">-->
+<!--    <div class="container">-->
+<!--        <a href="home.php" class="logo"><img src="image/logo.png" alt="logo"></a>-->
+<!--        <input type="checkbox" id="check">-->
+<!--        <label for="check" class="check-list">-->
+<!--            <i class="fa-solid fa-list"></i>-->
+<!--        </label>-->
+<!--        <ul class="main-nav">-->
+<!--            <li class="link"><a href="home.php">الصفحه الرئيسيه</a></li>-->
+<!--            <li class="link"><a href="artical.php">المقالات</a></li>-->
+<!--            <li class="link"><a href="diagnose.php">التشخيصات والعلاجات</a></li>-->
+<!--            <li class="link"><a href="exam.php">الاختبارات</a></li>-->
+<!--            <li class="nav-item"><a href="#Contact" class="nav-link">مساعده</a></li>-->
+<!--            <li class="link"> <a href=""></a>     </li>-->
+<!--            <li class="link acc"><a href="sighnup.html" class="active">انشاء حساب</a></li>-->
+<!--            <li class="link"><a href="login.html">تسجيل الدخول</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<section class="sec1">-->
+<!--    <div class="container">-->
+<!--        <div class="form-box Login">-->
+<!--            <h1>إنشاء حساب</h1>-->
+<!--            <form action="sign.php" method="post" id="signup-form">-->
+<!--                <div class="input-box">-->
+<!--                    <input type="text" name="username" required placeholder="اسم المستخدم">-->
+<!--                    <i class="fa-solid fa-user"></i>-->
+<!--                </div>-->
+<!--                <div class="input-box">-->
+<!--                    <input type="email" name="email" required placeholder="البريد الإلكتروني">-->
+<!--                    <i class="fa-solid fa-envelope"></i>-->
+<!--                </div>-->
+<!--                <div class="input-box">-->
+<!--                    <input type="password" name="password" required placeholder="كلمة المرور">-->
+<!--                    <i class="fa-solid fa-lock"></i>-->
+<!--                </div>-->
+<!--                <div class="input-box">-->
+<!--                    <input type="text" name="Mobile" required placeholder="رقم الهاتف">-->
+<!--                    <i class="fa-solid fa-phone"></i>-->
+<!--                </div>-->
+<!--                <div class="input-box">-->
+<!--                    <button class="btn" type="submit">إنشاء حساب</button>-->
+<!--                </div>-->
+
+<!--                <div class="regi-link">-->
+<!--                    <p>لديك حساب بالفعل؟ <a href="login.html" class="loginlink">تسجيل الدخول</a></p>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--<div class="footer">-->
+<!--    <div class="container">-->
+<!--        <div class="box">-->
+<!--            <h3>Thriving Together</h3>-->
+<!--            <ul class="social">-->
+<!--                <li>-->
+<!--                    <a href="#" class="facebook">-->
+<!--                        <i class="fab fa-facebook-f"></i>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#" class="twitter">-->
+<!--                        <i class="fab fa-twitter"></i>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a href="#" class="email">-->
+<!--                        <i class="fa-solid fa-envelope"></i>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            <p class="text">-->
+<!--                "نحن هنا من أجل ان ننهض سويا"-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div class="box">-->
+<!--            <ul class="links">-->
+<!--                <li><a href="home.php">الرئيسيه</a></li>-->
+<!--                <li><a href="sighnup.html">انشاء حساب</a></li>-->
+<!--                <li><a href="login.html">تسجيل الدخول</a></li>-->
+<!--                <li><a href="article.php">المقالات</a></li>-->
+<!--                <li><a href="diagnoses.php">تشخيصات وعلاجات</a></li>-->
+<!--                <li><a href="exercises.php">الاختبارات</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--        <div class="box footer-image">-->
+<!--            <img src="image/1.png" alt="">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <p class="copyright">&copy;All Rights Reserved</p>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    // Basic client-side validation-->
+<!--    document.getElementById('signup-form').addEventListener('submit', function(event) {-->
+<!--        const password = document.querySelector('input[name="password"]').value;-->
+
+<!--        if (password.length < 6) {-->
+<!--            alert('كلمة المرور يجب أن تكون على الأقل 6 أحرف');-->
+<!--            event.preventDefault();-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>إنشاء حساب</title>
+    <link rel="shortcut icon" type="x-icon" href="image/logo.png">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https:fonts.googleapis.com">
+    <link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>
+    <link href="https:fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <a href="home.php" class="logo"><img src="image/logo.png" alt="logo"></a>
+        <input type="checkbox" id="check">
+        <label for="check" class="check-list">
+            <i class="fa-solid fa-list"></i>
+        </label>
+        <ul class="main-nav">
+            <li class="link"><a href="home.php">الصفحه الرئيسيه</a></li>
+            <li class="link"><a href="artical.php">المقالات</a></li>
+            <li class="link"><a href="diagnose.php">التشخيصات والعلاجات</a></li>
+            <li class="link"><a href="exam.php">الاختبارات</a></li>
+            <li class="nav-item"><a href="#Contact" class="nav-link">مساعده</a></li>
+            <li class="link"> <a href=""></a>     </li>
+            <li class="link acc"><a href="sighnup.html" class="active">انشاء حساب</a></li>
+            <li class="link"><a href="login.html">تسجيل الدخول</a></li>
+        </ul>
+    </div>
+</div>
+<section class="sec">
+    <div class="container">
+        <div class="form-box Login">
+            <h1>إنشاء حساب</h1>
+            <form action="sign.php" method="post" id="signup-form">
+                <div class="input-box">
+                    <input type="text" name="username" required placeholder="اسم المستخدم">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" required placeholder="البريد الإلكتروني">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="password" required placeholder="كلمة المرور">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="Mobile" required placeholder="رقم الهاتف">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                    <button class="btn" type="submit">إنشاء حساب</button>
+
+                <div class="regi-link">
+                    <p>لديك حساب بالفعل؟ <a href="login.html" class="loginlink">تسجيل الدخول</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="footer">
+    <div class="container">
+        <div class="box">
+            <h3 class="glow">Thriving Together</h3>
+            <ul class="social">
+                <li>
+                    <a href="#" class="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </li>
+            </ul>
+            <p class="text">
+                "نحن هنا من أجل ان ننهض سويا"
+            </p>
+        </div>
+        <div class="box">
+            <ul class="links">
+                <li><a href="home.php">الرئيسيه</a></li>
+                <li><a href="sighnup.html">انشاء حساب</a></li>
+                <li><a href="login.html">تسجيل الدخول</a></li>
+                <li><a href="artical.php">المقالات</a></li>
+                <li><a href="diagnose.php">تشخيصات وعلاجات</a></li>
+                <li><a href="exam.php">الاختبارات</a></li>
+            </ul>
+        </div>
+        <div class="box footer-image">
+            <img src="image/1.png" alt="">
+        </div>
+    </div>
+    <p class="copyright">&copy;All Rights Reserved</p>
+</div>
+
+<script>
+    // Basic client-side validation
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+        const password = document.querySelector('input[name="password"]').value;
+
+        if (password.length < 6) {
+            alert('كلمة المرور يجب أن تكون على الأقل 6 أحرف');
+            event.preventDefault();
+        }
+    });
+</script>
+</body>
+</html>

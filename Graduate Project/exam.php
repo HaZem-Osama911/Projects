@@ -1,0 +1,263 @@
+<?php
+include 'check_login.php';
+$isLoggedIn = check_login();
+$username = get_username();
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>الاختبارات</title>
+    <link rel="shortcut icon" type="x-icon" href="image/logo.png">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/exam.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https:fonts.googleapis.com">
+    <link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>
+    <link href="https:fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lalezar&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="home.php" class="logo"><img src="image/logo.png" alt="logo"></a>
+            <input type="checkbox" id="check">
+            <label for="check" class="check-list">
+                <i class="fa-solid fa-list"></i>
+            </label>
+            <ul class="main-nav">
+                <li class="link"><a href="home.php">الصفحه الرئيسيه</a></li>
+                <li class="link"><a href="artical.php">المقالات</a></li>
+                <li class="link"><a href="diagnose.php">التشخيصات والعلاجات</a></li>
+                <li class="link"><a href="exam.php">الاختبارات</a></li>
+                <li class="nav-item"><a href="#Contact" class="nav-link">مساعده</a></li>
+                <li class="link"> <a href=""></a></li>
+
+                <?php if ($isLoggedIn): ?>
+                    <li class="link"><a href="profile.php">الملف الشخصي</a></li>
+                    <li class="link"><a href="logout.php">تسجيل الخروج</a></li>
+                <?php else: ?>
+                    <li class="link acc"><a href="sighnup.html" class="active">انشاء حساب</a></li>
+                    <li class="link"><a href="login.html">تسجيل الدخول</a></li>
+                <?php endif; ?>
+            </ul>
+
+            <?php if ($isLoggedIn): ?>
+                <div class="profile">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="menu" id="submenu">
+                    <div class="sub-menu">
+                        <div class="sub-menu-info">
+                            <i class="fa-solid fa-user"></i>
+                            <h3><?php echo htmlspecialchars($username); ?></h3>
+                        </div>
+                        <hr>
+                        <a href="profile.php" class="sub-menu-link">
+                            <i class="fa-solid fa-user-pen"></i>
+                            <p>الملف الشخصي</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-gear"></i>
+                            <p>الإعدادات</p>
+                            <span>></span>
+                        </a>
+                        <a href="#Contact" class="sub-menu-link">
+                            <i class="fa-solid fa-circle-question"></i>
+                            <p>المساعدة</p>
+                            <span>></span>
+                        </a>
+                        <a href="logout.php" class="sub-menu-link">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <p>تسجيل الخروج</p>
+                            <span>></span>
+                        </a>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <div class="header">
+        <div class="container">
+            <a href="home.php" class="logo"><img src="image/logo.png" alt="logo"></a>
+            <input type="checkbox" id="check">
+            <label for="check" class="check-list">
+                <i class="fa-solid fa-list"></i>
+            </label>
+            <ul class="main-nav">
+                <li class="link"><a href="home.php">الصفحه الرئيسيه</a></li>
+                <li class="link"><a href="artical.php">المقالات</a></li>
+                <li class="link"><a href="diagnose.php">التشخيصات والعلاجات</a></li>
+                <li class="link"><a href="exam.php">الاختبارات</a></li>
+                <li class="nav-item"><a href="#Contact" class="nav-link">مساعده</a></li>
+                <li class="link"> <a href=""></a></li>
+
+                <?php if ($isLoggedIn): ?>
+                    <li class="link"><a href="profile.php">الملف الشخصي</a></li>
+                    <li class="link"><a href="logout.php">تسجيل الخروج</a></li>
+                <?php else: ?>
+                    <li class="link acc"><a href="sighnup.html" class="active">انشاء حساب</a></li>
+                    <li class="link"><a href="login.html">تسجيل الدخول</a></li>
+                <?php endif; ?>
+            </ul>
+
+            <?php if ($isLoggedIn): ?>
+                <div class="profile">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="menu" id="submenu">
+                    <div class="sub-menu">
+                        <div class="sub-menu-info">
+                            <i class="fa-solid fa-user"></i>
+                            <h3><?php echo htmlspecialchars($username); ?></h3>
+                        </div>
+                        <hr>
+                        <a href="profile.php" class="sub-menu-link">
+                            <i class="fa-solid fa-user-pen"></i>
+                            <p>الملف الشخصي</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-gear"></i>
+                            <p>الإعدادات</p>
+                            <span>></span>
+                        </a>
+                        <a href="#Contact" class="sub-menu-link">
+                            <i class="fa-solid fa-circle-question"></i>
+                            <p>المساعدة</p>
+                            <span>></span>
+                        </a>
+                        <a href="logout.php" class="sub-menu-link">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <p>تسجيل الخروج</p>
+                            <span>></span>
+                        </a>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <div class="exercise-content">
+        <div class="container">
+            <div class="main-title">الاختبارات <span></span></div>
+            <p class="description">اختار من بين مجموعة اختبارات دقيقة لمساعدتك على فهم حالة طفلك بشكل أفضل</p>
+            <div class="guided-test-box">
+                <h4>مش عارف تبدأ منين؟</h4>
+                <p>جاوب على ٣ أسئلة بسيطة واحنا هنرشحلك أنسب اختبار لحالة طفلك </p>
+                <a href="guidedexam.html" class="guided-link">ابدأ الاختبار</a>
+            </div>
+            <div class="grid">
+                <div class="card intelligence">
+                    <h3>اختبار الذكاء</h3>
+                    <p>يساعد في تقييم مستوى التفكير والتركيز لدى الطفل</p>
+                    <div class="a-container">
+                        <a href="exam1.html">ابدأ الاختبار</a>
+                    </div>
+                </div>
+                <div class="card age">
+                    <h3>قياس العمر العقلي</h3>
+                    <p>يُستخدم لتحديد العمر العقلي الحقيقي للطفل مقارنة بعمره الزمني</p>
+                    <div class="a-container">
+                        <a href="exam2.html">ابدأ الاختبار</a>
+                    </div>
+                </div>
+                <div class="card language">
+                    <h3>اختبار الفهم اللغوي</h3>
+                    <p>يُقيّم قدرة الطفل على فهم واستيعاب اللغة</p>
+                    <div class="a-container">
+                        <a href="exam3.html">ابدأ الاختبار</a>
+                    </div>
+                </div>
+                <div class="card autism">
+                    <h3>اختبار M-CHAT</h3>
+                    <p>يُستخدم لاكتشاف علامات اضطراب التوحد في مراحله المبكرة</p>
+                    <div class="a-container">
+                        <a href="exam4.html">ابدأ الاختبار</a>
+                    </div>
+                </div>
+                <div class=" card char">
+                    <h3>اختبار نطق الحروف</h3>
+                    <p>يُقيّم قدرة الطفل علي نطق الحرف باستخدام AI </p>
+                    <div class="a-container">
+                        <a href="Speech_Project/language_selection.html">ابدأ الاختبار</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p class="descriptionn">
+        ملحوظه مهمه :الأخصائي هو من يتم تشخيص الحالة وفقا لدراسه الحالة والملاحظة الدقيقة ,ثم يضع خطة فرديه
+        مناسبة لكل حالة يحدد المدة المخصصة لكل برنامج و ينتقل من كل
+        مرحله لاخري حسب تقدم الحاله<br> ويكون عنده معرفه بالبرامج الخاصه بكل حاله و لابد ان يتمتع الاخصائي بالمرونه
+        في تعديل خطوات البرنامج الخاص بالحاله عند ظهور اي سلوك معطل أو تقدم مفاجئ
+    </p>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="box">
+                <h3>Thriving Together</h3>
+                <ul class="social">
+                    <li>
+                        <a href="#" class="facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </li>
+                </ul>
+                <p class="text">
+                    "نحن هنا من أجل ان ننهض سويا"
+                </p>
+            </div>
+            <div class="box">
+                <ul class="links">
+                    <li><a href="home.php">الرئيسيه</a></li>
+                    <?php if (!$isLoggedIn): ?>
+                        <li><a href="sighnup.html">انشاء حساب</a></li>
+                        <li><a href="login.html">تسجيل الدخول</a></li>
+                    <?php else: ?>
+                        <li><a href="profile.php">الملف الشخصي</a></li>
+                        <li><a href="logout.php">تسجيل الخروج</a></li>
+                    <?php endif; ?>
+                    <li><a href="artical.php">المقالات</a></li>
+                    <li><a href="diagnose.php">تشخيصات وعلاجات</a></li>
+                    <li><a href="exam.php">الاختبارات</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copyright">&copy;All Rights Reserved</p>
+    </div>
+
+    <script>
+        let submenu = document.getElementById("submenu");
+
+        function togglemenu() {
+            submenu.classList.toggle("open-menu");
+        }
+    </script>
+</body>
+
+</html>

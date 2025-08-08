@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<he>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>اختبار الذكاء</title>
+    <link rel="shortcut icon" type="x-icon" href="image/logo.png">
+    <link rel="stylesheet" href="css/exam1.css">
+    <link rel="stylesheet" href="css/exam.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https:fonts.googleapis.com">
+    <link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>
+    <link href="https:fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lalezar&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <title>اختبار ذكاء </title>
+
+    </head>
+
+    <body>
+        <div class="quiz-container">
+            <h1>اختبار الذكاء للأطفال</h1>
+            <div id="quiz"></div>
+            <p id="timer">الوقت المتبقي: <span id="time">30</span> ثانية</p>
+            <button id="nextBtn" onclick="nextQuestion()">التالي</button>
+            <div id="result"></div>
+            <canvas id="progressCanvas" width="300" height="100" style="display:none;"></canvas>
+            <button id="backBtn" onclick="goBack()" style="display:none;">رجوع</button>
+        </div>
+
+        <audio id="correctSound" src="sound/correct.mp3"></audio>
+        <audio id="wrongSound" src="sound/wrong.mp3"></audio>
+
+        <script>
+            const allQuestions = [
+                { question: "ما هو الرقم التالي في التسلسل: ٢, ٤, ٦, __؟", options: ["١٠", "٨", "١٢"], answer: "٨", image: "image/numbers.png" },
+                { question: "أي شكل له ٤ جوانب متساوية؟", options: ["دائرة", "مربع", "مثلث"], answer: "مربع", image: "image/square.png" },
+                { question: "ما الحيوان الذي يصدر صوت مواء؟", options: ["قطة", "بقرة", "كلب"], answer: "قطة", image: "image/cat.jpg" },
+                { question: "كم عدد الأرجل لدى العنكبوت؟", options: ["٨", "٦", "١٠"], answer: "٨", image: "image/spider.png" },
+                { question: "ما هو لون السماء الصافية؟", options: ["أحمر", "أزرق", "أخضر"], answer: "أزرق", image: "image/cloud.jpg" },
+                { question: "ما هو عكس كلمة (قصير)؟", options: ["طويل", "عريض", "رفيع"], answer: "طويل", image: "" },
+                { question: "كم عدد أصابع اليد الواحدة؟", options: ["٤", "٥", "٦"], answer: "٥", image: "" },
+                { question: "أي من هذه الفواكه لونها أصفر؟", options: ["موز", "عنب", "تفاح"], answer: "موز", image: "" },
+                { question: "ما العدد الذي يلي ٩؟", options: ["١٠", "٨", "١٢"], answer: "١٠", image: "" },
+                { question: "أي من هذه الألوان هو لون العشب؟", options: ["أخضر", "أزرق", "أحمر"], answer: "أخضر", image: "" }
+            ];
+
+            let questions = [];
+            let currentQuestionIndex = 0;
+            let score = 0;
+            let timer;
+            let timeLeft = 30;
+
+            function shuffleQuestions() {
+                questions = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 10);
+            }
+
+            function loadQuestion() {
+                clearInterval(timer);
+                timeLeft = 30;
+                document.getElementById("time").innerText = timeLeft;
+
+                let q = questions[currentQuestionIndex];
+                document.getElementById("quiz").innerHTML = `
+            <div class="question">${q.question}</div>
+            ${q.image ? `<img src="${q.image}" class="image">` : ""}
+            <div class="options">
+                ${q.options.map(opt => `
+                    <label onclick="selectOption(this)">
+                        <input type="radio" name="q" value="${opt}"> ${opt}
+                    </label>`).join("")}
+            </div>`;
+
+                timer = setInterval(() => {
+                    timeLeft--;
+                    document.getElementById("time").innerText = timeLeft;
+                    if (timeLeft === 0) {
+                        nextQuestion();
+                    }
+                }, 1000);
+            }
+
+            function selectOption(el) {
+                document.querySelectorAll(".options label").forEach(label => label.classList.remove("selected"));
+                el.classList.add("selected");
+            }
+
+            function nextQuestion() {
+                let selected = document.querySelector('input[name="q"]:checked');
+                if (selected) {
+                    if (selected.value === questions[currentQuestionIndex].answer) {
+                        score++;
+                        document.getElementById("correctSound").play();
+                    } else {
+                        document.getElementById("wrongSound").play();
+                    }
+                }
+
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            }
+
+            function showResult() {
+                clearInterval(timer);
+                let result = document.getElementById("result");
+                let percentage = (score / questions.length) * 100;
+                let previous = localStorage.getItem("lastScore") || 0;
+                let diff = (percentage - previous).toFixed(1);
+                let progressMsg = diff >= 0 ? `تحسّن بنسبة ${diff}%` : `انخفض بنسبة ${Math.abs(diff)}%`;
+
+                localStorage.setItem("lastScore", percentage);
+
+                result.innerHTML = `
+            <h2>نتيجتك: ${percentage.toFixed(1)}%</h2>
+            <p>${progressMsg}</p>
+        `;
+
+                showProgressCanvas(previous, percentage);
+                document.getElementById("progressCanvas").style.display = "block";
+                document.getElementById("backBtn").style.display = "block";
+            }
+
+            function showProgressCanvas(prev, curr) {
+                const canvas = document.getElementById("progressCanvas");
+                const ctx = canvas.getContext("2d");
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#eee";
+                ctx.fillRect(0, 40, 300, 20);
+
+                ctx.fillStyle = "#f00";
+                ctx.fillRect(0, 40, 3 * prev, 20);
+
+                ctx.fillStyle = "#0a0";
+                ctx.fillRect(0, 70, 3 * curr, 20);
+
+                ctx.fillStyle = "#000";
+                ctx.font = "14px Arial";
+                ctx.fillText("النتيجة السابقة", 210, 55);
+                ctx.fillText("النتيجة الحالية", 210, 85);
+            }
+
+            function goBack() {
+                window.location.href = "exam.html";
+            }
+
+            shuffleQuestions();
+            loadQuestion();
+        </script>
+    </body>
+
+</html>
