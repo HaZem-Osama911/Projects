@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    style-src 'self' 'unsafe-inline';
+    script-src 'self';
+    img-src 'self' data:;
+    connect-src 'self' http://127.0.0.1:5000;
+    font-src 'self' data:;
+    ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose a Letter</title>
+    <!-- Local libraries -->
+    <link rel="stylesheet" href="assets/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/lib/css/animate.min.css">
+    <link rel="stylesheet" href="assets/lib/css/all.min.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container text-center py-5">
+        <h1 class="mb-4 animate__animated animate__bounceInDown">Choose a letter to start practicing!</h1>
+        <div class="letters-grid" id="lettersGrid"></div>
+    </div>
+
+    <!-- Local libraries -->
+    <script src="assets/lib/js/popper.min.js"></script>
+    <script src="assets/lib/js/bootstrap.min.js"></script>
+    <!-- JavaScript file -->
+    <script src="letter_En.js"></script>
+</body>
+</html>

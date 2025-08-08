@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kids Voice Visualizer</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #4a90e2, #d81b60, #4a90e2);
+      background-size: 200% 200%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', Arial, sans-serif;
+      animation: moveBackground 15s ease infinite;
+    }
+
+    @keyframes moveBackground {
+      0% {
+        background-position: 0% 0%;
+      }
+      50% {
+        background-position: 100% 100%;
+      }
+      100% {
+        background-position: 0% 0%;
+      }
+    }
+
+    canvas {
+      display: block;
+    }
+
+    .controls {
+      position: absolute;
+      width: 100%;
+      bottom: 20px;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .controls button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      background-color: #d81b60;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    .controls button:hover {
+      background-color: #b0144c;
+    }
+
+    /* Pronunciation Button */
+    .pronunciation-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 12px 20px;
+      background: #d81b60;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .pronunciation-btn:hover {
+      background-color: #b0144c;
+      transform: scale(1.1);
+    }
+
+    /* Popup Message */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .popup h2 {
+      color: white;
+      font-size: 3rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-bottom: 10px;
+    }
+
+    .popup p {
+      color: white;
+      font-size: 1.8rem;
+      line-height: 1.5;
+    }
+
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="visualizer"></canvas>
+
+  <!-- Pronunciation Button -->
+  <button class="pronunciation-btn">How to Pronounce</button>
+
+  <!-- Popup Message -->
+  <div class="popup-overlay"></div>
+  <div class="popup" id="pronunciationPopup">
+    <span class="close-btn" onclick="closePopup()">×</span>
+    <h2 id="letterName"></h2>
+    <p id="pronunciationTip"></p>
+  </div>
+
+  <div class="controls" id="buttons">
+    <button onclick="playAudio()">Play Letter Again</button>
+    <button onclick="goToTest()">Try Test Again</button>
+  </div>
+
+  <audio id="audio"></audio>
+
+  <script>
+    const canvas = document.getElementById('visualizer');
+    const ctx = canvas.getContext('2d');
+    const audio = document.getElementById('audio');
+    const pronunciationBtn = document.querySelector('.pronunciation-btn');
+    const popup = document.getElementById('pronunciationPopup');
+    const popupOverlay = document.querySelector('.popup-overlay');
+    const letterName = document.getElementById('letterName');
+    const pronunciationTip = document.getElementById('pronunciationTip');
+
+    // Extract letter from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const letter = urlParams.get('letter')?.toUpperCase() || 'A';
+
+    // Set audio source dynamically
+    audio.src = `assets/letters/${letter}.mp3`;
+
+    // Pronunciation tips for English letters
+    const pronunciationTips = {
+      'A': 'Say "A" like "Apple" with an open mouth, like you’re surprised!',
+      'B': 'Press your lips together and say "B" like "Ball". Feel the pop!',
+      'C': 'Say "C" like "Cat". Push air out with your tongue near your teeth.',
+      'D': 'Touch your tongue to the roof of your mouth and say "D" like "Dog".',
+      'E': 'Smile wide and say "E" like "Elephant". Keep your mouth open!',
+      'F': 'Put your bottom lip under your top teeth and blow "F" like "Fish".',
+      'G': 'Say "G" like "Goat" from the back of your throat. Feel it rumble!',
+      'H': 'Breathe out softly and say "H" like "Hat". Feel the air!',
+      'I': 'Say "I" like "Igloo" with a short, sharp sound. Smile while you say it!',
+      'J': 'Push your tongue to the roof of your mouth and say "J" like "Jam".',
+      'K': 'Say "K" like "Kite" with a sharp sound from the back of your mouth.',
+      'L': 'Lift your tongue to touch the roof of your mouth and say "L" like "Lion".',
+      'M': 'Close your lips and hum "M" like "Monkey". Feel your nose vibrate!',
+      'N': 'Touch your tongue to the roof of your mouth and say "N" like "Nest".',
+      'O': 'Round your lips and say "O" like "Orange". Make a big circle with your mouth!',
+      'P': 'Press your lips together and pop "P" like "Pig". Feel the air puff out!',
+      'Q': 'Say "Q" like "Queen" with a "kw" sound. Start with your lips rounded!',
+      'R': 'Roll your tongue a little and say "R" like "Rabbit". Pretend you’re a motor!',
+      'S': 'Hiss like a snake and say "S" like "Sun". Feel the air between your teeth!',
+      'T': 'Tap your tongue on the roof of your mouth and say "T" like "Tiger".',
+      'U': 'Say "U" like "Umbrella" with rounded lips. Make a small "oo" sound!',
+      'V': 'Put your bottom lip under your top teeth and hum "V" like "Van".',
+      'W': 'Round your lips and say "W" like "Wolf". Blow air like you’re whistling!',
+      'X': 'Say "X" like "X-ray" with a "ks" sound. Push air out sharply!',
+      'Y': 'Say "Y" like "Yak" with a smile. Start with your tongue high!',
+      'Z': 'Buzz like a bee and say "Z" like "Zebra". Feel your throat vibrate!'
+    };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Play audio automatically on page load
+    window.addEventListener('load', () => {
+      audio.play();
+    });
+
+    function playAudio() {
+      audio.currentTime = 0;
+      audio.play();
+    }
+
+    function goToTest() {
+      window.location.href = `test_En.html?letter=${letter}`;
+    }
+
+    // Show pronunciation popup
+    pronunciationBtn.addEventListener('click', () => {
+      letterName.textContent = `Letter: ${letter}`;
+      pronunciationTip.textContent = pronunciationTips[letter] || 'No tip available for this letter.';
+      popup.style.display = 'block';
+      popupOverlay.style.display = 'block';
+    });
+
+    // Close popup
+    function closePopup() {
+      popup.style.display = 'none';
+      popupOverlay.style.display = 'none';
+    }
+
+    // Close popup when clicking overlay
+    popupOverlay.addEventListener('click', closePopup);
+
+    class Heart {
+      constructor(x, y, size, speed) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speed = speed;
+        this.opacity = 1;
+      }
+
+      update() {
+        this.y -= this.speed;
+        this.opacity -= 0.01;
+      }
+
+      draw(ctx) {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.scale(this.size, this.size);
+        ctx.globalAlpha = this.opacity;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(0, -3, -3, -3, -3, 0);
+        ctx.bezierCurveTo(-3, 3, 0, 5, 0, 6);
+        ctx.bezierCurveTo(0, 5, 3, 3, 3, 0);
+        ctx.bezierCurveTo(3, -3, 0, -3, 0, 0);
+        ctx.fillStyle = 'pink';
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    const hearts = [];
+
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+      .then(stream => {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioCtx.createMediaStreamSource(stream);
+        const analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 512;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        source.connect(analyser);
+
+        function draw() {
+          requestAnimationFrame(draw);
+
+          analyser.getByteFrequencyData(dataArray);
+
+          let sum = 0;
+          for (let i = 0; i < bufferLength; i++) {
+            sum += dataArray[i];
+          }
+          let average = sum / bufferLength;
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          const maxRadius = Math.min(canvas.width, canvas.height) / 6;
+          const baseRadius = (average / 255) * maxRadius + 50;
+          const centerX = canvas.width / 2;
+          const centerY = canvas.height / 2;
+
+          const gradient = ctx.createRadialGradient(centerX, centerY, baseRadius / 2, centerX, centerY, baseRadius);
+          gradient.addColorStop(0, 'rgba(255, 182, 193, 1)');
+          gradient.addColorStop(1, 'rgba(135, 206, 250, 0.7)');
+
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, baseRadius, 0, Math.PI * 2);
+          ctx.fillStyle = gradient;
+          ctx.shadowBlur = 20;
+          ctx.shadowColor = 'lightblue';
+          ctx.fill();
+
+          if (average > 50 && Math.random() < 0.3) {
+            hearts.push(new Heart(centerX + (Math.random() - 0.5) * baseRadius, centerY - baseRadius, Math.random() * 0.5 + 0.5, Math.random() * 2 + 1));
+          }
+
+          for (let i = hearts.length - 1; i >= 0; i--) {
+            const heart = hearts[i];
+            heart.update();
+            heart.draw(ctx);
+            if (heart.opacity <= 0) {
+              hearts.splice(i, 1);
+            }
+          }
+
+          ctx.beginPath();
+          const waves = 64;
+          for (let i = 0; i <= waves; i++) {
+            const angle = (i / waves) * Math.PI * 2;
+            const distance = baseRadius + Math.sin(angle * 8 + Date.now() / 300) * 10;
+            const x = centerX + Math.cos(angle) * distance;
+            const y = centerY + Math.sin(angle) * distance;
+            if (i === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+          }
+          ctx.closePath();
+          ctx.strokeStyle = 'rgba(255, 192, 203, 0.8)';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+
+        draw();
+      })
+      .catch(err => {
+        console.error('Error accessing microphone:', err);
+        function drawFallback() {
+          requestAnimationFrame(drawFallback);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          const maxRadius = Math.min(canvas.width, canvas.height) / 6;
+          const baseRadius = 50;
+          const centerX = canvas.width / 2;
+          const centerY = canvas.height / 2;
+
+          const gradient = ctx.createRadialGradient(centerX, centerY, baseRadius / 2, centerX, centerY, baseRadius);
+          gradient.addColorStop(0, 'rgba(255, 182, 193, 1)');
+          gradient.addColorStop(1, 'rgba(135, 206, 250, 0.7)');
+
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, baseRadius, 0, Math.PI * 2);
+          ctx.fillStyle = gradient;
+          ctx.shadowBlur = 20;
+          ctx.shadowColor = 'lightblue';
+          ctx.fill();
+
+          ctx.beginPath();
+          const waves = 64;
+          for (let i = 0; i <= waves; i++) {
+            const angle = (i / waves) * Math.PI * 2;
+            const distance = baseRadius + Math.sin(angle * 8 + Date.now() / 300) * 10;
+            const x = centerX + Math.cos(angle) * distance;
+            const y = centerY + Math.sin(angle) * distance;
+            if (i === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+          }
+          ctx.closePath();
+          ctx.strokeStyle = 'rgba(255, 192, 203, 0.8)';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+        drawFallback();
+      });
+  </script>
+</body>
+</html>

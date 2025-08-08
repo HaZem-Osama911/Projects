@@ -1,0 +1,105 @@
+/* Existing styles */
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #4a90e2, #d81b60, #4a90e2);
+  background-size: 200% 200%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Comic Sans MS', Arial, sans-serif;
+  overflow: hidden;
+  animation: moveBackground 15s ease infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+      background-position: 0% 0%;
+  }
+  50% {
+      background-position: 100% 100%;
+  }
+  100% {
+      background-position: 0% 0%;
+  }
+}
+
+h1 {
+  color: white;
+  font-size: 3rem; /* Increased from 2.5rem */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+#letterToPronounce {
+  color: white;
+  font-size: 2.2rem; /* Increased from 2rem, optional */
+  margin-bottom: 20px;
+}
+
+#feedback {
+  color: white;
+  font-size: 1.8rem; /* Increased from 1.5rem */
+  margin: 20px 0;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  background-color: #d81b60;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px; /* Increased from 16px */
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #b0144c;
+}
+
+video {
+  width: 320px;
+  height: 240px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+video.active {
+  display: block;
+}
+
+/* New styles */
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 50px; /* Makes the container more oval-shaped */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  animation: subtleRotate 10s ease-in-out infinite; /* Adds subtle rotation animation */
+}
+
+@keyframes subtleRotate {
+  0% {
+      transform: rotate(0deg);
+  }
+  50% {
+      transform: rotate(5deg);
+  }
+  100% {
+      transform: rotate(0deg);
+  }
+}
