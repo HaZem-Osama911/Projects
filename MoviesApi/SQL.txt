@@ -1,0 +1,78 @@
+DELETE FROM Genres;
+DBCC CHECKIDENT ('Genres', RESEED, 0);
+
+INSERT INTO Genres (Name)
+VALUES 
+  ('Action'),
+  ('Drama'),
+  ('Crime'),
+  ('Biography'),
+  ('Adventure'),
+  ('Horror'),
+  ('Romance'),
+  ('Comedy'),
+  ('War'),
+  ('Fantasy'),
+  ('Historical'),
+  ('Science Fiction');
+
+  select * from Genres;
+
+  ALTER TABLE Movies
+ALTER COLUMN Poster VARBINARY(MAX) NULL;
+
+
+ INSERT INTO Movies (Title, Year, Rate, StoreLuine, Poster, GenreId)
+VALUES 
+(N'The Shawshank Redemption', 1994, 9.3, N'Two imprisoned men bond over years...', NULL, 2),
+(N'The Godfather', 1972, 9.2, N'The aging patriarch...', NULL, 3),
+(N'The Dark Knight', 2008, 9.0, N'When the menace known as the Joker...', NULL, 1),
+(N'Schindler''s List', 1993, 8.9, N'In German-occupied Poland...', NULL, 4),
+(N'Pulp Fiction', 1994, 8.9, N'The lives of two mob hitmen...', NULL, 3),
+(N'Inception', 2010, 8.8, N'A thief who steals corporate secrets...', NULL, 11),
+(N'Titanic', 1997, 7.8, N'A seventeen-year-old aristocrat...', NULL, 8),
+(N'Gladiator', 2000, 8.5, N'A former Roman General...', NULL, 10);
+
+
+-- 1
+UPDATE Movies SET Poster = (
+    SELECT * FROM OPENROWSET(BULK N'C:\Users\hazem\Downloads\The Shawshank Redemption.jpg', SINGLE_BLOB) AS PosterData
+) WHERE Title = 'The Shawshank Redemption';
+
+-- 2
+UPDATE Movies SET Poster = (
+    SELECT * FROM OPENROWSET(BULK N'C:\Users\hazem\Downloads\Godfather.jpg', SINGLE_BLOB) AS PosterData
+) WHERE Title = 'The Godfather';
+
+-- 3
+UPDATE Movies SET Poster = (
+    SELECT * FROM OPENROWSET(BULK N'C:\Users\hazem\Downloads\The Dark Knight.jpg', SINGLE_BLOB) AS PosterData
+) WHERE Title = 'The Dark Knight';
+
+-- 4
+UPDATE Movies SET Poster = (
+    SELECT * FROM OPENROWSET(BULK N'C:\Users\hazem\Downloads\Schindler''s List.jpg', SINGLE_BLOB) AS PosterData
+) WHERE Title = 'Schindler''s List';
+
+-- 5
+UPDATE Movies SET Poster = (
+    SELECT * FROM OPENROWSET(BULK N'C:\Users\hazem\Downloads\Pulp Fiction.jpg', SINGLE_BLOB) AS PosterData
+) WHERE Title = 'Pulp Fiction';
+
+-- 6
+UPDATE Movies SET Poster = (
+    SELECT * FROM OPENROWSET(BULK N'C:\Users\hazem\Downloads\Inception.jpg', SINGLE_BLOB) AS PosterData
+) WHERE Title = 'Inception';
+
+-- 7
+UPDATE Movies SET Poster = (
+    SELECT * FROM OPENROWSET(BULK N'C:\Users\hazem\Downloads\Titanic.jpg', SINGLE_BLOB) AS PosterData
+) WHERE Title = 'Titanic';
+
+-- 8
+UPDATE Movies SET Poster = (
+    SELECT * FROM OPENROWSET(BULK N'C:\Users\hazem\Downloads\Gladiator.jpg', SINGLE_BLOB) AS PosterData
+) WHERE Title = 'Gladiator';
+
+
+select *from Movies;
