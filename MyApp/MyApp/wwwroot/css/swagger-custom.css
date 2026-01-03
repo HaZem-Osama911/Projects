@@ -1,0 +1,30 @@
+﻿/* ================= Glass Dark Mode for Swagger ================= */
+.swagger-ui {
+    background: rgba(40,40,40,0.85) !important;
+    backdrop-filter: blur(12px);
+    color: #e0e0e0;
+}
+
+    .swagger-ui .topbar {
+        background: rgba(50,50,50,0.9) !important;
+        backdrop-filter: blur(10px);
+    }
+
+    .swagger-ui .scheme-container,
+    .swagger-ui .opblock {
+        background: rgba(255,255,255,0.05) !important;
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .swagger-ui .btn {
+        background: rgba(255,255,255,0.15);
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+
+        .swagger-ui .btn:hover {
+            background: rgba(255,255,255,0.25);
+            box-shadow: 0 0 12px rgba(255,255,255,0.3);
+        }

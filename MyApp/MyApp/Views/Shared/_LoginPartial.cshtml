@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Threading.Tasks
+@using MyApp.Models.UserModels
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav align-items-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var currentUser = await UserManager.GetUserAsync(User);
+
+        if (currentUser?.ProfilePicture != null && currentUser.ProfilePicture.Length > 0)
+        {
+            <li class="nav-item me-2">
+                <img src="data:image/png;base64,@Convert.ToBase64String(currentUser.ProfilePicture)"
+                     alt="Profile"
+                     style="width:35px; height:35px; object-fit:cover;"
+                     class="rounded-circle" />
+            </li>
+        }
+        else
+        {
+            <li class="nav-item me-2">
+                <img src="~/Asset/img/Def.jpg"
+                     alt="Profile"
+                     style="width:35px; height:35px; object-fit:cover;"
+                     class="rounded-circle" />
+            </li>
+        }
+
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                Hello, <span style="color:#4cc9f0">@User.Identity?.Name</span> 👋
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
+                  asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-light">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

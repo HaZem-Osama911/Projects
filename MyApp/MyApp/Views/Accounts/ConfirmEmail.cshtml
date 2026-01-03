@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Confirm Email";
+}
+
+@if (ViewData["Success"] != null && (bool)ViewData["Success"])
+{
+    <div class="alert alert-success">
+        <h4>Email Confirmed Successfully 🎉</h4>
+        <p>You can now log in.</p>
+    </div>
+
+    <a asp-action="Login" class="btn btn-primary">Go to Login</a>
+}
+else
+{
+    <div class="alert alert-danger">
+        <h4>Email Confirmation Failed ❌</h4>
+        <p>The confirmation link is invalid or expired.</p>
+    </div>
+}

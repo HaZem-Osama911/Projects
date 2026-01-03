@@ -1,0 +1,18 @@
+﻿@model IdentityRole
+
+
+<h2>Edit Role</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label>Role Name</label>
+        <input name="name" value="@Model.Name" class="form-control" />
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

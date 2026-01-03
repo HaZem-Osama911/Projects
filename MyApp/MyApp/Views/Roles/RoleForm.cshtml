@@ -1,0 +1,22 @@
+﻿@model MyApp.ViewModels.Roles.RoleFormViewModel
+
+@{
+    ViewData["Title"] = "Add New Role";
+}
+
+<h2>Add New Role</h2>
+
+<form asp-action="ADD" method="post">
+    <div class="form-group">
+        <label asp-for="RoleName"></label>
+        <input asp-for="RoleName" class="form-control" />
+        <span asp-validation-for="RoleName" class="text-danger"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Add Role</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

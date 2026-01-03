@@ -1,0 +1,76 @@
+﻿/* ================== Contact Page ================== */
+.contact-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* تبعد عن الفوتر */
+    padding: 20px;
+    background: url('/Asset/img/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.contact-card {
+    max-width: 500px;
+    width: 100%;
+    text-align: left;
+    padding: 40px 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 45px rgba(255,255,255,0.3);
+    }
+
+    .contact-card h2 {
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+        color: #fff;
+        text-shadow: 0 0 8px rgba(0,0,0,0.3);
+    }
+
+    .contact-card p {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        color: #e0e0e0;
+    }
+
+    .contact-card a {
+        color: #fff;
+        text-decoration: underline;
+        transition: 0.3s ease;
+    }
+
+        .contact-card a:hover {
+            color: #00d4ff;
+            text-shadow: 0 0 5px #00d4ff;
+        }
+
+/* ================== Contact Links List ================== */
+.contact-links {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+    .contact-links li {
+        margin: 12px 0;
+        font-size: 1.1rem;
+    }
+
+    .contact-links a {
+        text-decoration: none;
+        color: #00d4ff;
+        font-weight: 500;
+        transition: 0.3s ease;
+    }
+
+        .contact-links a:hover {
+            text-shadow: 0 0 6px #00d4ff;
+        }

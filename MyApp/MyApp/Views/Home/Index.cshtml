@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="home-container">
+    <div class="welcome-card card-glass">
+        <h1 class="text-gradient">Welcome, @User.Identity.Name!</h1>
+        <p>
+            Explore your dashboard and learn about
+            <a href="https://learn.microsoft.com/aspnet/core" target="_blank">ASP.NET Core</a>.
+        </p>
+
+        <div class="home-buttons mt-4">
+            <a class="btn btn-primary btn-lg me-3" href="/swagger" target="_blank">API Test</a>
+            <a class="btn btn-danger btn-lg" href="/Identity/Account/Manage">Profile</a>
+        </div>
+    </div>
+</div>

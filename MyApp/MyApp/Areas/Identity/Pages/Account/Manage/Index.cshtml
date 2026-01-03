@@ -1,0 +1,70 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+<form method="post" enctype="multipart/form-data">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.UserName" class="form-control" />
+                <label asp-for="Input.UserName"></label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FirstName" class="form-control" />
+                <label asp-for="Input.FirstName"></label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.LastName" class="form-control" />
+                <label asp-for="Input.LastName"></label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <label asp-for="Input.PhoneNumber"></label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Save</button>
+        </div>
+        <div class="col-md-6 text-center">
+            <div class="profile-img-wrapper">
+                @if (ViewData["ProfilePicture"] is byte[] profilePic)
+                {
+                    <img id="ProfilePicture"
+                         src="~/Asset/img/Def.jpg"
+                         @* src="data:image/*;base64,@Convert.ToBase64String(profilePic)"*@                      
+                         class="rounded-circle"
+                         style="width:200px;height:200px;object-fit:cover;" />
+                }
+                else
+                {
+                    <img id="ProfilePicture"
+                         src="~/Asset/img/Def.jpg"
+                         class="rounded-circle"
+                         style="width:200px;height:200px;object-fit:cover;" />
+                }
+
+            </div>
+            <label asp-for="Input.ProfilePicture" class="btn btn-outline-secondary mt-3">
+                Change Picture
+            </label>
+            <input asp-for="Input.ProfilePicture" type="file" hidden />
+        </div>
+    </div>
+</form>
+@section Scripts
+{
+    <script>
+        const fileInput = document.querySelector('input[type="file"]');
+        const img = document.getElementById('ProfilePicture');
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = e => img.src = e.target.result;
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        });
+    </script>
+}
