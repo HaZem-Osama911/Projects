@@ -1,0 +1,41 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+@{
+    ViewData["Title"] = "Edit Role";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="glass-card animate-fadeIn">
+                <div class="text-center mb-4">
+                    <div class="user-avatar-modern mx-auto mb-3"
+                         style="width: 60px; height: 60px; font-size: 1.5rem; background: linear-gradient(135deg, var(--accent-warning), #d97706);">
+                        <i class="bi bi-pencil-square text-white"></i>
+                    </div>
+                    <h2 class="fw-bold text-white">Update Role</h2>
+                    <p class="text-muted small">Modifying role: <span class="text-info">@Model.Name</span></p>
+                </div>
+
+                <form asp-action="Edit_Roles" method="post">
+                    <input type="hidden" asp-for="Id" name="id" />
+
+                    <div class="mb-4">
+                        <label for="newRoleName" class="form-label">New Role Name</label>
+                        <input type="text" class="form-control" id="newRoleName" name="newRoleName"
+                               value="@Model.Name" required placeholder="Enter new name" />
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-modern btn-primary">
+                            <i class="bi bi-save2-fill"></i> Save Changes
+                        </button>
+                        <a asp-action="Roles_Dashboard" class="btn btn-modern btn-secondary">
+                            Discard
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

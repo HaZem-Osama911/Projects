@@ -1,0 +1,48 @@
+﻿@model EduPlatform.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Add New Teacher";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="glass-card animate-fadeIn">
+                <div class="text-center mb-4">
+                    <h2 class="h3">Add New Teacher</h2>
+                    <p class="text-muted-light">Create a new educator account</p>
+                </div>
+
+                <form asp-action="ADD_Teacher" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-control" name="FirstName" value="@Model?.FirstName" required placeholder="Ex: John" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-control" name="LastName" value="@Model?.LastName" required placeholder="Ex: Doe" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" name="Email" value="@Model?.Email" required placeholder="teacher@school.com" />
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" required placeholder="••••••••" />
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn-modern btn-success">
+                            <i class="bi bi-check-lg"></i> Create Account
+                        </button>
+                        <a asp-action="Teacher_Dashboard" class="btn-modern btn-secondary text-center">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

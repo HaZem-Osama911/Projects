@@ -1,0 +1,21 @@
+﻿@page
+@model LockoutModel
+@{
+    ViewData["Title"] = "Account Locked";
+}
+<link rel="stylesheet" href="~/css/auth.css" />
+
+<div class="auth-body">
+    <div class="led-box">
+        <div class="auth-card">
+            <div class="brand-name-wrapper">
+                <i class="bi bi-exclamation-octagon-fill text-danger" style="font-size: 3rem;"></i>
+                <h1 class="brand-title mt-3" style="font-size: 1.8rem;">Locked Out</h1>
+                <div class="brand-subtitle text-danger">تم قفل الحساب</div>
+            </div>
+            <p class="auth-subtitle-text text-danger">
+                تم محاولة الدخول بشكل خاطئ متكرر. يرجى المحاولة مرة أخرى لاحقاً.
+            </p>
+        </div>
+    </div>
+</div>

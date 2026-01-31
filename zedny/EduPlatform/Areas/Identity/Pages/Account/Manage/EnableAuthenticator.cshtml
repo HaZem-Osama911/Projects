@@ -1,0 +1,49 @@
+﻿@page
+@model EnableAuthenticatorModel
+@{
+    ViewData["Title"] = "Configure Authenticator";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="animate-fadeIn">
+    <div class="authenticator-steps">
+        <div class="step-item mb-4">
+            <h6 class="text-primary fw-bold mb-3"><span class="badge bg-primary me-2">1</span> تحميل التطبيق</h6>
+            <p class="text-white-50 small">
+                قم بتحميل تطبيق Microsoft Authenticator أو Google Authenticator من المتجر الخاص بجهازك.
+            </p>
+        </div>
+
+        <div class="step-item mb-4">
+            <h6 class="text-primary fw-bold mb-3"><span class="badge bg-primary me-2">2</span> مسح الرمز (QR Code)</h6>
+            <p class="text-white-50 small">قم بفتح التطبيق ومسح الرمز، أو أدخل المفتاح التالي يدوياً:</p>
+            <div class="p-3 my-2 text-center" style="background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px dashed rgba(255,255,255,0.2);">
+                <kbd class="bg-dark text-info fs-5 p-2" style="letter-spacing: 2px;">@Model.SharedKey</kbd>
+            </div>
+            <div id="qrCode" class="mt-3 text-center p-3 bg-white d-inline-block rounded-3"></div>
+            <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
+        </div>
+
+        <div class="step-item">
+            <h6 class="text-primary fw-bold mb-3"><span class="badge bg-primary me-2">3</span> كود التحقق</h6>
+            <div class="col-md-8 col-lg-6">
+                <form id="send-code" method="post">
+                    <div class="auth-input-group mb-3">
+                        <label asp-for="Input.Code" class="form-label text-white-50 small">أدخل الكود المكون من 6 أرقام</label>
+                        <input asp-for="Input.Code" class="auth-control w-100 text-center fs-4" style="letter-spacing: 5px;" autocomplete="off" placeholder="000000" />
+                        <span asp-validation-for="Input.Code" class="text-danger small"></span>
+                    </div>
+                    <button type="submit" class="btn-auth w-100">تفعيل المصادقة</button>
+                    <div asp-validation-summary="ModelOnly" class="text-danger small mt-2"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    @* ملاحظة: يجب توفير مكتبة توليد QR code إذا كنت تستخدمها *@
+}

@@ -1,0 +1,29 @@
+﻿@page
+@model ResetAuthenticatorModel
+@{
+    ViewData["Title"] = "Reset Authenticator Key";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="animate-fadeIn">
+    <div class="alert alert-danger border-0 shadow-sm mb-4" style="background: rgba(220, 53, 69, 0.1); border-radius: 15px;">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-shield-slash-fill fs-3 me-3 text-danger"></i>
+            <div>
+                <strong class="text-danger d-block mb-1">تنبيه حرج!</strong>
+                <p class="mb-0 text-white-50 small">
+                    إذا قمت بإعادة ضبط المفتاح، فلن يعمل تطبيق المصادقة الحالي لديك حتى تقوم بإعادة إعداده من جديد.
+                    <b>سيتم تعطيل التحقق بخطوتين مؤقتاً</b> حتى تكتمل العملية.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <form id="reset-authenticator-form" method="post">
+        <button id="reset-authenticator-button" class="btn btn-danger py-3 px-4 fw-bold shadow-sm" style="border-radius: 14px;" type="submit">
+            <i class="bi bi-arrow-counterclockwise me-2"></i> Reset Key Now
+        </button>
+    </form>
+</div>

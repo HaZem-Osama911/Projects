@@ -1,0 +1,128 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "My Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<link rel="stylesheet" href="~/css/auth.css" />
+
+<div class="container py-5">
+    <div class="mb-5 animate-fadeIn">
+        <h2 class="fw-bold text-white">
+            <i class="bi bi-person-badge-fill me-2 text-primary"></i>Account Settings
+        </h2>
+        <p class="text-muted">Manage your profile information and visibility</p>
+        <div style="width: 60px; height: 4px; background: #6366f1; border-radius: 2px;"></div>
+    </div>
+
+    <partial name="_StatusMessage" for="StatusMessage" />
+
+    <div class="row g-4">
+        <div class="col-md-3 animate-fadeIn">
+            <div class="glass-card p-3 shadow-sm border-0" style="background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);">
+                <partial name="_ManageNav" model="@(ViewData["ActivePage"])" />
+            </div>
+        </div>
+
+        <div class="col-md-9 animate-fadeIn" style="animation-delay: 0.1s">
+            <div class="glass-card shadow-lg border-0 p-4" style="background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border-radius: 24px; border: 1px solid rgba(255,255,255,0.1);">
+                <form id="profile-form" method="post" enctype="multipart/form-data">
+                    <div class="row g-5 align-items-start">
+
+                        <div class="col-lg-7 order-2 order-lg-1">
+                            <div asp-validation-summary="ModelOnly" class="alert alert-danger bg-danger bg-opacity-10 border-0 text-danger small"></div>
+
+                            <div class="auth-input-group mb-3">
+                                <label class="form-label text-white-50" asp-for="Input.UserName"></label>
+                                <input asp-for="Input.UserName" class="auth-control" disabled style="opacity: 0.5; background: rgba(0,0,0,0.2) !important;" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3 auth-input-group">
+                                    <label class="form-label text-white-50" asp-for="Input.FirstName"></label>
+                                    <input asp-for="Input.FirstName" class="auth-control" />
+                                    <span asp-validation-for="Input.FirstName" class="text-danger small"></span>
+                                </div>
+                                <div class="col-md-6 mb-3 auth-input-group">
+                                    <label class="form-label text-white-50" asp-for="Input.LastName"></label>
+                                    <input asp-for="Input.LastName" class="auth-control" />
+                                    <span asp-validation-for="Input.LastName" class="text-danger small"></span>
+                                </div>
+                            </div>
+
+                            <div class="mb-4 auth-input-group">
+                                <label class="form-label text-white-50" asp-for="Input.PhoneNumber"></label>
+                                <input asp-for="Input.PhoneNumber" class="auth-control" />
+                                <span asp-validation-for="Input.PhoneNumber" class="text-danger small"></span>
+                            </div>
+
+                            <button type="submit" class="btn-auth py-3">
+                                <i class="bi bi-check-circle-fill me-2"></i> Save Changes
+                            </button>
+                        </div>
+
+                        <div class="col-lg-5 order-1 order-lg-2 text-center">
+                            <div class="profile-img-container mb-3 position-relative d-inline-block">
+                                <div class="image-hover-wrapper" style="border-radius: 50%; padding: 5px; background: linear-gradient(45deg, #6366f1, #0ea5e9);">
+                                    <img id="ProfilePicturePreview"
+                                         src="@Model.ProfileImageUrl"
+                                         class="rounded-circle shadow-lg"
+                                         style="width:190px; height:190px; object-fit:cover; border: 5px solid #1e293b;"
+                                         onerror="this.src='/Asset/images/default.jpeg'" />
+                                </div>
+
+                                <label for="upload_photo" class="btn btn-primary rounded-circle position-absolute bottom-0 end-0 p-0 shadow-lg"
+                                       style="cursor: pointer; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 3px solid #1e293b;">
+                                    <i class="bi bi-camera-fill fs-5"></i>
+                                </label>
+                                <input id="upload_photo" asp-for="Input.ProfilePicture" type="file" accept="image/*" style="display:none;" />
+                            </div>
+                            <div class="mt-3">
+                                <p class="text-white-50 small mb-0">JPEG, PNG or GIF</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        const uploadInput = document.getElementById('upload_photo');
+        const imagePreview = document.getElementById('ProfilePicturePreview');
+
+        if (uploadInput) {
+            uploadInput.addEventListener('change', function () {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        imagePreview.src = e.target.result;
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        }
+    </script>
+}
+
+<style>
+    .auth-control:disabled {
+        background: rgba(15, 23, 42, 0.4) !important;
+        color: #64748b !important;
+    }
+
+    .nav-pills .nav-link {
+        color: #cbd5e1;
+        border-radius: 12px;
+        margin-bottom: 5px;
+    }
+
+        .nav-pills .nav-link.active {
+            background: #6366f1 !important;
+        }
+</style>

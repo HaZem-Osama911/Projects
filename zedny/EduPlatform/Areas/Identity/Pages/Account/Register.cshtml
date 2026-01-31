@@ -1,0 +1,54 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "ZEDNY - Join Us";
+}
+
+<link rel="stylesheet" href="~/css/auth.css" />
+
+<div class="auth-body">
+    <div class="led-box" style="max-width: 500px;">
+        <div class="auth-card">
+            <div class="brand-name-wrapper">
+                <h1 class="brand-title">ZEDNY</h1>
+                <div class="brand-subtitle">زِدْنِي عِلْمًا</div>
+                <p class="auth-subtitle-text">Create your account to get started.</p>
+            </div>
+
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="w-100">
+                <div class="row g-2">
+                    <div class="col-6 auth-input-group">
+                        <label asp-for="Input.FirstName">First Name</label>
+                        <input asp-for="Input.FirstName" class="auth-control w-100" />
+                    </div>
+                    <div class="col-6 auth-input-group">
+                        <label asp-for="Input.LastName">Last Name</label>
+                        <input asp-for="Input.LastName" class="auth-control w-100" />
+                    </div>
+                </div>
+                <div class="auth-input-group">
+                    <label asp-for="Input.Email">Email Address</label>
+                    <input asp-for="Input.Email" class="auth-control w-100" />
+                </div>
+                <div class="row g-2">
+                    <div class="col-6 auth-input-group">
+                        <label asp-for="Input.Password">Password</label>
+                        <input asp-for="Input.Password" class="auth-control w-100" />
+                    </div>
+                    <div class="col-6 auth-input-group">
+                        <label asp-for="Input.ConfirmPassword">Confirm</label>
+                        <input asp-for="Input.ConfirmPassword" class="auth-control w-100" />
+                    </div>
+                </div>
+                <button type="submit" class="btn-auth mt-2">Create Account</button>
+                <div class="auth-footer-links">
+                    Already have an account? <a asp-page="./Login" class="auth-link">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

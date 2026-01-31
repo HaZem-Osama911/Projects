@@ -1,0 +1,49 @@
+﻿@model IEnumerable<EduPlatform.Models.ApplicationUser>
+@{
+    var teacher = ViewBag.Teacher as EduPlatform.Models.ApplicationUser;
+    var assignedStudentIds = ViewBag.AssignedStudentIds as List<string> ?? new List<string>();
+    ViewData["Title"] = "Assign Students";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="glass-card animate-fadeIn">
+                <div class="mb-4 text-center">
+                    <h2 class="h3">Assign Students</h2>
+                    <p class="text-muted-light">Select students for <strong>@teacher.FirstName @teacher.LastName</strong></p>
+                </div>
+
+                <form asp-action="Assign_Students" method="post">
+                    <input type="hidden" name="teacherId" value="@teacher.Id" />
+
+                    <div class="scrollable-list mb-4">
+                        @foreach (var student in Model)
+                        {
+                            <div class="checkbox-item">
+                                <div class="form-check w-100">
+                                    <input class="form-check-input" type="checkbox" name="selectedStudents"
+                                           value="@student.Id" id="student_@student.Id"
+                                           @(assignedStudentIds.Contains(student.Id) ? "checked" : "") />
+                                    <label class="form-check-label d-flex justify-content-between align-items-center ms-2" for="student_@student.Id">
+                                        <span class="fw-bold">@student.FirstName @student.LastName</span>
+                                        <small class="text-muted">@student.Email</small>
+                                    </label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-center">
+                        <button type="submit" class="btn-modern btn-success px-5">
+                            <i class="bi bi-check2-all"></i> Save Assignments
+                        </button>
+                        <a asp-action="Teacher_Dashboard" class="btn-modern btn-secondary px-4 text-center">
+                            Back
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

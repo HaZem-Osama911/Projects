@@ -1,0 +1,338 @@
+/* =========================================
+   1. CORE VARIABLES & RESET
+   ========================================= */
+:root {
+    /* Backgrounds */
+    --bg-dark: #0f172a;
+    --bg-surface: #1e293b;
+    --glass-bg: rgba(30, 41, 59, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    /* Brand Colors */
+    --accent-primary: #6366f1; /* Indigo */
+    --accent-success: #10b981; /* Emerald */
+    --accent-danger: #ef4444; /* Rose */
+    --accent-warning: #f59e0b; /* Amber */
+    --accent-info: #0ea5e9; /* Sky Blue */
+    --accent-secondary: #64748b; /* Slate */
+    /* Text */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    /* Shadows */
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content-modern {
+    flex: 1 0 auto;
+}
+
+/* =========================================
+   2. NAVBAR STYLING
+   ========================================= */
+.ultra-modern-navbar {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 0.8rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+}
+
+.logo-text {
+    font-weight: 800;
+    font-size: 1.4rem;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-info));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-link-modern {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    transition: 0.3s;
+    padding: 0.5rem 1rem !important;
+    border-radius: 8px;
+}
+
+    .nav-link-modern:hover, .nav-link-modern.active {
+        color: var(--text-main) !important;
+        background: rgba(255,255,255,0.05);
+    }
+
+/* User Dropdown */
+.user-profile-modern {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(30, 41, 59, 0.5);
+    padding: 6px 15px !important;
+    border-radius: 50px;
+    border: 1px solid var(--glass-border);
+    transition: 0.3s;
+}
+
+    .user-profile-modern:hover {
+        background: rgba(30, 41, 59, 0.8);
+        border-color: var(--accent-primary);
+    }
+
+.dropdown-menu-modern {
+    background: var(--bg-surface);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+    border-radius: 16px;
+    padding: 10px;
+    margin-top: 10px;
+    min-width: 220px;
+}
+
+.dropdown-item-modern {
+    color: var(--text-muted);
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .dropdown-item-modern:hover {
+        background: rgba(255,255,255,0.05);
+        color: var(--text-main);
+        transform: translateX(5px);
+    }
+
+/* =========================================
+   3. DASHBOARD & GLASS CARDS
+   ========================================= */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.stats-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(255,255,255,0.1);
+    }
+
+.stats-icon {
+    font-size: 2.5rem;
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    opacity: 0.15;
+}
+
+/* =========================================
+   4. FORMS, INPUTS & AUTH CONTROLS
+   ========================================= */
+.form-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* الكلاس الخاص بصفحات الإدارة والـ Identity */
+.auth-control, .form-control {
+    background-color: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text-main) !important;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    transition: all 0.3s ease;
+}
+
+    .auth-control:focus, .form-control:focus {
+        background-color: rgba(15, 23, 42, 0.9) !important;
+        border-color: var(--accent-primary) !important;
+        box-shadow: 0 0 15px rgba(99, 102, 241, 0.2) !important;
+        outline: none;
+    }
+
+.auth-input-group {
+    margin-bottom: 1.5rem;
+}
+
+/* =========================================
+   5. BUTTONS (MODERN & AUTH)
+   ========================================= */
+.btn-modern, .btn-auth {
+    border-radius: 12px;
+    padding: 0.7rem 1.5rem;
+    font-weight: 600;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    color: white !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-auth {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-info));
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    width: 100%;
+}
+
+    .btn-modern:hover, .btn-auth:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+.btn-primary {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.btn-secondary {
+    background: #334155;
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+}
+
+/* =========================================
+   6. TABLES
+   ========================================= */
+.table-container {
+    background: var(--glass-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 0;
+    color: var(--text-main);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+    .table thead th {
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text-muted);
+        padding: 1.2rem;
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+/* =========================================
+   7. FOOTER
+   ========================================= */
+.ultra-modern-footer {
+    flex-shrink: 0;
+    margin-top: auto;
+    background: var(--bg-surface);
+    padding: 2rem 0;
+    border-top: 1px solid var(--glass-border);
+}
+
+.social-icon {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin: 0 10px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+    .social-icon:hover {
+        color: var(--accent-primary);
+        transform: translateY(-3px);
+        display: inline-block;
+    }
+
+/* =========================================
+   8. ANIMATIONS & UTILS
+   ========================================= */
+.animate-fadeIn {
+    animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.user-avatar-modern {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-info));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+/* Utility for Identity Labels */
+.text-white-50 {
+    color: rgba(255,255,255,0.5) !important;
+}

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<EduPlatform.Models.TeacherWithStudentsViewModel>
+@{
+    ViewData["Title"] = "Teachers Management";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-5 animate-fadeIn">
+        <div>
+            <h2 class="h3 fw-bold mb-1">👨‍🏫 Teachers Directory</h2>
+            <p class="text-muted-light">Manage educators and their student assignments</p>
+        </div>
+        <a asp-action="ADD_Teacher" class="btn-modern btn-primary">
+            <i class="bi bi-plus-lg"></i> Add New Teacher
+        </a>
+    </div>
+
+    <div class="table-container animate-fadeIn" style="animation-delay: 0.1s">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Teacher Name</th>
+                        <th>Email Address</th>
+                        <th>Students Assigned</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int index = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-muted">@index.ToString("D2")</td>
+                            <td>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="user-avatar-modern">
+                                        @item.Teacher.FirstName?.FirstOrDefault()
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold">@item.Teacher.FirstName @item.Teacher.LastName</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-muted">@item.Teacher.Email</td>
+                            <td>
+                                @if (item.Students != null && item.Students.Any())
+                                {
+                                    <a asp-action="ViewStudents" asp-route-teacherId="@item.Teacher.Id"
+                                       class="btn-modern btn-sm-modern btn-info" style="text-decoration:none;">
+                                        <i class="bi bi-people-fill"></i> View @item.Students.Count Students
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="badge" style="background:rgba(255,255,255,0.1); padding:5px 10px; border-radius:8px;">No Students</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a asp-action="Assign_Students" asp-route-teacherId="@item.Teacher.Id"
+                                       class="btn-modern btn-sm-modern btn-warning" title="Assign Students">
+                                        <i class="bi bi-link-45deg"></i>
+                                    </a>
+                                    <a asp-action="Edit_Teacher" asp-route-id="@item.Teacher.Id"
+                                       class="btn-modern btn-sm-modern btn-primary" title="Edit">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="Delete_Teacher" asp-route-id="@item.Teacher.Id"
+                                       class="btn-modern btn-sm-modern btn-danger" title="Delete">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        index++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

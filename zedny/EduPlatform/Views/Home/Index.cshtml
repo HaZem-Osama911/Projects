@@ -1,0 +1,145 @@
+﻿@using EduPlatform.ViewModels
+@model List<TeacherCardVM>
+
+@{
+    ViewData["Title"] = "Zedny - Learn & Grow";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5 animate-hero position-relative">
+        <div class="mb-3">
+            <img src="/Asset/img/logo.png" class="mb-3" style="width: 80px; height: auto; opacity: 0.9;" alt="Zedny">
+        </div>
+        <h2 class="fw-bold text-white display-4">زدني علماً <span style="color: #6366f1;">|</span> Elite Educators</h2>
+        <p class="text-muted fs-5">Experience excellence with the most skilled teachers at Zedny</p>
+        <div class="mx-auto mt-3" style="width: 80px; height: 5px; background: linear-gradient(to right, #6366f1, #0ea5e9); border-radius: 10px;"></div>
+    </div>
+
+    <div class="row g-4">
+        @if (Model != null && Model.Any())
+        {
+            double delay = 0.1;
+            @foreach (var t in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="teacher-anim-wrapper" style="animation-delay: @(delay)s">
+                        <a asp-controller="Teachers" asp-action="Profile" asp-route-id="@t.Id" class="text-decoration-none">
+                            <div class="teacher-card-modern">
+                                <div class="teacher-img-wrapper">
+                                    <img src="@t.ImageUrl" alt="@t.FullName" onerror="this.src='/Asset/images/default.jpeg'">
+                                    <div class="teacher-badge">@t.CoursesCount Courses</div>
+                                </div>
+
+                                <div class="teacher-info-modern">
+                                    <h5 class="teacher-name">@t.FullName</h5>
+                                    <div class="teacher-rating">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-half text-warning"></i>
+                                    </div>
+                                    <div class="mt-3">
+                                        <span class="btn-view-profile">View Profile</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                delay += 0.1;
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center py-5">
+                <div class="glass-card p-5 border-0">
+                    <i class="bi bi-mortarboard fs-1 text-muted"></i>
+                    <p class="text-muted mt-3">No teachers available at the moment. Stay tuned!</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    /* تحسينات التصميم */
+    .teacher-anim-wrapper {
+        opacity: 0;
+        animation: fadeInUpModern 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @@keyframes fadeInUpModern {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .teacher-card-modern {
+        background: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+        .teacher-card-modern:hover {
+            transform: scale(1.03) translateY(-10px);
+            border-color: #6366f1;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+    .teacher-img-wrapper {
+        height: 220px;
+        border-radius: 24px 24px 0 0;
+        overflow: hidden;
+    }
+
+        .teacher-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .teacher-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #6366f1;
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        font-weight: 800;
+    }
+
+    .teacher-info-modern {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .teacher-name {
+        color: #fff;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    .btn-view-profile {
+        font-size: 0.75rem;
+        color: #6366f1;
+        border: 1px solid #6366f1;
+        padding: 6px 18px;
+        border-radius: 50px;
+    }
+
+    .teacher-card-modern:hover .btn-view-profile {
+        background: #6366f1;
+        color: #fff;
+    }
+</style>

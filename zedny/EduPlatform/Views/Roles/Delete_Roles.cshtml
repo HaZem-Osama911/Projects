@@ -1,0 +1,39 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+@{
+    ViewData["Title"] = "Delete Role";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="glass-card border-danger animate-fadeIn text-center">
+                <div class="text-danger mb-4">
+                    <i class="bi bi-exclamation-octagon" style="font-size: 4rem;"></i>
+                </div>
+
+                <h3 class="fw-bold text-white mb-2">Are you sure?</h3>
+                <p class="text-muted mb-4">
+                    You are about to permanently delete the role: <br>
+                    <strong class="text-danger" style="font-size: 1.2rem;">"@Model.Name"</strong>
+                </p>
+
+                <div class="alert alert-danger bg-danger bg-opacity-10 border-0 text-danger small mb-4">
+                    <i class="bi bi-info-circle me-2"></i> This action will affect all users currently assigned to this role.
+                </div>
+
+                <form asp-action="Delete_Roles" method="post">
+                    <input type="hidden" asp-for="Id" name="id" />
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-modern btn-danger py-3">
+                            <i class="bi bi-trash3-fill"></i> Yes, Delete Permanently
+                        </button>
+                        <a asp-action="Roles_Dashboard" class="btn btn-modern btn-secondary">
+                            No, Keep it
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

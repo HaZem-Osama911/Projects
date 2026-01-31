@@ -1,0 +1,28 @@
+﻿@page
+@model ConfirmEmailChangeModel
+@{
+    ViewData["Title"] = "Email Change Confirmed";
+}
+<link rel="stylesheet" href="~/css/auth.css" />
+
+<div class="auth-body">
+    <div class="led-box" style="max-width: 450px;">
+        <div class="auth-card">
+            <div class="brand-name-wrapper">
+                <i class="bi bi-envelope-check-fill text-info" style="font-size: 3rem; filter: drop-shadow(0 0 10px rgba(13, 202, 240, 0.5));"></i>
+                <h1 class="brand-title mt-3" style="font-size: 1.6rem;">Updated</h1>
+                <div class="brand-subtitle text-info">تعديل البريد الإلكتروني</div>
+            </div>
+
+            <partial name="_StatusMessage" model="Model.StatusMessage" />
+
+            <div class="auth-subtitle-text mb-4">
+                تم تحديث بريدك الإلكتروني بنجاح.
+            </div>
+
+            <a asp-page="./Login" class="btn-auth d-inline-block text-decoration-none">
+                العودة للحساب
+            </a>
+        </div>
+    </div>
+</div>

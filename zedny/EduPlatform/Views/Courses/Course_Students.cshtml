@@ -1,0 +1,110 @@
+﻿@model IEnumerable<EduPlatform.Models.Enrollment>
+
+@{
+    ViewData["Title"] = "Course Students";
+    var courseName = ViewBag.CourseName as string;
+    var courseId = ViewBag.CourseId as int?;
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>👥 Students Enrolled</h2>
+            <p class="text-muted mb-0">Course: <strong>@courseName</strong></p>
+        </div>
+        <a asp-action="Course_Dashboard" class="btn btn-outline-secondary">
+            ← Back to Courses
+        </a>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Enrolled Date</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int counter = 1;
+                            }
+                            @foreach (var enrollment in Model.OrderByDescending(e => e.EnrolledAt))
+                            {
+                                <tr>
+                                    <td>@counter</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-circle bg-primary text-white me-2">
+                                                @enrollment.Student.FullName?.Substring(0, 1).ToUpper()
+                                            </div>
+                                            <strong>@enrollment.Student.FullName</strong>
+                                        </div>
+                                    </td>
+                                    <td>@enrollment.Student.Email</td>
+                                    <td>@(enrollment.Student.PhoneNumber ?? "N/A")</td>
+                                    <td>
+                                        <small class="text-muted">
+                                            @enrollment.EnrolledAt.ToString("MMM dd, yyyy")
+                                        </small>
+                                    </td>
+                                    <td>
+                                        @if (enrollment.IsActive)
+                                        {
+                                            <span class="badge bg-success">Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">Inactive</span>
+                                        }
+                                    </td>
+                                </tr>
+                                counter++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-light">
+                <small class="text-muted">
+                    Total Students: <strong>@Model.Count()</strong>
+                </small>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center py-5">
+            <h4>📭 No students enrolled yet!</h4>
+            <p class="mb-0">Students will appear here once they enroll in this course.</p>
+        </div>
+    }
+
+</div>
+
+<style>
+    .avatar-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa;
+        cursor: pointer;
+    }
+</style>

@@ -1,0 +1,57 @@
+﻿@page
+@model ExternalLoginsModel
+@{
+    ViewData["Title"] = "External Logins";
+    ViewData["ActivePage"] = ManageNavPages.ExternalLogins;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="animate-fadeIn">
+    @if (Model.CurrentLogins?.Count > 0)
+    {
+        <h6 class="text-white-50 mb-3 small fw-bold text-uppercase">Registered Services</h6>
+        <div class="d-flex flex-column gap-3 mb-5">
+            @foreach (var login in Model.CurrentLogins)
+            {
+                <div class="d-flex align-items-center justify-content-between p-3"
+                     style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px;">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-primary rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: linear-gradient(135deg, #6366f1, #4f46e5) !important;">
+                            <i class="bi bi-shield-check text-white"></i>
+                        </div>
+                        <div>
+                            <span class="text-white fw-bold d-block">@login.ProviderDisplayName</span>
+                            <small class="text-muted">Connected</small>
+                        </div>
+                    </div>
+                    @if (Model.ShowRemoveButton)
+                    {
+                        <form id="@($"remove-login-{login.LoginProvider}")" asp-page-handler="RemoveLogin" method="post">
+                            <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
+                            <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
+                            <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3" title="Remove login">
+                                <i class="bi bi-trash me-1"></i> Remove
+                            </button>
+                        </form>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+    @if (Model.OtherLogins?.Count > 0)
+    {
+        <h6 class="text-white-50 mb-3 small fw-bold text-uppercase">Add New Service</h6>
+        <form id="link-login-form" asp-page-handler="LinkLogin" method="post" class="form-horizontal">
+            <div id="socialLoginList" class="d-flex flex-wrap gap-2">
+                @foreach (var provider in Model.OtherLogins)
+                {
+                    <button id="@($"link-login-button-{provider.Name}")" type="submit" class="btn btn-auth px-4" name="provider" value="@provider.Name">
+                        <i class="bi bi-plus-circle me-2"></i> Connect @provider.DisplayName
+                    </button>
+                }
+            </div>
+        </form>
+    }
+</div>

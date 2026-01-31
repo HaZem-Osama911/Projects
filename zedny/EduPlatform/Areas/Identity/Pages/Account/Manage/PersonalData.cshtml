@@ -1,0 +1,41 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Personal Data";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<div class="row animate-fadeIn">
+    <div class="col-lg-8">
+        <div class="brand-name-wrapper mb-4">
+            <i class="bi bi-person-vcard text-primary" style="font-size: 2.5rem;"></i>
+        </div>
+
+        <p class="text-white-50">
+            يحتوي حسابك على بيانات شخصية قدمتها لنا. تتيح لك هذه الصفحة التحكم الكامل في تلك البيانات سواء بالتحميل أو الحذف النهائي.
+        </p>
+
+        <div class="alert alert-danger border-0 mb-4" style="background: rgba(220, 53, 69, 0.1); border-radius: 15px;">
+            <p class="mb-0 text-white-50 small">
+                <i class="bi bi-info-circle-fill me-2 text-danger"></i>
+                <strong>تنبيه هام:</strong> حذف هذه البيانات سيؤدي لإغلاق حسابك بشكل نهائي ولا يمكن استرجاعه.
+            </p>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3 mt-4">
+            <form id="download-data" asp-page="DownloadPersonalData" method="post">
+                <button class="btn btn-auth px-4 py-2" type="submit">
+                    <i class="bi bi-download me-2"></i> Download Data (JSON)
+                </button>
+            </form>
+
+            <a id="delete" asp-page="DeletePersonalData" class="btn btn-outline-danger px-4 py-2 rounded-pill fw-bold" style="border-width: 2px;">
+                <i class="bi bi-trash3 me-2"></i> Delete Account
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

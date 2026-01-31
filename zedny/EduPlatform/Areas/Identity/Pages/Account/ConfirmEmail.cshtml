@@ -1,0 +1,28 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Email Confirmed";
+}
+<link rel="stylesheet" href="~/css/auth.css" />
+
+<div class="auth-body">
+    <div class="led-box" style="max-width: 450px;">
+        <div class="auth-card">
+            <div class="brand-name-wrapper">
+                <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem; filter: drop-shadow(0 0 10px rgba(40, 167, 69, 0.5));"></i>
+                <h1 class="brand-title mt-3" style="font-size: 1.8rem;">Success</h1>
+                <div class="brand-subtitle text-success">تم تأكيد البريد</div>
+            </div>
+
+            <partial name="_StatusMessage" model="Model.StatusMessage" />
+
+            <div class="auth-subtitle-text mb-4">
+                تهانينا! حسابك الآن نشط وجاهز للاستخدام.
+            </div>
+
+            <a asp-page="./Login" class="btn-auth d-inline-block text-decoration-none">
+                تسجيل الدخول الآن
+            </a>
+        </div>
+    </div>
+</div>

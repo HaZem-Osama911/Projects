@@ -1,0 +1,19 @@
+﻿@model IEnumerable<EduPlatform.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Choose Teachers";
+    var assigned = ViewBag.AssignedTeacherIds as List<string> ?? new List<string>();
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="ChooseTeachers" method="post">
+    @foreach (var teacher in Model)
+    {
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="selectedTeachers" value="@teacher.Id"
+                   @(assigned.Contains(teacher.Id) ? "checked" : "") />
+            <label class="form-check-label">@teacher.FirstName @teacher.LastName</label>
+        </div>
+    }
+    <button type="submit" class="btn btn-primary mt-2">Save</button>
+</form>

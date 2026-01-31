@@ -1,0 +1,26 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Access Denied";
+}
+<link rel="stylesheet" href="~/css/auth.css" />
+
+<div class="auth-body">
+    <div class="led-box" style="max-width: 450px;">
+        <div class="auth-card">
+            <div class="brand-name-wrapper">
+                <i class="bi bi-shield-lock-fill text-danger" style="font-size: 3rem; filter: drop-shadow(0 0 10px rgba(220, 53, 69, 0.5));"></i>
+                <h1 class="brand-title mt-3" style="font-size: 2rem; background: linear-gradient(135deg, #fff 40%, #dc3545); -webkit-background-clip: text;">Denied</h1>
+                <div class="brand-subtitle text-danger">دخول غير مصرح</div>
+            </div>
+
+            <div class="auth-subtitle-text mb-4">
+                عذراً، ليس لديك الصلاحيات الكافية للوصول إلى هذه الصفحة.
+            </div>
+
+            <a asp-controller="Home" asp-action="Index" class="btn-auth d-inline-block text-decoration-none">
+                العودة للرئيسية
+            </a>
+        </div>
+    </div>
+</div>

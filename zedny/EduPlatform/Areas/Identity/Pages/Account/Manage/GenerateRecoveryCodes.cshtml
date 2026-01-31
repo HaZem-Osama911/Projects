@@ -1,0 +1,29 @@
+﻿@page
+@model GenerateRecoveryCodesModel
+@{
+    ViewData["Title"] = "Recovery Codes";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="animate-fadeIn">
+    <div class="alert alert-warning border-0 shadow-sm mb-4" style="background: rgba(245, 158, 11, 0.1); border-radius: 15px;">
+        <div class="d-flex align-items-start">
+            <i class="bi bi-exclamation-triangle-fill fs-4 me-3 text-warning"></i>
+            <div>
+                <strong class="text-warning d-block mb-1">احتفظ بهذه الأكواد في مكان آمن!</strong>
+                <p class="mb-0 text-white-50 small">
+                    في حال فقدان جهازك وعدم امتلاكك لأكواد الاستعادة، <b>ستفقد الوصول إلى حسابك نهائياً</b>.
+                    توليد أكواد جديدة لا يغير مفاتيح التطبيق.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" class="text-start mt-4">
+        <button class="btn btn-danger py-3 px-4 fw-bold shadow-sm" style="border-radius: 14px;" type="submit">
+            <i class="bi bi-arrow-repeat me-2"></i> Generate New Recovery Codes
+        </button>
+    </form>
+</div>

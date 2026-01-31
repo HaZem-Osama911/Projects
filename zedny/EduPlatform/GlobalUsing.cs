@@ -1,0 +1,9 @@
+﻿global using System.ComponentModel.DataAnnotations;
+global using EduPlatform.Data;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.RazorPages;
+global using EduPlatform.Models;
+global using Microsoft.AspNetCore.Http.Features;

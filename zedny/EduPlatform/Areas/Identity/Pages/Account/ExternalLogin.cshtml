@@ -1,0 +1,37 @@
+﻿@page
+@model ExternalLoginModel
+@{
+    ViewData["Title"] = "External Register";
+}
+<link rel="stylesheet" href="~/css/auth.css" />
+
+<div class="auth-body">
+    <div class="led-box" style="max-width: 500px;">
+        <div class="auth-card">
+            <div class="brand-name-wrapper">
+                <h1 class="brand-title" style="font-size: 2.2rem;">ZEDNY</h1>
+                <div class="brand-subtitle">ربط الحساب الخارجي</div>
+                <p class="auth-subtitle-text">
+                    تم التحقق بنجاح عبر <strong>@Model.ProviderDisplayName</strong>.<br />
+                    يرجى تأكيد بريدك الإلكتروني لإكمال العملية.
+                </p>
+            </div>
+
+            <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="w-100">
+                <div asp-validation-summary="ModelOnly" class="text-danger small mb-3 text-start"></div>
+
+                <div class="auth-input-group">
+                    <label asp-for="Input.Email">Email Address</label>
+                    <input asp-for="Input.Email" class="auth-control w-100" placeholder="your@email.com" />
+                    <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn-auth">إكمال التسجيل</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

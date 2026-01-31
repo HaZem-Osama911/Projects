@@ -1,0 +1,69 @@
+﻿@model IEnumerable<IdentityRole>
+
+@{
+    ViewData["Title"] = "Roles Management";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate-fadeIn">
+        <div>
+            <h2 class="fw-bold mb-1 text-white">Security Roles</h2>
+            <p class="text-muted">Define and manage access levels for the platform</p>
+        </div>
+        <a asp-action="ADD_Roles" class="btn btn-modern btn-primary">
+            <i class="bi bi-plus-lg"></i> Add New Role
+        </a>
+    </div>
+
+    <div class="table-container shadow-lg animate-fadeIn" style="animation-delay: 0.1s">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">#</th>
+                        <th>Role Name</th>
+                        <th>Normalized Name</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int index = 1;
+                    }
+                    @foreach (var role in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold text-muted">#@index.ToString("D2")</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="user-avatar-modern me-3" style="width: 35px; height: 35px; font-size: 0.8rem; background: linear-gradient(135deg, var(--accent-primary), var(--accent-info));">
+                                        <span>@role.Name[0]</span>
+                                    </div>
+                                    <span class="fw-bold" style="color: var(--accent-info); font-size: 1.05rem;">@role.Name</span>
+                                </div>
+                            </td>
+                            <td>
+                                <code class="text-info bg-info bg-opacity-10 px-2 py-1 rounded small border border-info border-opacity-25">
+                                    @role.NormalizedName
+                                </code>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a asp-action="Edit_Roles" asp-route-id="@role.Id"
+                                       class="btn btn-sm btn-modern btn-warning" title="Edit Role">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+                                    <a asp-action="Delete_Roles" asp-route-id="@role.Id"
+                                       class="btn btn-sm btn-modern btn-danger" title="Delete Role">
+                                        <i class="bi bi-trash3"></i> Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        index++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

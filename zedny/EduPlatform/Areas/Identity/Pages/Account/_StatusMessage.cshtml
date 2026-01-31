@@ -1,0 +1,56 @@
+﻿@model string
+
+@if (!String.IsNullOrEmpty(Model))
+{
+    var isError = Model.StartsWith("Error");
+    var statusClass = isError ? "danger" : "success";
+    var icon = isError ? "bi-exclamation-octagon-fill" : "bi-check-circle-fill";
+    var glowColor = isError ? "rgba(220, 53, 69, 0.2)" : "rgba(25, 135, 84, 0.2)";
+
+    <div class="alert alert-@statusClass alert-dismissible fade show border-0 shadow-lg animate-slideIn"
+         role="alert"
+         style="background: rgba(15, 23, 42, 0.8);
+                    backdrop-filter: blur(12px);
+                    border-left: 4px solid @(isError ? "#dc3545" : "#198754") !important;
+                    border-radius: 16px;
+                    color: #fff;
+                    box-shadow: 0 8px 32px 0 @glowColor !important;">
+
+        <div class="d-flex align-items-center">
+            <div class="status-icon-wrapper me-3 d-flex align-items-center justify-content-center"
+                 style="width: 38px; height: 38px; background: @glowColor; border-radius: 10px;">
+                <i class="bi @icon text-@statusClass fs-5"></i>
+            </div>
+
+            <div class="pe-4" style="font-weight: 500; font-size: 0.95rem;">
+                @Model
+            </div>
+        </div>
+
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close" style="font-size: 0.7rem;"></button>
+    </div>
+}
+
+<style>
+    /* أنيميشن لظهور التنبيه بشكل احترافي من الأعلى */
+    .animate-slideIn {
+        animation: slideInDown 0.5s ease-out forwards;
+    }
+
+    @@keyframes slideInDown {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* تحسين شكل زر الإغلاق */
+    .btn-close:focus {
+        box-shadow: none;
+    }
+</style>

@@ -1,0 +1,38 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "ZEDNY - Login";
+}
+
+<link rel="stylesheet" href="~/css/auth.css" />
+
+<div class="auth-body">
+    <div class="led-box">
+        <div class="auth-card">
+            <div class="brand-name-wrapper">
+                <h1 class="brand-title">ZEDNY</h1>
+                <div class="brand-subtitle">زِدْنِي عِلْمًا</div>
+                <p class="auth-subtitle-text">Welcome back! Please enter your details.</p>
+            </div>
+
+            <form id="account" method="post" class="w-100">
+                <div class="auth-input-group">
+                    <label asp-for="Input.Email">Email Address</label>
+                    <input asp-for="Input.Email" class="auth-control w-100" />
+                </div>
+                <div class="auth-input-group">
+                    <label asp-for="Input.Password">Password</label>
+                    <input asp-for="Input.Password" class="auth-control w-100" />
+                </div>
+                <button type="submit" class="btn-auth">Sign In</button>
+                <div class="auth-footer-links">
+                    Don't have an account? <a asp-page="./Register" class="auth-link">Register Now</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

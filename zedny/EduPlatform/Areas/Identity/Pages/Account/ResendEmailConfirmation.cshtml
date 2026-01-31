@@ -1,0 +1,25 @@
+﻿@page
+@model ResendEmailConfirmationModel
+@{
+    ViewData["Title"] = "Resend Confirmation";
+}
+<link rel="stylesheet" href="~/css/auth.css" />
+
+<div class="auth-body">
+    <div class="led-box">
+        <div class="auth-card">
+            <div class="brand-name-wrapper">
+                <h1 class="brand-title" style="font-size: 1.8rem;">Resend</h1>
+                <div class="brand-subtitle">إعادة إرسال التأكيد</div>
+            </div>
+            <form method="post" class="w-100 text-start">
+                <div asp-validation-summary="All" class="text-danger small mb-3"></div>
+                <div class="auth-input-group">
+                    <label asp-for="Input.Email">Email Address</label>
+                    <input asp-for="Input.Email" class="auth-control w-100" />
+                </div>
+                <button type="submit" class="btn-auth">Send Email</button>
+            </form>
+        </div>
+    </div>
+</div>

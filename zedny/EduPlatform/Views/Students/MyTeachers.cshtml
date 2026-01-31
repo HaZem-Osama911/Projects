@@ -1,0 +1,20 @@
+﻿@model IEnumerable<EduPlatform.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "My Teachers";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model.Any())
+{
+    <ul class="list-group">
+        @foreach (var teacher in Model)
+        {
+            <li class="list-group-item">@teacher.FirstName @teacher.LastName (@teacher.Email)</li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted">You have not selected any teachers yet.</p>
+}

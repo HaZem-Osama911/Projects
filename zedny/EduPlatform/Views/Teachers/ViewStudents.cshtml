@@ -1,0 +1,60 @@
+﻿@model IEnumerable<EduPlatform.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Students of " + ViewBag.TeacherName;
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-5 animate-fadeIn">
+        <div>
+            <h2 class="h3 fw-bold mb-1">Students List</h2>
+            <p class="text-muted-light">Assigned to: @ViewBag.TeacherName</p>
+        </div>
+        <a asp-action="Teacher_Dashboard" class="btn-modern btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Teachers
+        </a>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="table-container animate-fadeIn" style="animation-delay: 0.1s">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">#</th>
+                        <th>Student Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int index = 1;
+                    }
+                    @foreach (var student in Model)
+                    {
+                        <tr>
+                            <td class="text-muted">@index.ToString("D2")</td>
+                            <td>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="user-avatar-modern" style="width: 36px; height: 36px; font-size: 0.9rem;">
+                                        @student.FirstName?.FirstOrDefault()
+                                    </div>
+                                    <span class="fw-bold">@student.FirstName @student.LastName</span>
+                                </div>
+                            </td>
+                            <td class="text-muted">@student.Email</td>
+                        </tr>
+                        index++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="glass-card animate-fadeIn text-center py-5">
+            <div class="empty-icon">📂</div>
+            <h3>No Students Found</h3>
+            <p class="text-muted-light">This teacher has no students assigned yet.</p>
+        </div>
+    }
+</div>

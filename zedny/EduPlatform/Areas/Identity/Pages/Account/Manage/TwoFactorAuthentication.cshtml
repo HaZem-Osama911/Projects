@@ -1,0 +1,111 @@
+﻿@page
+@using Microsoft.AspNetCore.Http.Features
+@model TwoFactorAuthenticationModel
+@{
+    ViewData["Title"] = "2FA Security";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="animate-fadeIn">
+    @{
+        var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
+        @if (consentFeature?.CanTrack ?? true)
+        {
+            <div class="glass-card p-4 mb-4">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div>
+                        <h5 class="text-white mb-1">Security Status</h5>
+                        <p class="text-muted small mb-0">
+                            Two-factor authentication is
+                            <span class="@(Model.Is2faEnabled ? "text-success" : "text-danger") fw-bold">
+                                @(Model.Is2faEnabled ? "Enabled" : "Disabled")
+                            </span>
+                        </p>
+                    </div>
+                    <div class="status-glow @(Model.Is2faEnabled ? "status-on" : "status-off")"></div>
+                </div>
+
+                @if (Model.Is2faEnabled)
+                {
+                    <div class="mb-4">
+                        @if (Model.RecoveryCodesLeft == 0)
+                        {
+                            <div class="alert alert-danger border-0 small py-2 bg-opacity-10">
+                                <i class="bi bi-x-circle me-2"></i> لا يوجد أكواد استعادة متبقية! <a asp-page="./GenerateRecoveryCodes" class="alert-link text-decoration-underline">توليد الآن</a>
+                            </div>
+                        }
+                        else if (Model.RecoveryCodesLeft <= 3)
+                        {
+                            <div class="alert alert-warning border-0 small py-2 bg-opacity-10">
+                                <i class="bi bi-exclamation-triangle me-2"></i> متبقي لديك @Model.RecoveryCodesLeft كود فقط.
+                            </div>
+                        }
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        @if (Model.IsMachineRemembered)
+                        {
+                            <form method="post" style="display: inline-block">
+                                <button type="submit" class="btn btn-sm btn-outline-light rounded-pill px-3">Forget Browser</button>
+                            </form>
+                        }
+                        <a asp-page="./Disable2fa" class="btn btn-sm btn-outline-danger rounded-pill px-3">Disable 2FA</a>
+                        <a asp-page="./GenerateRecoveryCodes" class="btn btn-sm btn-outline-warning rounded-pill px-3">Reset Codes</a>
+                    </div>
+                }
+            </div>
+
+            <h6 class="text-white-50 small fw-bold mb-3 text-uppercase px-2">Authenticator App</h6>
+            <div class="d-flex flex-wrap align-items-center gap-3 px-2">
+                @if (!Model.HasAuthenticator)
+                {
+                    <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn-auth px-4 py-2 text-decoration-none">
+                        <i class="bi bi-plus-circle me-2"></i> Add Authenticator App
+                    </a>
+                }
+                else
+                {
+                    <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-outline-primary rounded-pill px-4">Setup App</a>
+                    <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-outline-secondary rounded-pill px-4">Reset Key</a>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger border-0 rounded-4">
+                <strong>Policy Required:</strong> You must accept the privacy policy to enable 2FA.
+            </div>
+        }
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .status-glow {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        position: relative;
+    }
+
+    .status-on {
+        background-color: #10b981;
+        box-shadow: 0 0 12px #10b981;
+    }
+
+    .status-off {
+        background-color: #ef4444;
+        box-shadow: 0 0 12px #ef4444;
+    }
+    /* تحسين شكل الـ glass-card داخل صفحات المنج */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+    }
+</style>
