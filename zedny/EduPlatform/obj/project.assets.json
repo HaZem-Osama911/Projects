@@ -6722,11 +6722,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Platform\\EduPlatform\\EduPlatform\\EduPlatform.csproj",
+      "projectUniqueName": "D:\\Backup\\EduPlatform\\EduPlatform\\EduPlatform.csproj",
       "projectName": "EduPlatform",
-      "projectPath": "D:\\Platform\\EduPlatform\\EduPlatform\\EduPlatform.csproj",
+      "projectPath": "D:\\Backup\\EduPlatform\\EduPlatform\\EduPlatform.csproj",
       "packagesPath": "C:\\Users\\hazem\\.nuget\\packages\\",
-      "outputPath": "D:\\Platform\\EduPlatform\\EduPlatform\\obj\\",
+      "outputPath": "D:\\Backup\\EduPlatform\\EduPlatform\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

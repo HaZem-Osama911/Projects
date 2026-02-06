@@ -13,7 +13,6 @@ namespace EduPlatform.Controllers.MVCControllers
             _context = context;
         }
 
-        // ================= GET: Teachers =================
         public async Task<IActionResult> Teacher_Dashboard()
         {
             var allTeachers = new List<ApplicationUser>();
@@ -37,13 +36,11 @@ namespace EduPlatform.Controllers.MVCControllers
             return View(teacherWithStudents);
         }
 
-        // ================= GET: Teachers/Create =================
         public IActionResult ADD_Teacher()
         {
             return View();
         }
 
-        // ================= POST: Teachers/Create =================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ADD_Teacher(string FirstName, string LastName, string Email, string password)
@@ -80,7 +77,6 @@ namespace EduPlatform.Controllers.MVCControllers
 
             return View(new ApplicationUser { FirstName = FirstName, LastName = LastName, Email = Email });
         }
-        // ================= GET: Teachers/Edit/id =================
         public async Task<IActionResult> Edit_Teacher(string id)
         {
             if (id == null) return NotFound();
@@ -90,7 +86,6 @@ namespace EduPlatform.Controllers.MVCControllers
 
             return View(teacher);
         }
-        // POST: Teachers/Edit/id
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit_Teacher(string id, string FirstName, string LastName, string Email)
@@ -103,7 +98,7 @@ namespace EduPlatform.Controllers.MVCControllers
             teacher.FirstName = FirstName;
             teacher.LastName = LastName;
             teacher.Email = Email;
-            teacher.UserName = Email; 
+            teacher.UserName = Email;
 
             var result = await _userManager.UpdateAsync(teacher);
 
@@ -120,9 +115,8 @@ namespace EduPlatform.Controllers.MVCControllers
             return View(teacher);
         }
 
-        
 
-        // ================= GET: Teachers/AssignStudents/5 =================
+
         public async Task<IActionResult> Assign_Students(string teacherId)
         {
             if (teacherId == null) return NotFound();
@@ -143,7 +137,6 @@ namespace EduPlatform.Controllers.MVCControllers
             return View(allStudents);
         }
 
-        // ================= POST: Teachers/AssignStudents/5 =================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Assign_Students(string teacherId, string[] selectedStudents)
@@ -173,7 +166,6 @@ namespace EduPlatform.Controllers.MVCControllers
             return RedirectToAction("Teacher_Dashboard");
         }
 
-        // ================= GET: Teachers/Delete/id =================
         public async Task<IActionResult> Delete_Teacher(string id)
         {
             if (id == null) return NotFound();
@@ -184,7 +176,6 @@ namespace EduPlatform.Controllers.MVCControllers
             return View(teacher);
         }
 
-        // ================= POST: Teachers/Delete/id =================
         [HttpPost, ActionName("Delete_Teacher")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
@@ -202,7 +193,6 @@ namespace EduPlatform.Controllers.MVCControllers
             return View(teacher);
         }
 
-        // ================= GET: Teachers/ViewStudents/5 =================
         public async Task<IActionResult> ViewStudents(string teacherId)
         {
             if (string.IsNullOrEmpty(teacherId)) return NotFound();

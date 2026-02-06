@@ -14,20 +14,17 @@ namespace EduPlatform.Controllers.MVCControllers.AdminPanel
             _roleManager = roleManager;
         }
 
-        // عرض كل Roles
         public IActionResult Roles_Dashboard()
         {
             var roles = _roleManager.Roles.ToList();
             return View(roles);
         }
 
-        // Create - GET
         public IActionResult ADD_Roles()
         {
             return View();
         }
 
-        // Create - POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ADD_Roles(string roleName)
@@ -44,7 +41,6 @@ namespace EduPlatform.Controllers.MVCControllers.AdminPanel
             return View();
         }
 
-        // Edit - GET
         public async Task<IActionResult> Edit_Roles(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -52,7 +48,6 @@ namespace EduPlatform.Controllers.MVCControllers.AdminPanel
             return View(role);
         }
 
-        // Edit - POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit_Roles(string id, string newRoleName)
@@ -72,7 +67,6 @@ namespace EduPlatform.Controllers.MVCControllers.AdminPanel
             return View(role);
         }
 
-        // Delete - GET
         public async Task<IActionResult> Delete_Roles(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -80,7 +74,6 @@ namespace EduPlatform.Controllers.MVCControllers.AdminPanel
             return View(role);
         }
 
-        // Delete - POST
         [HttpPost, ActionName("Delete_Roles")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

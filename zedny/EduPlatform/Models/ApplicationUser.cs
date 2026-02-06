@@ -10,11 +10,9 @@ namespace EduPlatform.Models
         public string ProfileImage { get; set; } = "default.jpeg";
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        // Computed property for Full Name
         [NotMapped]
         public string FullName => $"{FirstName} {LastName}".Trim();
 
-        // Navigation properties for many-to-many relationship
         public ICollection<StudentTeacher> StudentTeachers { get; set; } = new List<StudentTeacher>();
         public ICollection<Course> Courses { get; set; } = new List<Course>();
         public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();

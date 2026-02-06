@@ -20,7 +20,6 @@ namespace EduPlatform.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        // ================= Relations =================
 
         [Required]
         public string TeacherId { get; set; } = string.Empty;
@@ -28,7 +27,6 @@ namespace EduPlatform.Models
         [ForeignKey(nameof(TeacherId))]
         public ApplicationUser Teacher { get; set; } = null!;
 
-        // Navigation property for enrolled students
         public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
     }
 }

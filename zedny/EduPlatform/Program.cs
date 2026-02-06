@@ -19,10 +19,9 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/Identity/Account/Login";
 });
 
-// ✅ إضافة تكوين رفع الملفات
 builder.Services.Configure<FormOptions>(options =>
 {
-    options.MultipartBodyLengthLimit = 10 * 1024 * 1024; // 10 MB
+    options.MultipartBodyLengthLimit = 10 * 1024 * 1024;
     options.ValueLengthLimit = 10 * 1024 * 1024;
     options.MultipartHeadersLengthLimit = 10 * 1024 * 1024;
 });

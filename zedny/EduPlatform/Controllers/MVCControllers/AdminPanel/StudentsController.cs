@@ -18,7 +18,6 @@ namespace EduPlatform.Controllers.MVCControllers
             _context = context;
         }
 
-        // GET: ChooseTeachers
         public async Task<IActionResult> ChooseTeachers()
         {
             var student = await _userManager.GetUserAsync(User);
@@ -30,7 +29,6 @@ namespace EduPlatform.Controllers.MVCControllers
                     allTeachers.Add(user);
             }
 
-            // Teachers already assigned
             var assignedTeacherIds = _context.StudentTeachers
                 .Where(st => st.StudentId == student.Id)
                 .Select(st => st.TeacherId)
@@ -40,18 +38,15 @@ namespace EduPlatform.Controllers.MVCControllers
             return View(allTeachers);
         }
 
-        // POST: ChooseTeachers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChooseTeachers(string[] selectedTeachers)
         {
             var student = await _userManager.GetUserAsync(User);
 
-            // Remove existing assignments
             var existing = _context.StudentTeachers.Where(st => st.StudentId == student.Id);
             _context.StudentTeachers.RemoveRange(existing);
 
-            // Add new selections
             if (selectedTeachers != null)
             {
                 foreach (var teacherId in selectedTeachers)
@@ -68,7 +63,6 @@ namespace EduPlatform.Controllers.MVCControllers
             return RedirectToAction(nameof(MyTeachers));
         }
 
-        // GET: MyTeachers
         public async Task<IActionResult> MyTeachers()
         {
             var student = await _userManager.GetUserAsync(User);

@@ -20,15 +20,12 @@ namespace EduPlatform.Controllers
 
         public async Task<IActionResult> Index()
         {
-            // 1. جلب قائمة المستخدمين الذين يمتلكون رتبة TEACHER
             var teachersInRole = await _userManager.GetUsersInRoleAsync("TEACHER");
 
-            // 2. تحويل البيانات إلى ViewModel مع جلب عدد الكورسات لكل مدرس
             var teachers = teachersInRole.Select(u => new TeacherCardVM
             {
                 Id = u.Id,
                 FullName = $"{u.FirstName} {u.LastName}",
-                // تعديل المسار ليتناسب مع مجلد الصور الخاص بك
                 ImageUrl = string.IsNullOrEmpty(u.ProfileImage) || u.ProfileImage == "default.jpeg"
                            ? "/Asset/images/default.jpeg"
                            : $"/uploads/profiles/{u.ProfileImage}",

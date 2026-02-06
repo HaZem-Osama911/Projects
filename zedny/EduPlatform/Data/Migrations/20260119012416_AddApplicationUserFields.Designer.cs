@@ -15,7 +15,6 @@ namespace EduPlatform.Data.Migrations
     [Migration("20260119012416_AddApplicationUserFields")]
     partial class AddApplicationUserFields
     {
-        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

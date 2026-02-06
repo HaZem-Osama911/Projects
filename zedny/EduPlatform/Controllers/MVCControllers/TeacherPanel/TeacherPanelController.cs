@@ -18,19 +18,16 @@ namespace EduPlatform.Controllers.MVCControllers
             _context = context;
         }
 
-        // GET: MyStudents
         public async Task<IActionResult> MyStudents()
         {
             var teacher = await _userManager.GetUserAsync(User);
             if (teacher == null) return Unauthorized();
 
-            // IDs of students assigned to this teacher
             var studentIds = await _context.StudentTeachers
                 .Where(st => st.TeacherId == teacher.Id)
                 .Select(st => st.StudentId)
                 .ToListAsync();
 
-            // Fetch only the assigned students
             var students = await _userManager.Users
                 .Where(u => studentIds.Contains(u.Id))
                 .ToListAsync();
@@ -38,12 +35,10 @@ namespace EduPlatform.Controllers.MVCControllers
             return View(students);
         }
 
-        // GET: EditStudent
         public async Task<IActionResult> EditStudent(string studentId)
         {
             var teacher = await _userManager.GetUserAsync(User);
 
-            // تأكد ان الطالب مرتبط بالمدرس
             var isAssigned = await _context.StudentTeachers
                 .AnyAsync(st => st.TeacherId == teacher.Id && st.StudentId == studentId);
 
@@ -55,7 +50,6 @@ namespace EduPlatform.Controllers.MVCControllers
             return View(student);
         }
 
-        // POST: EditStudent
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditStudent(string studentId, ApplicationUser updatedStudent)
@@ -87,7 +81,6 @@ namespace EduPlatform.Controllers.MVCControllers
             return View(updatedStudent);
         }
 
-        // GET: RemoveStudent
         public async Task<IActionResult> RemoveStudent(string studentId)
         {
             var teacher = await _userManager.GetUserAsync(User);

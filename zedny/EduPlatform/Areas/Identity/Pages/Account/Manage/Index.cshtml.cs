@@ -80,7 +80,6 @@ namespace EduPlatform.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null) return NotFound("User not found.");
 
-            // 🔥 أهم سطر: إزالة الحقول التي لا تأتي من الفورم لمنع فشل الـ Validation
             ModelState.Remove("Input.UserName");
 
             if (!ModelState.IsValid)
@@ -89,7 +88,6 @@ namespace EduPlatform.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            // تحديث البيانات النصية
             user.FirstName = Input.FirstName;
             user.LastName = Input.LastName;
 
@@ -99,7 +97,6 @@ namespace EduPlatform.Areas.Identity.Pages.Account.Manage
                 await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
             }
 
-            // معالجة الصورة
             if (Input.ProfilePicture != null && Input.ProfilePicture.Length > 0)
             {
                 try
@@ -111,7 +108,6 @@ namespace EduPlatform.Areas.Identity.Pages.Account.Manage
                     if (!Directory.Exists(uploadPath))
                         Directory.CreateDirectory(uploadPath);
 
-                    // حذف القديمة بشرط ألا تكون الافتراضية
                     if (!string.IsNullOrEmpty(user.ProfileImage) && user.ProfileImage != "default.jpeg")
                     {
                         var oldFile = Path.Combine(uploadPath, user.ProfileImage);
@@ -139,7 +135,7 @@ namespace EduPlatform.Areas.Identity.Pages.Account.Manage
             {
                 await _signInManager.RefreshSignInAsync(user);
                 StatusMessage = "Your profile has been updated";
-                return RedirectToPage(); // إعادة التوجيه لتحديث البيانات في الكاش
+                return RedirectToPage();
             }
 
             foreach (var error in result.Errors)

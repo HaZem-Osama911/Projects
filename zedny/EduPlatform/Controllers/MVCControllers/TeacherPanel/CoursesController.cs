@@ -21,8 +21,6 @@ namespace EduPlatform.Controllers.MVCControllers.TeacherPanel
             _userManager = userManager;
         }
 
-        // ==================== DASHBOARD ====================
-        // GET: Courses Dashboard
         public async Task<IActionResult> Course_Dashboard()
         {
             var teacher = await _userManager.GetUserAsync(User);
@@ -37,14 +35,11 @@ namespace EduPlatform.Controllers.MVCControllers.TeacherPanel
             return View(courses);
         }
 
-        // ==================== ADD COURSE ====================
-        // GET: Add New Course
         public IActionResult ADD_NewCourse()
         {
             return View();
         }
 
-        // POST: Add New Course
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ADD_NewCourse(AddCourseViewModel model)
@@ -73,8 +68,6 @@ namespace EduPlatform.Controllers.MVCControllers.TeacherPanel
             return RedirectToAction(nameof(Course_Dashboard));
         }
 
-        // ==================== EDIT COURSE ====================
-        // GET: Edit Course
         public async Task<IActionResult> Edit_Course(int id)
         {
             var teacher = await _userManager.GetUserAsync(User);
@@ -96,7 +89,6 @@ namespace EduPlatform.Controllers.MVCControllers.TeacherPanel
             return View(model);
         }
 
-        // POST: Edit Course
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit_Course(int id, EditCourseViewModel model)
@@ -130,8 +122,7 @@ namespace EduPlatform.Controllers.MVCControllers.TeacherPanel
             return RedirectToAction(nameof(Course_Dashboard));
         }
 
-        // ==================== DELETE COURSE ====================
-        // GET: Delete Course Confirmation
+
         public async Task<IActionResult> Delete_Course(int id)
         {
             var teacher = await _userManager.GetUserAsync(User);
@@ -146,7 +137,6 @@ namespace EduPlatform.Controllers.MVCControllers.TeacherPanel
             return View(course);
         }
 
-        // POST: Delete Course
         [HttpPost, ActionName("Delete_Course")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -166,8 +156,6 @@ namespace EduPlatform.Controllers.MVCControllers.TeacherPanel
             return RedirectToAction(nameof(Course_Dashboard));
         }
 
-        // ==================== VIEW STUDENTS ====================
-        // GET: View Students Enrolled in Course
         public async Task<IActionResult> Course_Students(int id)
         {
             var teacher = await _userManager.GetUserAsync(User);
