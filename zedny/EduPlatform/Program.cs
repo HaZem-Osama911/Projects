@@ -31,7 +31,6 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// 🔥 Seed Roles + Super Admin
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
