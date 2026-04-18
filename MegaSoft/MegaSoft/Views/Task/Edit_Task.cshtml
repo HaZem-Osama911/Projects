@@ -1,0 +1,95 @@
+@model MegaSoft.Models.TaskItems
+
+@{
+    ViewData["Title"] = "Edit Task";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="glass-card animate-fadeIn">
+                <div class="text-center mb-4">
+                    <div class="user-avatar-modern avatar-60 avatar-gradient-warning mx-auto mb-3">
+                        <i class="bi bi-pencil-square text-white"></i>
+                    </div>
+                    <h2 class="fw-bold text-white">Edit Task</h2>
+                    <p class="text-muted small">Update task information and status</p>
+                </div>
+
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger bg-danger bg-opacity-10 border-0 text-danger small mb-4">
+                        <i class="bi bi-exclamation-triangle me-2"></i>Please fix the errors below and try again.
+                    </div>
+                }
+
+                <form asp-action="Edit_Task" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="mb-3">
+                        <label asp-for="TeamId" class="form-label fw-bold">
+                            Team <span class="text-danger">*</span>
+                        </label>
+                        <select asp-for="TeamId" asp-items="ViewBag.Teams" class="form-select">
+                            <option value="0">-- Select Team --</option>
+                        </select>
+                        <span asp-validation-for="TeamId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label fw-bold">
+                            Task Title <span class="text-danger">*</span>
+                        </label>
+                        <input asp-for="Title" class="form-control" placeholder="Enter task title" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label fw-bold">Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter task description (optional)"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Deadline" class="form-label fw-bold">Deadline</label>
+                        <input asp-for="Deadline" type="datetime-local" class="form-control" />
+                        <span asp-validation-for="Deadline" class="text-danger"></span>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label asp-for="Status" class="form-label fw-bold">Status</label>
+                            <select asp-for="Status"
+                                    asp-items="Html.GetEnumSelectList<MegaSoft.Models.Enums.TaskStatus>()"
+                                    class="form-select">
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Priority" class="form-label fw-bold">Priority</label>
+                            <select asp-for="Priority"
+                                    asp-items="Html.GetEnumSelectList<MegaSoft.Models.Enums.TaskPriority>()"
+                                    class="form-select">
+                            </select>
+                            <span asp-validation-for="Priority" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-modern btn-primary">
+                            <i class="bi bi-save2-fill"></i> Save Changes
+                        </button>
+                        <a asp-action="Task_Dashboard" class="btn btn-modern btn-secondary">
+                            Discard
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

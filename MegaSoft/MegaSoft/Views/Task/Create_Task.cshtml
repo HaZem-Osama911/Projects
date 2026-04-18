@@ -1,0 +1,91 @@
+﻿@model MegaSoft.Models.TaskItems
+
+@{
+    ViewData["Title"] = "Create New Task";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3><i class="bi bi-plus-circle"></i> Create New Task</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create_Task" method="post">
+                @Html.AntiForgeryToken()
+
+                <!-- ✅ Team Selection - مهم جداً -->
+                <div class="form-group mb-3">
+                    <label asp-for="TeamId" class="form-label fw-bold">
+                        Team <span class="text-danger">*</span>
+                    </label>
+                    <select asp-for="TeamId"
+                            asp-items="ViewBag.Teams"
+                            class="form-select">
+                        <option value="0">-- Select Team --</option>
+                    </select>
+                    <span asp-validation-for="TeamId" class="text-danger"></span>
+                </div>
+
+                <!-- Title -->
+                <div class="form-group mb-3">
+                    <label asp-for="Title" class="form-label fw-bold">
+                        Task Title <span class="text-danger">*</span>
+                    </label>
+                    <input asp-for="Title"
+                           class="form-control"
+                           placeholder="Enter task title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="form-label fw-bold">Description</label>
+                    <textarea asp-for="Description"
+                              class="form-control"
+                              rows="4"
+                              placeholder="Enter task description (optional)"></textarea>
+                </div>
+
+                <!-- Deadline -->
+                <div class="form-group mb-3">
+                    <label asp-for="Deadline" class="form-label fw-bold">Deadline</label>
+                    <input asp-for="Deadline"
+                           type="datetime-local"
+                           class="form-control" />
+                </div>
+
+                <!-- Status -->
+                <div class="form-group mb-3">
+                    <label asp-for="Status" class="form-label fw-bold">Status</label>
+                    <select asp-for="Status"
+                            asp-items="Html.GetEnumSelectList<MegaSoft.Models.Enums.TaskStatus>()"
+                            class="form-select">
+                    </select>
+                </div>
+
+                <!-- Priority -->
+                <div class="form-group mb-3">
+                    <label asp-for="Priority" class="form-label fw-bold">Priority</label>
+                    <select asp-for="Priority"
+                            asp-items="Html.GetEnumSelectList<MegaSoft.Models.Enums.TaskPriority>()"
+                            class="form-select">
+                    </select>
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i> Create Task
+                    </button>
+                    <a asp-action="Task_Dashboard" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

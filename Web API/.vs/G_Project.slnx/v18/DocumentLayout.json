@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\G_Projects\\G_Project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E8FDE0-E234-3C69-5F4F-2BCAACE2FF67}|G_Project\\G_Project.csproj|d:\\g_projects\\g_project\\g_project\\controllers\\aicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E8FDE0-E234-3C69-5F4F-2BCAACE2FF67}|G_Project\\G_Project.csproj|solutionrelative:g_project\\controllers\\aicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E8FDE0-E234-3C69-5F4F-2BCAACE2FF67}|G_Project\\G_Project.csproj|d:\\g_projects\\g_project\\g_project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E8FDE0-E234-3C69-5F4F-2BCAACE2FF67}|G_Project\\G_Project.csproj|solutionrelative:g_project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E8FDE0-E234-3C69-5F4F-2BCAACE2FF67}|G_Project\\G_Project.csproj|d:\\g_projects\\g_project\\g_project\\models\\studentfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E8FDE0-E234-3C69-5F4F-2BCAACE2FF67}|G_Project\\G_Project.csproj|solutionrelative:g_project\\models\\studentfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E8FDE0-E234-3C69-5F4F-2BCAACE2FF67}|G_Project\\G_Project.csproj|d:\\g_projects\\g_project\\g_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F1E8FDE0-E234-3C69-5F4F-2BCAACE2FF67}|G_Project\\G_Project.csproj|solutionrelative:g_project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AIController.cs",
+              "DocumentMoniker": "D:\\G_Projects\\G_Project\\G_Project\\Controllers\\AIController.cs",
+              "RelativeDocumentMoniker": "G_Project\\Controllers\\AIController.cs",
+              "ToolTip": "D:\\G_Projects\\G_Project\\G_Project\\Controllers\\AIController.cs",
+              "RelativeToolTip": "G_Project\\Controllers\\AIController.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAABUAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T23:56:36.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\G_Projects\\G_Project\\G_Project\\Program.cs",
+              "RelativeDocumentMoniker": "G_Project\\Program.cs",
+              "ToolTip": "D:\\G_Projects\\G_Project\\G_Project\\Program.cs",
+              "RelativeToolTip": "G_Project\\Program.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAwwEsAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T23:55:24.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\G_Projects\\G_Project\\G_Project\\appsettings.json",
+              "RelativeDocumentMoniker": "G_Project\\appsettings.json",
+              "ToolTip": "D:\\G_Projects\\G_Project\\G_Project\\appsettings.json",
+              "RelativeToolTip": "G_Project\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-13T22:58:56.668Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StudentFile.cs",
+              "DocumentMoniker": "D:\\G_Projects\\G_Project\\G_Project\\Models\\StudentFile.cs",
+              "RelativeDocumentMoniker": "G_Project\\Models\\StudentFile.cs",
+              "ToolTip": "D:\\G_Projects\\G_Project\\G_Project\\Models\\StudentFile.cs",
+              "RelativeToolTip": "G_Project\\Models\\StudentFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T22:40:17.885Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

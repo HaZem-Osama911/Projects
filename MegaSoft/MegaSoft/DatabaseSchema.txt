@@ -1,0 +1,69 @@
+تفاصيل بنية قاعدة البيانات (Database Schema) لمشروع MegaSoft
+=========================================================
+
+1. جدول المستخدمين (Table: Users) - Schema: Security
+--------------------------------------------------
+Entity: ApplicationUser (يرث من IdentityUser)
+الأعمدة (Columns):
+ - Id (string, Primary Key) -- موروث
+ - UserName, Email, PhoneNumber ... -- موروثة من Identity
+ - FirstName (string, MaxLength: 50)
+ - LastName (string, MaxLength: 50)
+ - ProfileImage (string, MaxLength: 255) - افتراضي: "default.jpeg"
+ - IsActive (boolean) - افتراضي: true
+العلاقات (Relationships):
+ - علاقة 1 إلى متعدد (1:M) مع جدول TeamMembers (NoAction عند الحذف)
+ - علاقة 1 إلى متعدد (1:M) مع جدول TaskItems (مهام مسندة للمستخدم) (NoAction عند الحذف)
+
+2. جدول الفرق (Table: Teams)
+--------------------------------------------------
+Entity: Team
+الأعمدة (Columns):
+ - Id (int, Primary Key)
+ - Name (string, Required, MaxLength: 100)
+ - Description (string, Nullable, MaxLength: 500)
+ - IsDeleted (boolean) - افتراضي: false
+ - CreatedAt (DateTime)
+ - CreatedById (string, Foreign Key -> Users.Id)
+العلاقات (Relationships):
+ - علاقة 1 إلى متعدد (1:M) مع جدول TeamMembers (Cascade عند الحذف)
+ - علاقة 1 إلى متعدد (1:M) مع جدول TaskItems (Cascade عند الحذف)
+
+3. جدول أعضاء الفرق (Table: TeamMembers)
+--------------------------------------------------
+Entity: TeamMember
+الأعمدة (Columns):
+ - Id (int, Primary Key)
+ - TeamId (int, Required, Foreign Key -> Teams.Id)
+ - UserId (string, Required, Foreign Key -> Users.Id)
+ - JoinedAt (DateTime)
+القيود (Constraints & Indexes):
+ - قيد فريد (Unique Index) يجمع بين (TeamId, UserId) لمنع تكرار العضو في نفس الفريق.
+
+4. جدول المهام (Table: TaskItems)
+--------------------------------------------------
+Entity: TaskItems
+الأعمدة (Columns):
+ - Id (int, Primary Key)
+ - Title (string, Required, MaxLength: 200)
+ - Description (string, Nullable)
+ - CreatedAt (DateTime)
+ - Deadline (DateTime, Nullable)
+ - Status (Enum: TaskStatus) - افتراضي: ToDo
+ - Priority (Enum: TaskPriority) - افتراضي: Medium
+ - IsDeleted (boolean) - افتراضي: false
+ - AssignedToId (string, Nullable, Foreign Key -> Users.Id)
+ - TeamId (int, Required, Foreign Key -> Teams.Id)
+العلاقات (Relationships):
+ - مرتبط بجدول الفرق (Team)
+ - مرتبط بجدول المستخدمين كمسند إليه المهمة (AssignedTo)
+
+=========================================================
+جداول النظام الإضافية (Identity Tables) تحت سكيما (Security)
+---------------------------------------------------------
+- Roles (Entity: IdentityRole)
+- UserRoles (Entity: IdentityUserRole)
+- UserClaims (Entity: IdentityUserClaim)
+- UserLogins (Entity: IdentityUserLogin)
+- UserTokens (Entity: IdentityUserToken)
+- RoleClaims (Entity: IdentityRoleClaim)

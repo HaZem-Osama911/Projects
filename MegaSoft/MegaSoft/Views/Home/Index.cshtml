@@ -1,0 +1,69 @@
+@{
+    ViewData["Title"] = "Dashboard Home";
+}
+
+<div class="container py-5 animate-fadeIn">
+    <div class="glass-card text-center mb-5">
+        <div class="mb-2">
+            <div class="logo-wrapper">
+                <img src="~/Asset/images/MegaSoft Logo.png" alt="MegaSoft Logo" class="hero-logo" />
+            </div>
+        </div>
+        
+        <h1 class="hero-title">
+            Welcome to <span class="logo-text">MegaSoft Management System</span>
+        </h1>
+        
+        <p class="text-white-50 fs-5 mx-auto mb-4 mw-700">
+            Manage teams, assign tasks, and track progress efficiently in one centralized, ultra-modern platform.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a asp-controller="Team" asp-action="Index" class="btn-modern btn-primary">
+                <i class="bi bi-people-fill"></i> View Teams
+            </a>
+
+            <a asp-controller="Task" asp-action="Task_Dashboard" class="btn-modern btn-success">
+                <i class="bi bi-list-task"></i> View Tasks
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="stats-card h-100">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="user-avatar-modern">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h5 class="ms-3 mb-0 text-white">Teams Management</h5>
+                </div>
+                <p class="text-white-50 fs-6">
+                    Create, edit, and organize teams. Assign members and manage team responsibilities with ease.
+                </p>
+                <a asp-controller="Team" asp-action="Team_Dashboard" class="btn-modern btn-success btn-sm mt-2">
+                    Go to Teams <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+                <i class="bi bi-people-fill stats-icon"></i>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="stats-card h-100">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="user-avatar-modern avatar-gradient-success-info">
+                        <i class="bi bi-list-task"></i>
+                    </div>
+                    <h5 class="ms-3 mb-0 text-white">Tasks Tracking</h5>
+                </div>
+                <p class="text-white-50 fs-6">
+                    Track task status, monitor priorities, and improve productivity across all your active teams.
+                </p>
+                <a asp-controller="Task" asp-action="Task_Dashboard" class="btn-modern btn-success btn-sm mt-2">
+                    Go to Tasks <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+                <i class="bi bi-list-task stats-icon"></i>
+            </div>
+        </div>
+    </div>
+</div>

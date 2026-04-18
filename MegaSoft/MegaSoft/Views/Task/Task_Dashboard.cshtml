@@ -1,0 +1,116 @@
+@model List<MegaSoft.Models.TaskItems>
+
+@{
+    ViewData["Title"] = "Tasks Dashboard";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate-fadeIn">
+        <div>
+            <h2 class="fw-bold mb-1 text-white">Tasks Dashboard</h2>
+            <p class="text-muted">Manage and track all tasks</p>
+        </div>
+        <a asp-action="Create_Task" class="btn btn-modern btn-success">
+            <i class="bi bi-plus-lg"></i> Create Task
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>@TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="table-container shadow-lg animate-fadeIn anim-delay-100 bg-white rounded-3">
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th class="col-idx">#</th>
+                        <th>Task Info</th>
+                        <th>Team</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Priority</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        int index = 1;
+                        foreach (var task in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-muted">#@index.ToString("D2")</td>
+                                
+                                <td>
+                                    <div>
+                                        <span class="fw-bold d-block text-dark fs-105">@task.Title</span>
+                                        <span class="text-muted small text-truncate d-block mw-250">
+                                            @(string.IsNullOrEmpty(task.Description) ? "No description" : task.Description)
+                                        </span>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <span class="badge bg-secondary text-white rounded-pill px-3 py-2">
+                                        @task.Team?.Name
+                                    </span>
+                                </td>
+
+                                <td class="text-center">
+                                    <span class="badge
+                                        @(task.Status?.ToString() == "ToDo" ? "bg-warning text-dark" :
+                                                                                    task.Status?.ToString() == "InProgress" ? "bg-primary text-white" :
+                                                                                    "bg-success text-white") rounded-pill px-3 py-2">
+                                        @(task.Status?.ToString() ?? "—")
+                                    </span>
+                                </td>
+
+                                <td class="text-center">
+                                    <span class="badge
+                                        @(task.Priority?.ToString() == "High" ? "bg-danger text-white" :
+                                                                                    task.Priority?.ToString() == "Medium" ? "bg-info text-dark" :
+                                                                                    "bg-secondary text-white") rounded-pill px-3 py-2">
+                                        @(task.Priority?.ToString() ?? "—")
+                                    </span>
+                                </td>
+                                
+                                <td>
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <a asp-action="Details_Task" asp-route-id="@task.Id"
+                                               class="btn btn-sm btn-modern btn-info" title="Details">
+                                            <i class="bi bi-eye"></i> Details
+                                        </a>
+                                        <a asp-action="Edit_Task" asp-route-id="@task.Id"
+                                               class="btn btn-sm btn-modern btn-warning" title="Edit Task">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                        <a asp-action="Delete_Task" asp-route-id="@task.Id"
+                                               class="btn btn-sm btn-modern btn-danger" title="Delete Task">
+                                            <i class="bi bi-trash3"></i> Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            index++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-5">
+                                <div class="text-muted">
+                                    <i class="bi bi-inbox display-4 d-block mb-3 opacity-25"></i>
+                                    <p class="mb-0">No tasks found. Start by creating a new one!</p>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

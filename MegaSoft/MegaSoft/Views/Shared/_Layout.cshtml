@@ -1,0 +1,94 @@
+﻿@using MegaSoft.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MegaSoft</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MegaSoft.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm ultra-modern-navbar mb-3">
+            <div class="container">
+                <a class="navbar-brand logo-text" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-cpu-fill me-2"></i>MegaSoft
+                </a>
+                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-modern" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house-door me-1"></i> Home
+                            </a>
+                        </li>
+                     
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var currentUser = await UserManager.GetUserAsync(User);
+
+                            if (currentUser != null && await UserManager.IsInRoleAsync(currentUser, "ADMIN"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-modern" asp-controller="Roles" asp-action="Roles_Dashboard">
+                                        <i class="bi bi-shield-lock me-1"></i> Roles
+                                    </a>
+                                </li>
+                            }
+
+                            if (currentUser != null &&
+                               (await UserManager.IsInRoleAsync(currentUser, "ADMIN") ||
+                                await UserManager.IsInRoleAsync(currentUser, "TECHNICAL_HEAD") ||
+                                await UserManager.IsInRoleAsync(currentUser, "MANAGER")))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-modern" asp-controller="Team" asp-action="Team_Dashboard">
+                                        <i class="bi bi-people me-1"></i> Teams
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link nav-link-modern" asp-controller="Task" asp-action="Task_Dashboard">
+                                        <i class="bi bi-list-check me-1"></i> Tasks
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container main-content-modern">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="ultra-modern-footer text-center mt-5">
+        <div class="container">
+            <p class="mb-0 text-white-50 small">&copy; 2026 - MegaSoft Management System - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-accent-info">Privacy</a></p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

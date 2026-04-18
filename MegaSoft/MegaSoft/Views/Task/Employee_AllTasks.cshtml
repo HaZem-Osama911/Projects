@@ -1,0 +1,31 @@
+﻿@model List<MegaSoft.Models.TaskItems>
+
+@{
+    ViewData["Title"] = "All Tasks";
+}
+
+<h2>All Tasks</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Team</th>
+            <th>Status</th>
+            <th>Assigned To</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>@task.Team?.Name</td>
+                <td>@task.Status</td>
+                <td>@task.AssignedTo?.UserName</td>
+            </tr>
+        }
+    </tbody>
+</table>

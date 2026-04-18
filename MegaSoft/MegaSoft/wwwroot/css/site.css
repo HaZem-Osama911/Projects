@@ -1,0 +1,470 @@
+/* =========================================
+   1. CORE VARIABLES & RESET
+   ========================================= */
+:root {
+    --bg-dark: #0f172a;
+    --bg-surface: #1e293b;
+    --glass-bg: rgba(30, 41, 59, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --accent-primary: #6366f1;
+    --accent-success: #10b981;
+    --accent-danger: #ef4444;
+    --accent-info: #0ea5e9;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content-modern {
+    flex: 1 0 auto;
+}
+
+/* =========================================
+   2. NAVBAR STYLING
+   ========================================= */
+.ultra-modern-navbar {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 0.8rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+}
+
+.nav-link-modern {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    transition: 0.3s;
+    padding: 0.5rem 1rem !important;
+}
+
+    .nav-link-modern:hover, .nav-link-modern.active {
+        color: var(--text-main) !important;
+        background: rgba(255,255,255,0.05);
+    }
+
+/* User Profile & Dropdown - FIXED FOR BLACK TEXT */
+.user-profile-modern {
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: 0.3s;
+    color: var(--text-main) !important; /* ضمان اللون الأبيض */
+}
+
+    .user-profile-modern:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--accent-primary);
+    }
+
+.user-avatar-modern {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-info));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.dropdown-menu-modern {
+    background: var(--bg-surface);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: var(--shadow-lg);
+}
+
+.dropdown-item-modern {
+    color: var(--text-muted) !important;
+    border-radius: 8px;
+    transition: 0.2s;
+    padding: 0.5rem 1rem;
+}
+
+    .dropdown-item-modern:hover {
+        background: rgba(255,255,255,0.05);
+        color: var(--text-main) !important;
+    }
+
+/* =========================================
+   3. HERO & LOGO (White Wrapper)
+   ========================================= */
+.logo-wrapper {
+    display: inline-block;
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    margin-bottom: 1.5rem;
+}
+
+.hero-logo {
+    height: 75px;
+    width: auto;
+    display: block;
+}
+
+.hero-title {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.logo-text {
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-info));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* =========================================
+   4. DASHBOARD & GLASS CARDS
+   ========================================= */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 2rem;
+}
+
+.stats-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+    .stats-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-primary);
+    }
+
+.stats-icon {
+    font-size: 3rem;
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    opacity: 0.1;
+    color: #fff;
+}
+
+/* =========================================
+   5. FORMS & INPUTS
+   ========================================= */
+.form-control {
+    background-color: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: #ffffff !important;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+}
+
+/* تصحيح العناصر فوق الخلفيات الفاتحة */
+.logo-wrapper *, .bg-white * {
+    color: #000000 !important;
+}
+
+/* =========================================
+   6. TABLES
+   ========================================= */
+.table {
+    color: var(--text-main);
+}
+
+    .table thead th {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text-muted);
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .table tbody td {
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+/* =========================================
+   7. BUTTONS
+   ========================================= */
+.btn-modern {
+    border-radius: 12px;
+    padding: 0.7rem 1.6rem;
+    font-weight: 600;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: white !important;
+    transition: 0.3s;
+}
+
+    .btn-modern:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.1);
+    }
+
+.btn-primary {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* =========================================
+   8. FOOTER & UTILS
+   ========================================= */
+.ultra-modern-footer {
+    background: var(--bg-surface);
+    padding: 2rem 0;
+    border-top: 1px solid var(--glass-border);
+}
+
+.text-white-50 {
+    color: rgba(255,255,255,0.6) !important;
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* =========================================
+   8.1 SMALL UTILITIES (no inline styles)
+   ========================================= */
+.anim-delay-100 {
+    animation-delay: 0.1s;
+}
+
+.anim-delay-300 {
+    animation-delay: 0.3s;
+}
+
+.col-idx {
+    width: 80px;
+}
+
+.avatar-35 {
+    width: 35px;
+    height: 35px;
+    font-size: 0.8rem;
+}
+
+.avatar-40 {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+}
+
+.avatar-60 {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+}
+
+.avatar-gradient-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+}
+
+.avatar-gradient-success {
+    background: linear-gradient(135deg, var(--accent-success), #059669) !important;
+}
+
+.avatar-gradient-success-info {
+    background: linear-gradient(135deg, var(--accent-success), var(--accent-info)) !important;
+}
+
+.text-accent-info {
+    color: var(--accent-info) !important;
+}
+
+.fs-105 {
+    font-size: 1.05rem;
+}
+
+.fs-110 {
+    font-size: 1.1rem;
+}
+
+.fs-120 {
+    font-size: 1.2rem;
+}
+
+.fs-075 {
+    font-size: 0.75rem;
+}
+
+.mw-250 {
+    max-width: 250px;
+}
+
+.mw-700 {
+    max-width: 700px;
+}
+
+.icon-4xl {
+    font-size: 4rem;
+}
+
+.btn-modern.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.profile-image-150 {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #ddd;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   9. DETAILS PAGES (Teams/Tasks)
+   (moved from inline <style> in views)
+   ========================================= */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%) !important;
+}
+
+.bg-gradient-success {
+    background: linear-gradient(135deg, #198754 0%, #157347 100%) !important;
+}
+
+.details-page .detail-item {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #0d6efd;
+    height: 100%;
+}
+
+.details-page .detail-item--info {
+    border-left-color: #0dcaf0;
+}
+
+.details-page .detail-item--warning {
+    border-left-color: #ffc107;
+}
+
+.details-page .detail-item--primary {
+    border-left-color: #0d6efd;
+}
+
+.details-page .detail-item--success {
+    border-left-color: #198754;
+}
+
+.details-page .detail-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6c757d;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.details-page .detail-value {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #212529;
+    word-break: break-word;
+}
+
+.team-details-page .member-card {
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.team-details-page .member-card:hover {
+    background-color: #f8f9fa;
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.team-details-page .member-card:last-child {
+    border-bottom: none;
+}
+
+.team-details-page .member-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+}
+
+.team-details-page .member-avatar i {
+    font-size: 2rem;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .team-details-page .member-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .team-details-page .member-avatar i {
+        font-size: 1.5rem;
+    }
+
+    .details-page .detail-value {
+        font-size: 1rem;
+    }
+}

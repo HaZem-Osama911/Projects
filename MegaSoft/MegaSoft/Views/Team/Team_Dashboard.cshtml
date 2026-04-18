@@ -1,0 +1,115 @@
+@model List<MegaSoft.ViewModels.TeamViewModels.TeamIndexViewModel>
+
+@{
+    ViewData["Title"] = "Teams Dashboard";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 animate-fadeIn">
+        <div>
+            <h2 class="fw-bold mb-1 text-white">Teams Dashboard</h2>
+            <p class="text-muted">Manage your organizational teams, members, and task distribution</p>
+        </div>
+        <a asp-action="Create" class="btn btn-modern btn-success">
+            <i class="bi bi-plus-lg"></i> Create New Team
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>@TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="table-container shadow-lg animate-fadeIn anim-delay-100">
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th class="col-idx">#</th>
+                        <th>Team Info</th>
+                        <th>Description</th>
+                        <th class="text-center">Stats</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        int index = 1;
+                        foreach (var team in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-muted">#@index.ToString("D2")</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-avatar-modern avatar-40 me-3">
+                                            <span>@team.Name[0]</span>
+                                        </div>
+                                        <div>
+                                            <span class="fw-bold d-block text-accent-info fs-105">@team.Name</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="text-muted small">
+                                        @(string.IsNullOrEmpty(team.Description) ? "No description provided" : team.Description)
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 px-3">
+                                            <i class="bi bi-people me-1"></i> @team.MembersCount
+                                        </span>
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25 px-3">
+                                            <i class="bi bi-list-task me-1"></i> @team.TasksCount
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <a asp-action="Team_Details" asp-route-id="@team.Id"
+                                           class="btn btn-sm btn-modern btn-info" title="Details">
+                                            <i class="bi bi-eye"></i> Details
+                                        </a>
+                                        <a asp-action="Edit_Team" asp-route-id="@team.Id"
+                                           class="btn btn-sm btn-modern btn-warning" title="Edit Team">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                        <a asp-action="Delete_Team" asp-route-id="@team.Id"
+                                           class="btn btn-sm btn-modern btn-danger" title="Delete Team">
+                                            <i class="bi bi-trash3"></i> Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            index++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center py-5">
+                                <div class="text-muted">
+                                    <i class="bi bi-inbox display-4 d-block mb-3 opacity-25"></i>
+                                    <p class="mb-0">No teams found. Start by creating a new one!</p>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="mt-4 animate-fadeIn anim-delay-300">
+            <p class="text-muted small">
+                <i class="bi bi-info-circle me-1"></i> Showing <strong>@Model.Count</strong> active teams in the organization.
+            </p>
+        </div>
+    }
+</div>

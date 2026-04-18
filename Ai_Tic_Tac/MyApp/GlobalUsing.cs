@@ -1,0 +1,12 @@
+﻿global using System.ComponentModel.DataAnnotations;
+global using MyApp.Data;
+global using MyApp.DTOs;
+global using MyApp.Models.APIModels;
+global using MyApp.Models.UserModels;
+global using Microsoft.AspNetCore.Builder;
+global using MyApp.Services.Interfaces;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Mvc;
+global using MyApp.ViewModels;

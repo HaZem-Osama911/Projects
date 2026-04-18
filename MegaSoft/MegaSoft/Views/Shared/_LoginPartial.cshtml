@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MegaSoft.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav align-items-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var user = await UserManager.GetUserAsync(User);
+        var firstLetter = user?.UserName?.Substring(0, 1).ToUpper() ?? "U";
+
+        <li class="nav-item dropdown">
+            <a class="user-profile-modern dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="user-avatar-modern">
+                    @firstLetter
+                </div>
+                <span class="fw-medium">@User.Identity?.Name</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-modern animate-fadeIn" aria-labelledby="userDropdown">
+                <li>
+                    <a class="dropdown-item dropdown-item-modern" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        <i class="bi bi-person-gear"></i> Profile Settings
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider border-secondary opacity-25"></li>
+                <li>
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="dropdown-item dropdown-item-modern text-danger">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link nav-link-modern" asp-area="Identity" asp-page="/Account/Register">
+                <i class="bi bi-person-plus me-1"></i> Register
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link nav-link-modern" asp-area="Identity" asp-page="/Account/Login">
+                <i class="bi bi-box-arrow-in-right me-1"></i> Login
+            </a>
+        </li>
+    }
+</ul>

@@ -1,0 +1,260 @@
+﻿/* ================== Base HTML & Body ================== */
+html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    background: linear-gradient(135deg, #1b1b1b, #121212);
+    color: #e0e0e0;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    backdrop-filter: blur(5px);
+}
+
+/* ================== Glass Card Base ================== */
+.card {
+    background: rgba(30, 30, 30, 0.5); /* شبه شفاف */
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    color: #e0e0e0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(76,201,240,0.8);
+    }
+
+/* ================== Navbar ================== */
+.navbar {
+    background: rgba(20, 20, 20, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 12px 20px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.7);
+}
+
+.navbar-nav .nav-link,
+.navbar-nav .btn-link {
+    color: #4cc9f0 !important;
+    font-weight: 500;
+    transition: 0.3s ease;
+    text-shadow: 0 0 6px rgba(76,201,240,0.6);
+}
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .btn-link:hover {
+        color: #72ddf7 !important;
+        text-shadow: 0 0 12px rgba(76,201,240,0.9);
+    }
+/* ================== Navbar ================== */
+.navbar {
+    background: #000000 !important; /* أسود صلب بدون شفافية */
+    padding: 12px 20px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.7);
+}
+
+.navbar-nav .nav-link,
+.navbar-nav .btn-link {
+    color: #4cc9f0 !important;
+    font-weight: 500;
+    transition: 0.3s ease;
+    text-shadow: 0 0 6px rgba(76,201,240,0.6);
+}
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .btn-link:hover {
+        color: #72ddf7 !important;
+        text-shadow: 0 0 12px #4cc9f0, 0 0 20px #72ddf7;
+    }
+
+/* ================== Links ================== */
+a, .nav-link {
+    color: #4cc9f0;
+    transition: 0.3s ease;
+}
+
+    a:hover, .nav-link:hover {
+        color: #72ddf7;
+        text-shadow: 0 0 8px rgba(76,201,240,0.7);
+    }
+
+/* ================== Buttons ================== */
+.btn {
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+    letter-spacing: 0.5px;
+    color: #fff;
+}
+
+.btn-primary {
+    background: #4cc9f0;
+    border: 1px solid #4cc9f0;
+    box-shadow: 0 0 10px #4cc9f0, 0 0 20px #4cc9f0, 0 0 40px #72ddf7;
+}
+
+    .btn-primary:hover {
+        background: #72ddf7;
+        border-color: #72ddf7;
+        box-shadow: 0 0 15px #72ddf7, 0 0 25px #4cc9f0, 0 0 50px #4cc9f0;
+    }
+
+.btn-danger {
+    background: #f94144;
+    border: 1px solid #f94144;
+    box-shadow: 0 0 8px #f94144, 0 0 16px #ff6b6b;
+}
+
+    .btn-danger:hover {
+        background: #ff6b6b;
+        border-color: #ff6b6b;
+        box-shadow: 0 0 12px #ff6b6b, 0 0 25px #f94144;
+    }
+
+/* ================== Inputs ================== */
+.form-control, .form-floating > .form-control {
+    background: rgba(40, 40, 40, 0.6);
+    backdrop-filter: blur(8px);
+    color: #e0e0e0;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    padding: 12px 15px;
+    transition: 0.3s ease;
+}
+
+    .form-control:focus {
+        background: rgba(50, 50, 50, 0.7);
+        border-color: #4cc9f0;
+        box-shadow: 0 0 10px #4cc9f0, 0 0 20px rgba(76,201,240,0.5);
+        color: #fff;
+    }
+
+/* ================== Tables ================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e0e0e0;
+}
+
+    table th, table td {
+        padding: 12px 15px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    table th {
+        background: rgba(50,50,50,0.6);
+        backdrop-filter: blur(8px);
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    table td {
+        background: rgba(30,30,30,0.5);
+        backdrop-filter: blur(5px);
+    }
+
+/* ================== Profile & Layout ================== */
+.profile-container {
+    background: rgba(30,30,30,0.5);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+    color: #e0e0e0;
+}
+
+    .profile-container h3 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-weight: 700;
+        color: #ffffff;
+        text-shadow: 0 0 8px #4cc9f0;
+    }
+
+.profile-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #4cc9f0;
+    box-shadow: 0 0 15px #4cc9f0;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .profile-img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 30px #72ddf7, 0 0 50px #4cc9f0;
+    }
+
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.welcome-card {
+    padding: 50px 70px;
+    text-align: center;
+    border-radius: 20px;
+    background: rgba(40, 40, 40, 0.5);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    max-width: 700px;
+    color: #e0e0e0;
+}
+
+    .welcome-card h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: #4cc9f0;
+        text-shadow: 0 0 10px #4cc9f0, 0 0 20px #72ddf7;
+    }
+
+        .welcome-card h1.text-gradient {
+            background: linear-gradient(90deg, #4cc9f0, #72ddf7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+    .welcome-card p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #ccc;
+        text-shadow: 0 0 4px rgba(255,255,255,0.2);
+    }
+
+.home-buttons .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(76,201,240,0.8);
+}
+
+
+.profile-img-wrapper {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #0d6efd; /* لون Bootstrap primary */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+#ProfilePicture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}

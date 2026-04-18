@@ -1,0 +1,146 @@
+@model MegaSoft.ViewModels.TeamViewModels.TeamDetailsViewModel
+
+@{
+    ViewData["Title"] = "Team Details";
+}
+
+<div class="container py-4 team-details-page details-page">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Back Button -->
+            <div class="mb-3">
+                <a asp-action="Team_Dashboard" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>Back to Dashboard
+                </a>
+            </div>
+
+            <!-- Team Information Card -->
+            <div class="card shadow-lg border-0 mb-4">
+                <div class="card-header bg-gradient-primary text-white py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="bi bi-info-circle me-2"></i>Team Details
+                    </h4>
+                </div>
+
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="detail-item">
+                                <label class="detail-label">
+                                    <i class="bi bi-tag-fill me-2 text-primary"></i>Team Name
+                                </label>
+                                <div class="detail-value">@Model.Name</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="detail-item">
+                                <label class="detail-label">
+                                    <i class="bi bi-calendar-check me-2 text-success"></i>Created Date
+                                </label>
+                                <div class="detail-value">@Model.CreatedAt.ToString("dd MMM yyyy")</div>
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            <div class="col-12">
+                                <div class="detail-item detail-item--info">
+                                    <label class="detail-label">
+                                        <i class="bi bi-card-text me-2 text-info"></i>Description
+                                    </label>
+                                    <div class="detail-value">@Model.Description</div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-md-6">
+                            <div class="detail-item">
+                                <label class="detail-label">
+                                    <i class="bi bi-people-fill me-2 text-warning"></i>Total Members
+                                </label>
+                                <div class="detail-value">
+                                    <span class="badge bg-info text-dark fs-6">@Model.Members.Count</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="detail-item">
+                                <label class="detail-label">
+                                    <i class="bi bi-list-task me-2 text-danger"></i>Total Tasks
+                                </label>
+                                <div class="detail-value">
+                                    <span class="badge bg-secondary fs-6">@Model.TasksCount</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Members Card -->
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-gradient-success text-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">
+                            <i class="bi bi-people-fill me-2"></i>Team Members
+                        </h5>
+                        <span class="badge bg-white text-success fs-6">
+                            @Model.Members.Count Member@(Model.Members.Count != 1 ? "s" : "")
+                        </span>
+                    </div>
+                </div>
+
+                <div class="card-body p-0">
+                    @if (Model.Members == null || !Model.Members.Any())
+                    {
+                        <div class="text-center py-5">
+                            <i class="bi bi-people display-3 text-muted d-block mb-3"></i>
+                            <p class="text-muted mb-0">No members in this team yet.</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="list-group list-group-flush">
+                            @foreach (var member in Model.Members)
+                            {
+                                <div class="list-group-item list-group-item-action member-card">
+                                    <div class="d-flex align-items-center">
+                                        <div class="member-avatar">
+                                            <i class="bi bi-person-circle"></i>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1 fw-bold">@member.FullName</h6>
+                                            @if (!string.IsNullOrEmpty(member.Email))
+                                            {
+                                                <p class="mb-0 text-muted small">
+                                                    <i class="bi bi-envelope me-1"></i>@member.Email
+                                                </p>
+                                            }
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-success">
+                                                <i class="bi bi-check-circle me-1"></i>Active
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-4 d-flex gap-2">
+                <a asp-action="Edit_Team" asp-route-id="@Model.Id" class="btn btn-warning">
+                    <i class="bi bi-pencil-square me-1"></i>Edit Team
+                </a>
+                <a asp-action="Delete_Team" asp-route-id="@Model.Id" class="btn btn-danger">
+                    <i class="bi bi-trash3 me-1"></i>Delete Team
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

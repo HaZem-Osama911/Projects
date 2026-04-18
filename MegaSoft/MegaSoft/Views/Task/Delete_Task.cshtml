@@ -1,0 +1,65 @@
+@model MegaSoft.Models.TaskItems
+
+@{
+    ViewData["Title"] = "Delete Task";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="glass-card border-danger animate-fadeIn text-center">
+                <div class="text-danger mb-4">
+                    <i class="bi bi-exclamation-octagon icon-4xl"></i>
+                </div>
+
+                <h3 class="fw-bold text-white mb-2">Are you sure?</h3>
+                <p class="text-muted mb-4">
+                    You are about to delete this task: <br />
+                    <strong class="text-danger fs-110">"@Model.Title"</strong>
+                </p>
+
+                <div class="card bg-dark bg-opacity-25 border-0 text-start mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-muted small">Team</span>
+                            <span class="badge bg-secondary rounded-pill px-3 py-2">@Model.Team?.Name</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-muted small">Status</span>
+                            <span class="badge @(Model.Status?.ToString() == "ToDo" ? "bg-warning text-dark" :
+                                               Model.Status?.ToString() == "InProgress" ? "bg-primary text-white" :
+                                               "bg-success text-white") rounded-pill px-3 py-2">
+                                @Model.Status
+                            </span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted small">Priority</span>
+                            <span class="badge @(Model.Priority?.ToString() == "High" ? "bg-danger text-white" :
+                                               Model.Priority?.ToString() == "Medium" ? "bg-info text-dark" :
+                                               "bg-secondary text-white") rounded-pill px-3 py-2">
+                                @Model.Priority
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-danger bg-danger bg-opacity-10 border-0 text-danger small mb-4">
+                    <i class="bi bi-info-circle me-2"></i>This will soft-delete the task (it won’t appear in dashboards).
+                </div>
+
+                <form asp-action="Delete_Task" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-modern btn-danger py-3">
+                            <i class="bi bi-trash3-fill"></i> Yes, Delete
+                        </button>
+                        <a asp-action="Task_Dashboard" class="btn btn-modern btn-secondary">
+                            No, Keep it
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

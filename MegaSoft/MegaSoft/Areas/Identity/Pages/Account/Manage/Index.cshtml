@@ -1,0 +1,95 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container mt-5">
+    <h2>My Profile</h2>
+
+    <partial name="_StatusMessage" for="StatusMessage" />
+
+    <form method="post" enctype="multipart/form-data">
+        
+        <!-- عرض الصورة الحالية -->
+        <div class="mb-3 text-center">
+            <img id="profilePreview"
+                 src="@Model.ProfileImageUrl"
+                 alt="Profile Picture"
+                 class="profile-image-150"
+                 onerror="this.src='/uploads/profiles/default.jpeg'" />
+        </div>
+
+        <!-- رفع صورة جديدة -->
+        <div class="mb-3">
+            <label asp-for="Input.ProfileImage" class="form-label">Profile Picture</label>
+            <input asp-for="Input.ProfileImage"
+                   type="file"
+                   class="form-control"
+                   accept="image/*"
+                   id="profileImageInput" />
+            <small class="form-text text-muted">Allowed: JPG, PNG, GIF (Max 5MB)</small>
+        </div>
+
+        <!-- الاسم الأول -->
+        <div class="mb-3">
+            <label asp-for="Input.FirstName" class="form-label">First Name</label>
+            <input asp-for="Input.FirstName" class="form-control" />
+            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+        </div>
+
+        <!-- الاسم الأخير -->
+        <div class="mb-3">
+            <label asp-for="Input.LastName" class="form-label">Last Name</label>
+            <input asp-for="Input.LastName" class="form-control" />
+            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+        </div>
+
+        <!-- رقم الهاتف -->
+        <div class="mb-3">
+            <label asp-for="Input.PhoneNumber" class="form-label">Phone Number</label>
+            <input asp-for="Input.PhoneNumber" class="form-control" />
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    
+    <script>
+        // ✅ معاينة الصورة قبل الرفع
+        const fileInput = document.getElementById('profileImageInput');
+        const preview = document.getElementById('profilePreview');
+
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const file = this.files[0];
+                
+                // التحقق من نوع الملف
+                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Please select a valid image file (JPG, PNG, or GIF)');
+                    this.value = '';
+                    return;
+                }
+                
+                // التحقق من حجم الملف (5 MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Image size must be less than 5 MB');
+                    this.value = '';
+                    return;
+                }
+                
+                // عرض معاينة الصورة
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

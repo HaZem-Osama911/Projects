@@ -1,0 +1,181 @@
+﻿@model MegaSoft.ViewModels.TeamViewModels.EditTeamViewModel
+
+@{
+    ViewData["Title"] = "Edit Team";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg border-0">
+                <!-- Card Header -->
+                <div class="card-header bg-gradient-warning text-dark py-3">
+                    <h4 class="mb-0 fw-bold">
+                        <i class="bi bi-pencil-square me-2"></i>Edit Team
+                    </h4>
+                </div>
+
+                <div class="card-body p-4">
+                    <!-- Validation Summary -->
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                    <form asp-action="Edit_Team" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="Id" />
+
+                        <!-- ==================== Team Name Section ==================== -->
+                        <div class="section-container mb-4">
+                            <div class="section-header mb-3">
+                                <h5 class="fw-bold text-primary mb-0">
+                                    <i class="bi bi-tag-fill me-2"></i>Team Information
+                                </h5>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label asp-for="Name" class="form-label fw-semibold">
+                                    Team Name <span class="text-danger">*</span>
+                                </label>
+                                <input asp-for="Name" 
+                                       class="form-control form-control-lg" 
+                                       placeholder="Enter team name" 
+                                       autofocus />
+                                <span asp-validation-for="Name" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <!-- ==================== Team Members Section ==================== -->
+                        <div class="section-container">
+                            <div class="section-header mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="fw-bold text-primary mb-0">
+                                        <i class="bi bi-people-fill me-2"></i>Team Members
+                                    </h5>
+                                    <span class="badge bg-primary fs-6" id="selectedCount">0 selected</span>
+                                </div>
+                            </div>
+
+                            @if (Model.Members == null || !Model.Members.Any())
+                            {
+                                <div class="alert alert-info">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    No users available in the system.
+                                </div>
+                            }
+                            else
+                            {
+                                <!-- Select All / Deselect All Buttons -->
+                                <div class="mb-3 d-flex gap-2">
+                                    <button type="button" class="btn btn-sm btn-outline-primary" id="selectAll">
+                                        <i class="bi bi-check-square me-1"></i>Select All
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" id="deselectAll">
+                                        <i class="bi bi-square me-1"></i>Deselect All
+                                    </button>
+                                </div>
+
+                                <!-- Members List with Scrollable Container -->
+                                <div class="members-container border rounded p-3 bg-light">
+                                    <div class="row g-2">
+                                        @for (int i = 0; i < Model.Members.Count; i++)
+                                        {
+                                            <div class="col-md-6 col-lg-4">
+                                                <div class="member-item p-2 rounded">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input member-checkbox" 
+                                                               type="checkbox" 
+                                                               asp-for="Members[i].IsSelected" 
+                                                               id="member_@i" />
+                                                        <input type="hidden" asp-for="Members[i].UserId" />
+                                                        <input type="hidden" asp-for="Members[i].FullName" />
+                                                        <label class="form-check-label w-100 cursor-pointer" for="member_@i">
+                                                            <div class="d-flex align-items-center">
+                                                                <i class="bi bi-person-circle me-2 text-primary"></i>
+                                                                <span class="member-name">@Model.Members[i].FullName</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- ==================== Action Buttons ==================== -->
+                        <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
+                            <a asp-action="Team_Dashboard" class="btn btn-secondary btn-lg px-4">
+                                <i class="bi bi-x-circle me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-warning btn-lg px-4 text-dark fw-bold">
+                                <i class="bi bi-save me-1"></i>Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    
+    <script>
+        // ==================== Selected Count Update ====================
+        function updateSelectedCount() {
+            const checkedCount = document.querySelectorAll('.member-checkbox:checked').length;
+            const totalCount = document.querySelectorAll('.member-checkbox').length;
+            document.getElementById('selectedCount').textContent = `${checkedCount} / ${totalCount} selected`;
+        }
+
+        // ==================== Select All ====================
+        document.getElementById('selectAll')?.addEventListener('click', function() {
+            document.querySelectorAll('.member-checkbox').forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            updateSelectedCount();
+            highlightSelected();
+        });
+
+        // ==================== Deselect All ====================
+        document.getElementById('deselectAll')?.addEventListener('click', function() {
+            document.querySelectorAll('.member-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            updateSelectedCount();
+            highlightSelected();
+        });
+
+        // ==================== Highlight Selected Members ====================
+        function highlightSelected() {
+            document.querySelectorAll('.member-item').forEach(item => {
+                const checkbox = item.querySelector('.member-checkbox');
+                if (checkbox && checkbox.checked) {
+                    item.classList.add('selected');
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+        }
+
+        // ==================== Event Listeners ====================
+        document.querySelectorAll('.member-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                updateSelectedCount();
+                highlightSelected();
+            });
+        });
+
+        // ==================== Initialize on Page Load ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSelectedCount();
+            highlightSelected();
+        });
+    </script>
+
+}

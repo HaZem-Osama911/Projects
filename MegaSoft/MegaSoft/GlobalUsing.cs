@@ -1,0 +1,17 @@
+﻿global using System.ComponentModel.DataAnnotations;
+global using MegaSoft.Data;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.RazorPages;
+global using MegaSoft.Models;
+global using Microsoft.AspNetCore.Http.Features;
+global using MegaSoft.Repositories.Interfaces;
+global using MegaSoft.Models.Enums;
+global using MegaSoft.Services.Interfaces;
+global using MegaSoft.Repositories.Implementations;
+global using MegaSoft.Services.Implementations;
+global using System.Security.Claims;
+global using MegaSoft.ViewModels.TeamViewModels;
+global using Microsoft.AspNetCore.Mvc.Rendering;
