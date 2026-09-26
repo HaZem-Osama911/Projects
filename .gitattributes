@@ -1,0 +1,10 @@
+# Exclude bundled runtime dependencies from repository language statistics.
+Ai_Tic_Tac/Ai_Tic_Tac/_internal/** linguist-vendored
+
+# Exclude build output and IDE-generated files.
+**/bin/** linguist-generated
+**/obj/** linguist-generated
+**/.vs/** linguist-generated
+
+# Third-party frontend libraries.
+**/wwwroot/lib/** linguist-vendored
