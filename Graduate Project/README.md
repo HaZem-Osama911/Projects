@@ -1,6 +1,6 @@
 <div align="center">
 
-# Thriving Together
+# Thriving Together (Graduate Project)
 
 ### معًا ننمو — منصة لدعم النطق والتواصل
 
