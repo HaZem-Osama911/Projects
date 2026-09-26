@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    style-src 'self' 'unsafe-inline';
+    script-src 'self';
+    img-src 'self' data:;
+    connect-src 'self';
+    font-src 'self' data:;
+    ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose a Letter</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Choose a letter to start practicing!</h1>
+        <div class="letters-grid" id="lettersGrid"></div>
+    </main>
+
+    <script src="letters.js"></script>
+</body>
+</html>

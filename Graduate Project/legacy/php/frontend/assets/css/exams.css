@@ -1,0 +1,104 @@
+/* CSS for all exams (1 to 4) and guided exam */
+.quiz-container, .form-container, .guided-container, .exam3 > .container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    direction: rtl;
+    text-align: right;
+}
+
+.page-content h1 {
+    color: #4070F4;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.page-content .description, .page-content .instructions {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.page-content .question, .page-content .form-group {
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.page-content .question h3, .page-content .form-group label {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 18px;
+    display: block;
+    font-weight: bold;
+}
+
+.page-content .options label {
+    display: block;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.page-content .options label:hover {
+    background: #f0faff;
+    border-color: #4070F4;
+}
+
+.page-content .options input[type="radio"] {
+    margin-left: 10px;
+    transform: scale(1.2);
+}
+
+.page-content .form-group input, .page-content .form-group select, .page-content .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.page-content .btn-submit, .page-content .btn, .page-content button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: #4070F4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.page-content .btn-submit:hover, .page-content .btn:hover, .page-content button:hover {
+    background: #537be9;
+    box-shadow: 0 4px 10px rgba(64,112,244,0.3);
+}
+
+.result {
+    display: none;
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}

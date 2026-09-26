@@ -1,0 +1,25 @@
+/web/vendor/
+/web/node_modules/
+/web/.env
+/web/database/*.sqlite
+/web/public/build/
+/web/public/hot
+/web/public/storage
+/web/storage/logs/*.log
+/web/.phpunit.result.cache
+
+/services/pronunciation/.venv/
+/services/pronunciation/*/uploads/*
+!/services/pronunciation/*/uploads/.gitignore
+**/__pycache__/
+**/*.pyc
+*.log
+
+/.idea/
+/.vscode/
+Thumbs.db
+.DS_Store
+
+# Local migration leftovers and installer; not application source.
+/legacy/obsolete-workspace/
+/legacy/php/frontend/assets/video/python-3.13.1-amd64.exe

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kids Voice Visualizer</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #4a90e2, #d81b60, #4a90e2);
+      background-size: 200% 200%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', Arial, sans-serif;
+      animation: moveBackground 15s ease infinite;
+    }
+
+    @keyframes moveBackground {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    canvas {
+      display: block;
+    }
+
+    .controls {
+      position: absolute;
+      width: 100%;
+      bottom: 20px;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .controls button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      background-color: #d81b60;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    .controls button:hover {
+      background-color: #b0144c;
+    }
+
+    .pronunciation-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      background: #d81b60;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .pronunciation-btn:hover {
+      background-color: #b0144c;
+      transform: scale(1.1);
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      z-index: 1000;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .popup h2 {
+      color: white;
+      font-size: 3rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-bottom: 10px;
+    }
+
+    .popup p {
+      color: white;
+      font-size: 1.8rem;
+      line-height: 1.5;
+    }
+
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="visualizer"></canvas>
+
+  <!-- زر طريقة النطق -->
+  <button class="pronunciation-btn">طريقة النطق</button>
+
+  <!-- مربع الرسالة المنبثق -->
+  <div class="popup-overlay"></div>
+  <div class="popup" id="pronunciationPopup">
+    <span class="close-btn" onclick="closePopup()">×</span>
+    <h2 id="letterName"></h2>
+    <p id="pronunciationTip"></p>
+  </div>
+
+  <div class="controls" id="buttons">
+    <button onclick="playAudio()">نُطق الحرف</button>
+    <button onclick="goToTest()">صفحة الاختبار</button>
+  </div>
+
+  <audio id="audio"></audio>
+
+  <script>
+    const canvas = document.getElementById('visualizer');
+    const ctx = canvas.getContext('2d');
+    const audio = document.getElementById('audio');
+    const pronunciationBtn = document.querySelector('.pronunciation-btn');
+    const popup = document.getElementById('pronunciationPopup');
+    const popupOverlay = document.querySelector('.popup-overlay');
+    const letterName = document.getElementById('letterName');
+    const pronunciationTip = document.getElementById('pronunciationTip');
+
+    // استخراج الحرف من URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const letter = urlParams.get('letter') || 'ألف';
+
+    // تعيين مصدر الصوت ديناميكيًا
+    audio.src = `assets/الحروف/${letter}.mp3`;
+
+    // قاموس نصائح النطق
+    const pronunciationTips = {
+      'ألف': 'افتح فمك وانطق "آه" زي لما تكون مندهش. الصوت يطلع من حلقك.',
+      'باء': 'اضغط شفتيك على بعض وانطق "ب" زي "بوم". حس الاهتزاز على شفتيك.',
+      'تاء': 'ارفع لسانك للثة ورا أسنانك العلوية وانطق "ت" زي "تفاح".',
+      'ثاء': 'حط طرف لسانك بين أسنانك وانفخ "ث" زي "ثعلب".',
+      'جيم': 'ارفع وسط لسانك لسقف فمك وانطق "ج" زي "جاموس".',
+      'حاء': 'انطق صوت خشن من وسط حلقك زي "حوت". حس الاهتزاز في حلقك.',
+      'خاء': 'انطق صوت خشن زي تنفس القطة وهي بتهسهس. زي "خبز".',
+      'دال': 'اضغط طرف لسانك على الثة العلوية وانطق "د" زي "دب".',
+      'ذال': 'حط طرف لسانك بين أسنانك وانفخ "ذ" زي "ذئب".',
+      'راء': 'حط قلم تحت لسانك وارفع طرفه قريب من سقف فمك وقل "ررر" زي صوت الموتور.',
+      'زاي': 'انطق "ز" زي طنين النحلة ولسانك قريب من أسنانك. زي "زرافة".',
+      'سين': 'انفخ هواء خفيف بين لسانك وأسنانك وانطق "س" زي "سمكة".',
+      'شين': 'ارفع وسط لسانك وانطق "ش" زي لما تقول "ششش" للسكوت. زي "شمس".',
+      'صاد': 'انطق "ص" بصوت ثقيل واضغط لسانك لتحت زي "صقر".',
+      'ضاد': 'اضغط جانب لسانك على أضراسك وانطق "ض" بصوت ثقيل زي "ضفدع".',
+      'طاء': 'اضغط لسانك بقوة على الثة العلوية وانطق "ط" زي "طائرة".',
+      'ظاء': 'حط طرف لسانك بين أسنانك وانطق "ظ" بصوت ثقيل زي "ظبي".',
+      'عين': 'اضغط وسط حلقك وانطق "ع" بصوت عميق زي "عنب".',
+      'غين': 'انطق "غ" زي الغرغرة بالماء في حلقك. زي "غراب".',
+      'فاء': 'حط شفتك السفلية تحت أسنانك العلوية وانفخ "ف" زي "فيل".',
+      'قاف': 'انطق "ق" من أعلى حلقك بصوت عميق زي "قمر".',
+      'كاف': 'ارفع وسط لسانك لسقف فمك وانطق "ك" زي "كلب".',
+      'لام': 'ارفع طرف لسانك للثة العلوية وانطق "ل" زي "لبن".',
+      'ميم': 'اغلق شفتيك وانطق "م" زي "موز". حس الاهتزاز في أنفك.',
+      'نون': 'ارفع طرف لسانك للثة وانطق "ن" زي "نحلة". حس الرنين في أنفك.',
+      'هاء': 'انطق "ه" زي التنهيدة الخفيفة. زي "هواء".',
+      'واو': 'ضم شفتيك بشكل دائري وانطق "و" زي "وردة".',
+      'ياء': 'ارفع وسط لسانك وانطق "ي" زي "يد".'
+    };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // تشغيل الصوت تلقائيًا عند تحميل الصفحة
+    window.addEventListener('load', () => {
+      audio.play();
+    });
+
+    function playAudio() {
+      audio.currentTime = 0;
+      audio.play();
+    }
+
+    function goToTest() {
+      window.location.href = `test.html?letter=${letter}`;
+    }
+
+    // عرض مربع النطق
+    pronunciationBtn.addEventListener('click', () => {
+      letterName.textContent = `الحرف: ${letter}`;
+      pronunciationTip.textContent = pronunciationTips[letter] || 'لا توجد نصيحة لهذا الحرف.';
+      popup.style.display = 'block';
+      popupOverlay.style.display = 'block';
+    });
+
+    // إغلاق المربع
+    function closePopup() {
+      popup.style.display = 'none';
+      popupOverlay.style.display = 'none';
+    }
+
+    // إغلاق المربع عند النقر على الخلفية
+    popupOverlay.addEventListener('click', closePopup);
+
+    class Heart {
+      constructor(x, y, size, speed) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speed = speed;
+        this.opacity = 1;
+      }
+
+      update() {
+        this.y -= this.speed;
+        this.opacity -= 0.01;
+      }
+
+      draw(ctx) {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.scale(this.size, this.size);
+        ctx.globalAlpha = this.opacity;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(0, -3, -3, -3, -3, 0);
+        ctx.bezierCurveTo(-3, 3, 0, 5, 0, 6);
+        ctx.bezierCurveTo(0, 5, 3, 3, 3, 0);
+        ctx.bezierCurveTo(3, -3, 0, -3, 0, 0);
+        ctx.fillStyle = 'pink';
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    const hearts = [];
+
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+      .then(stream => {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioCtx.createMediaStreamSource(stream);
+        const analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 512;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        source.connect(analyser);
+
+        function draw() {
+          requestAnimationFrame(draw);
+          analyser.getByteFrequencyData(dataArray);
+
+          let sum = 0;
+          for (let i = 0; i < bufferLength; i++) {
+            sum += dataArray[i];
+          }
+          let average = sum / bufferLength;
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          const maxRadius = Math.min(canvas.width, canvas.height) / 6;
+          const baseRadius = (average / 255) * maxRadius + 50;
+          const centerX = canvas.width / 2;
+          const centerY = canvas.height / 2;
+
+          const gradient = ctx.createRadialGradient(centerX, centerY, baseRadius / 2, centerX, centerY, baseRadius);
+          gradient.addColorStop(0, 'rgba(255, 182, 193, 1)');
+          gradient.addColorStop(1, 'rgba(135, 206, 250, 0.7)');
+
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, baseRadius, 0, Math.PI * 2);
+          ctx.fillStyle = gradient;
+          ctx.shadowBlur = 20;
+          ctx.shadowColor = 'lightblue';
+          ctx.fill();
+
+          if (average > 50 && Math.random() < 0.3) {
+            hearts.push(new Heart(centerX + (Math.random() - 0.5) * baseRadius, centerY - baseRadius, Math.random() * 0.5 + 0.5, Math.random() * 2 + 1));
+          }
+
+          for (let i = hearts.length - 1; i >= 0; i--) {
+            const heart = hearts[i];
+            heart.update();
+            heart.draw(ctx);
+            if (heart.opacity <= 0) {
+              hearts.splice(i, 1);
+            }
+          }
+
+          ctx.beginPath();
+          const waves = 64;
+          for (let i = 0; i <= waves; i++) {
+            const angle = (i / waves) * Math.PI * 2;
+            const distance = baseRadius + Math.sin(angle * 8 + Date.now() / 300) * 10;
+            const x = centerX + Math.cos(angle) * distance;
+            const y = centerY + Math.sin(angle) * distance;
+            if (i === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+          }
+          ctx.closePath();
+          ctx.strokeStyle = 'rgba(255, 192, 203, 0.8)';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+
+        draw();
+      })
+      .catch(err => {
+        console.error('Error accessing microphone:', err);
+        function drawFallback() {
+          requestAnimationFrame(drawFallback);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          const maxRadius = Math.min(canvas.width, canvas.height) / 6;
+          const baseRadius = 50;
+          const centerX = canvas.width / 2;
+          const centerY = canvas.height / 2;
+
+          const gradient = ctx.createRadialGradient(centerX, centerY, baseRadius / 2, centerX, centerY, baseRadius);
+          gradient.addColorStop(0, 'rgba(255, 182, 193, 1)');
+          gradient.addColorStop(1, 'rgba(135, 206, 250, 0.7)');
+
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, baseRadius, 0, Math.PI * 2);
+          ctx.fillStyle = gradient;
+          ctx.shadowBlur = 20;
+          ctx.shadowColor = 'lightblue';
+          ctx.fill();
+
+          ctx.beginPath();
+          const waves = 64;
+          for (let i = 0; i <= waves; i++) {
+            const angle = (i / waves) * Math.PI * 2;
+            const distance = baseRadius + Math.sin(angle * 8 + Date.now() / 300) * 10;
+            const x = centerX + Math.cos(angle) * distance;
+            const y = centerY + Math.sin(angle) * distance;
+            if (i === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+          }
+          ctx.closePath();
+          ctx.strokeStyle = 'rgba(255, 192, 203, 0.8)';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+        drawFallback();
+      });
+  </script>
+</body>
+</html>

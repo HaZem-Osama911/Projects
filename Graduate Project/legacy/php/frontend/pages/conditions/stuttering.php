@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>فيديوهات اللجلجه</title>
+    <link rel="shortcut icon" type="x-icon" href="../../assets/image/logo.png">
+    <link rel="stylesheet" href="../../assets/css/videos.css">
+    <link rel="stylesheet" href="../../assets/css/videos.css">
+    <link rel="stylesheet" href="../../assets/css/home.css">
+    <link rel="stylesheet" href="../../assets/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https:fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lalezar&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="../../../backend/controllers/home.php" class="logo"><img src="../../assets/image/logo.png" alt="logo"></a>
+            <input type="checkbox" id="check">
+            <label for="check" class="check-list">
+                <i class="fa-solid fa-list"></i>
+            </label>
+            <ul class="main-nav">
+                <li class="link"><a href="../../../backend/controllers/home.php" target="_blank">الصفحة الرئيسية</a></li>
+                <li class="link"><a href="../../../backend/controllers/article.php" target="_blank">المقالات</a></li>
+                <li class="link"><a href="../../../backend/controllers/diagnose.php" target="_blank">التشخيصات والعلاجات</a></li>
+                <li class="link"><a href="../../../backend/controllers/exam.php" target="_blank">الاختبارات</a></li>
+                <li class="nav-item"><a href="#Contact" class="nav-link">مساعدة</a></li>
+                <li class="link"> <a href=""></a> </li>
+                <li class="link acc"><a href="../auth/signup.php" target="_blank" class="active">إنشاء حساب</a></li>
+                <li class="link"><a href="../auth/login.php" target="_blank">تسجيل الدخول</a></li>
+            </ul>
+            <div class="profile">
+                <input type="checkbox" id="toggle-menu">
+                <label for="toggle-menu">
+                    <i class="fa-solid fa-user"></i>
+                </label>
+                <div class="menu" id="submenu">
+                    <div class="sub-menu">
+                        <div class="sub-menu-info">
+                            <i class="fa-solid fa-user"></i>
+                            <h3>Name</h3>
+                        </div>
+                        <hr>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-user-pen"></i>
+                            <p>Edit profile</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-gear"></i>
+                            <p>Settings & Privacy</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-circle-question"></i>
+                            <p>Help & Support</p>
+                            <span>></span>
+                        </a>
+                        <a href="#" class="sub-menu-link">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <p>Logout</p>
+                            <span>></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="main-title">اللجلجه<span></span></div>
+        <div class="containeer">
+            <div class="main-video">
+                <div class="video">
+                    <video src="../../assets/video/التنفس.mp4" controls muted autoplay></video>
+                        <h3 class="title">01. التمرين الأول -التنفس والتحكم في النفس </h3>
+                </div>
+            </div>
+            <div class="video-list">
+                <div class="vid">
+                        <video src="../../assets/video/تدليك الفم من الخارج.mp4" controls muted></video>
+                        <h3 class="title">01. التمرين الأول -تدليك الفم من الخارج </h3>
+                    </div>
+                    <div class="vid">
+                        <video src="../../assets/video/تدليك الفم من الداخل.mp4" controls muted></video>
+                        <h3 class="title">02.التمرين الثاني- تدليك الفم من الداخل</h3>
+                    </div>
+                    <div class="vid">
+                        <video src="../../assets/video/تدريب اللسان خارج الفم.mp4" controls muted></video>
+                        <h3 class="title">03. التمرين الثالث- اللسان خارج الفم</h3>
+                    </div>
+                    <div class="vid">
+                        <video src="../../assets/video/الشفاه.mp4" controls muted></video>
+                        <h3 class="title">04. التمرين الرابع -الشفاه </h3>
+                    </div>
+                    <div class="vid">
+                        <video src="../../assets/video/فتح وض الشفايف.mp4" controls muted></video>
+                        <h3 class="title">05. التمرين الخامس -فتح وضم الشفاه </h3>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <script>
+        let listVideo = document.querySelectorAll('.video-list .vid');
+        let mainVideo = document.querySelector('.main-video video');
+        let title = document.querySelector('.main-video .title')
+        listVideo.forEach(video => {
+            video.onclick = () => {
+                listVideo.forEach(vid => vid.classList.remove('active'));
+                video.classList.add('active');
+                if (video.classList.contains('active')) {
+                    let src = video.children[0].getAttribute('src');
+                    mainVideo.src = src;
+                    let text = video.children[1].innerHTML;
+                    title.innerHTML = text;
+                };
+            };
+        });
+    </script>
+
+</body>
+
+</html>

@@ -4,6 +4,13 @@ A collection of my web applications, APIs, and programming practice, with a focu
 
 ## Start here
 
+### Thriving Together — Speech & Communication
+An Arabic-first graduation project with educational activities, user accounts, and separate Arabic and English pronunciation services powered by Whisper.
+
+**Stack:** Laravel 12 · Blade · SQLite · Python · Flask · Whisper
+
+[Project guide & setup](Graduate%20Project/README.md) · [Web application](Graduate%20Project/web) · [Pronunciation services](Graduate%20Project/services/pronunciation)
+
 ### Zedny — Education Platform
 An education platform with courses, enrollments, student–teacher relationships, and separate administration and teaching workflows.
 
@@ -37,14 +44,14 @@ A web application combining MVC pages and API endpoints for movies and genres, a
 | [SupermarketAPI](SupermarketAPI) | Supermarket API project. |
 | [Bank System](Bank%20System) | C# console project. |
 | [HRSystem](HRSystem) | C# console project. |
-| [Graduate Project](Graduate%20Project) | Speech project with Arabic and English Python components. |
+| [Graduate Project](Graduate%20Project) | Thriving Together: Laravel web application, educational activities, and Arabic/English Flask + Whisper pronunciation services. See its README for setup and Git LFS media downloads. |
 | [Web API](Web%20API) | API project with student, administrator, authentication, and AI controllers. |
 | [Ai_Tic_Tac](Ai_Tic_Tac) | Packaged application files and an additional MyApp source folder. |
 | [Simple Random (S,N)](Simple%20Random%20%28S%2CN%29) | Additional programming project files. |
 
 ## Running a project
 
-Each folder is a separate project; there is no single startup application for this repository.
+Each folder is a separate project; there is no single startup application for this repository. For Thriving Together, follow its [Laravel/Python setup guide](Graduate%20Project/README.md). The steps below apply to the .NET projects.
 
 1. Choose a project and read its linked guide where available.
 2. Check its `.csproj` file for the required .NET SDK version.
